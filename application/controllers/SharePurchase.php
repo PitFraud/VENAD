@@ -21,6 +21,8 @@ class SharePurchase extends MY_Controller
 	{
 		$template['body'] = 'SharePurchase/list';
 		$template['script'] = 'SharePurchase/script';
+		$template['no_of_share_holder'] = $this->SharePurchase_model->getShareHolderCount();
+		//var_dump($template['no_of_share_holder']);die;
 		$this->load->view('template', $template);
 	}
 
@@ -45,10 +47,23 @@ class SharePurchase extends MY_Controller
 			$insert_array = [
 				'purchase_shareholder_name' => $_POST['purchase_shareholder_name'],
 				'purchase_share_id_fk' => $_POST['purchase_share_name'],
+				'share_purchase_period' => $_POST['purchase_share_period'],
+				'share_purchase_paid' => $_POST['purchase_share_paid'],
+				'share_purchase_patronage_divident' => $_POST['purchase_share_patronage'],
 				'created_at' => date('Y-m-d H:i:s'),
 			];
-			$result = $this->General_model->add($this->table, $insert_array);
-			$response_text = 'share added successfully';
+			$purchase_id = $this->input->post('purchase_id');
+			if($purchase_id){
+				$data['purchase_id'] = $purchase_id;
+				$result = $this->General_model->update($this->table,$insert_array,'purchase_id',$purchase_id);
+				$response_text = 'Purchase updated successfully';
+			}
+			else
+			{
+				$result = $this->General_model->add($this->table, $insert_array);
+				$response_text = 'share added successfully';
+			}
+			
 			if ($result) {
 				$this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
 			} else {
@@ -58,11 +73,20 @@ class SharePurchase extends MY_Controller
 		}
 	}
 
+	public function editSharePurchase($purchase_id)
+	{
+		$template['body'] = 'SharePurchase/add';
+		$template['script'] = 'SharePurchase/script';
+		$template['share_names'] = $this->getShareNames();
+		$template['records'] = $this->General_model->get_row($this->table,'purchase_id',$purchase_id);
+		$this->load->view('template', $template);
+	}
+
 	public function edit($share_id)
 	{
 		$template['body'] = 'Share/add';
 		$template['script'] = 'Share/script';
-		$template['records'] = $this->General_model->get_row($this->table, 'share_id', $share_id);
+		$template['records'] = $this->General_model->get_row($this->table,'share_id', $share_id);
 		$this->load->view('template', $template);
 	}
 

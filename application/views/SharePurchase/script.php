@@ -14,17 +14,18 @@ $table = $('#sharePurchaseTable').DataTable( {
     $table.column(0).nodes().each(function(node,index,dt){
       $table.cell(node).data(index+1);
     });
-    $('td', row).eq(6).html('<center><a href="<?php echo base_url();?>Vaccination/edit/'+data['vaccination_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a>&nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['vaccination_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
+    $('td', row).eq(7).html('<center><a href="<?php echo base_url();?>SharePurchase/editSharePurchase/'+data['purchase_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a>&nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['purchase_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
   },
 
   "columns": [
     { "data": "empty", "defaultContent":""},
     { "data": "purchase_shareholder_name", "orderable": false },
     { "data": "share_name", "orderable": false },
+    { "data": "share_purchase_period", "orderable": false },
     { "data": "share_purchase_paid", "orderable": false },
     { "data": "share_purchase_patronage_divident", "orderable": false },
     { "data": "created_date", "orderable": false },
-    { "data": "share_id", "orderable": false },
+    { "data": "purchase_id", "orderable": false },
   ]
 
 } );

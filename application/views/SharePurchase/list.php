@@ -20,6 +20,7 @@
         <!-- <button type="button" class="btn btn-primary" name="button">Add allotment</button> -->
         <input type="hidden" id="response" value="<?php echo $this->session->flashdata('response'); ?>" />
         <a href="<?php echo base_url(); ?>SharePurchase/add" class="btn btn-primary"><i class="fa fa-plus-square"></i> Add SharePurchase</a>
+        <center>Number Of Share Holder: <span style="color:red;"><b><?php if(isset($no_of_share_holder[0]->count)) echo $no_of_share_holder[0]->count ?></b></span></center>
         <div class="">
           <div class="box-body table-responsive">
             <table id="sharePurchaseTable" class="table table-bordered table-striped">
@@ -29,6 +30,7 @@
                   <th>Share Holder Name</th>
                   <th>Share Name/Value</th>
                   <th>Share Period(Months)</th>
+                  <th>Paid Amount</th>
                   <th>Patronage Divident %</th>
                   <th>Date&Time</th>
                   <th>Action</th>

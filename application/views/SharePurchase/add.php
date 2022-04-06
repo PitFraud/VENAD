@@ -51,13 +51,20 @@
                           <?php } ?>
                         </select>
                       </div>
+
                       <div class="col-md-6">
                         <label for="">Period(Months)</label>
-                        <input type="text" name="purchase_share_period" id="" class="form-control">
+                        <input type="text" name="purchase_share_period" id="" class="form-control" value="<?php if(isset($records->share_purchase_period)) echo $records->share_purchase_period ?>">
                       </div>
+
+                      <div class="col-md-6">
+                        <label for="">Paid Amount</label>
+                        <input type="text" name="purchase_share_paid" id="" class="form-control" value="<?php if(isset($records->share_purchase_paid)) echo $records->share_purchase_paid ?>">
+                      </div>
+
                       <div class="col-md-6">
                         <label for="">Patronage Divident Bonus</label>
-                        <input type="text" name="purchase_share_patronage" id="" class="form-control">
+                        <input type="text" name="purchase_share_patronage" id="" class="form-control" value="<?php if(isset($records->share_purchase_patronage_divident)) echo $records->share_purchase_patronage_divident ?>">
                       </div>
                     </div>
                   </div>
