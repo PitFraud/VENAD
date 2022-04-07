@@ -30,19 +30,12 @@ class Vehicles_root extends MY_Controller {
 			$this->load->view('template', $template);
 		}
 		else {
-				$temp = count($this->input->post('item_id')); 
-				$item_id = $this->input->post('item_id');
-				$weight  = $this->input->post('weight');
-				$unit  = $this->input->post('unit');
-				$tweight  = $this->input->post('tweight');
-				$damage_weight  = $this->input->post('damage_weight');
-				$balance  = $this->input->post('balance');
-				// 		$insert_array=[
-				// 		'vehicle_id_fk'=>$_POST['vehicle_id_fk'],
-				// 		'driver_id_fk'=>$_POST['driver_id_fk'],
-				// 		'date'=>date('Y-m-d'),
-				// 		'status' => 1
-				// ];
+				$count = count($this->input->post('annotation_destination')); 
+				$destination = $this->input->post('annotation_destination');
+				$place = $this->input->post('annotation_place');
+				$km = $this->input->post('annotation_km');
+				$arrival_time = $this->input->post('annotation_arrival_time');
+				
 
 				$data = array(
 					'vehicle_id_fk' => $this->input->post('vehicle_id_fk'),
@@ -52,27 +45,25 @@ class Vehicles_root extends MY_Controller {
 					'status' => 1,
 				
 				);
-				//print_r($data);
-				//exit;
+			
 			$result = $this->General_model->add($this->table,$data);
 				$insert_id = $this->db->insert_id();
-				    if ($temp) 
+				    if ($count) 
 					{
-						for ($i = 0; $i < $temp; $i++) 
+						for ($i = 0; $i < $count; $i++) 
 							{
-								$data = array(
-								'item_id_fk' => $item_id[$i],
-								'weight' => $weight[$i],
-								'unit' => 	$unit[$i],
-								'tweight' => $tweight[$i],
-								'damage' => $damage_weight[$i],
-								'balance' => $balance[$i],
-								'root_id_fk' => $insert_id
+								$data2 = array(
+								'v_destination_fk_id' => $insert_id,
+								'v_destination_name' => $destination[$i],
+								'v_detination_place' => $place[$i],
+								'v_destination_km' => $km[$i],
+								'v_destination_arrival_time' => $arrival_time[$i],
+								'v_destination_status' => 1,
+								
 								);
-								if($weight[$i]!="")
-								{
-					 			$result = $this->General_model->add($this->table1,$data);
-			 					}
+
+					 			$result = $this->General_model->add('vehicle_destination',$data2);
+
 		                 	}
 		            }
 				$response_text = 'Vehicle Root Map added successfully';
@@ -104,7 +95,8 @@ class Vehicles_root extends MY_Controller {
 		$template['body'] = 'Vehicles_root/view';
 		$template['script'] = 'Vehicles_root/script';
 		$template['records'] = $this->Vehicles_model->getrout($vroot_id);
-		$template['records1'] = $this->Vehicles_model->getroutitem($vroot_id);
+		//$template['records1'] = $this->Vehicles_model->getroutitem($vroot_id);
+		$template['records1'] = $this->Vehicles_model->getRouteDetails($vroot_id);
 		$this->load->view('template', $template);
 	}
 
