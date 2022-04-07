@@ -83,8 +83,12 @@ function confirmDelete(allot_id){
       }
 	}
 
-$(function () {
-  $("select").select2();
-})
+  $( document ).ready(function() {
+    $("#product22").select2();
+    $("#memberTypeSelect").select2();
+    $("#memberSelect22").select2();
+    $("#unit22").select2();
+  });
+
 </script>
 

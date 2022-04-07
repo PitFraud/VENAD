@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 06, 2022 at 08:31 AM
+-- Generation Time: Apr 07, 2022 at 11:17 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.9
 
@@ -305,8 +305,6 @@ CREATE TABLE IF NOT EXISTS `tbl_direct_details` (
   `d_details_father_name` varchar(100) NOT NULL,
   `d_details_status` tinyint(2) NOT NULL,
   `d_details_dob` date DEFAULT NULL,
-  `d_details_shop_name` varchar(200) DEFAULT NULL,
-  `d_details_gst_no` varchar(200) DEFAULT NULL,
   `d_details_photo` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`d_details_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
@@ -315,8 +313,8 @@ CREATE TABLE IF NOT EXISTS `tbl_direct_details` (
 -- Dumping data for table `tbl_direct_details`
 --
 
-INSERT INTO `tbl_direct_details` (`d_details_id`, `d_details_name`, `d_details_address`, `d_details_email`, `d_details_pan`, `d_details_aadhaar`, `d_details_din`, `d_details_phone`, `d_details_father_name`, `d_details_status`, `d_details_dob`, `d_details_shop_name`, `d_details_gst_no`, `d_details_photo`) VALUES
-(1, 'adsda asdad', 'asdasdd', 'rajeev654@gamil.com', '2323dds', '23232122321312', '121321232132', '1354654', 'chandran', 1, '1991-12-04', 'Test Shop', '87684354354343', 'tom.jpg');
+INSERT INTO `tbl_direct_details` (`d_details_id`, `d_details_name`, `d_details_address`, `d_details_email`, `d_details_pan`, `d_details_aadhaar`, `d_details_din`, `d_details_phone`, `d_details_father_name`, `d_details_status`, `d_details_dob`, `d_details_photo`) VALUES
+(1, 'adsda asdad', 'asdasdd', 'rajeev654@gamil.com', '2323dds', '23232122321312', '121321232132', '1354654', 'chandran', 1, '1991-12-04', 'tom.jpg');
 
 -- --------------------------------------------------------
 
@@ -959,6 +957,8 @@ CREATE TABLE IF NOT EXISTS `tbl_member` (
   `member_share_no_shares` double DEFAULT NULL,
   `member_outlet_code` varchar(50) DEFAULT NULL,
   `member_shop` varchar(100) DEFAULT NULL,
+  `member_shop_name` varchar(255) DEFAULT NULL,
+  `member_shop_gst` varchar(200) DEFAULT NULL,
   `member_gst` varchar(100) DEFAULT NULL,
   `created_at` date NOT NULL,
   `updated_at` date NOT NULL,
@@ -972,21 +972,21 @@ CREATE TABLE IF NOT EXISTS `tbl_member` (
 -- Dumping data for table `tbl_member`
 --
 
-INSERT INTO `tbl_member` (`member_id`, `member_name`, `member_mid`, `member_img`, `member_type`, `member_gender`, `member_pnumber`, `member_email`, `member_address`, `member_dob`, `member_panchayath`, `member_district`, `member_state`, `member_share_aahar`, `member_share_pan`, `member_share_no_shares`, `member_outlet_code`, `member_shop`, `member_gst`, `created_at`, `updated_at`, `member_status`, `area_of_shed`, `area_capacity`) VALUES
-(1, 'Ajith', '1', '1.jpg', 1, 1, '9809402838', '123@gmail.com', 'test', '1989-10-30', 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2022-01-30', '0000-00-00', 1, NULL, NULL),
-(2, 'Jishnu', '1', 'index.jpg', 1, 1, '7559972845', 'j4mejishnu@yahoo.com', 'Pulappatta House', '1995-03-05', 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2022-02-04', '0000-00-00', 1, NULL, NULL),
-(3, 'Anil Kumar', '3', '3.jpg', 1, 1, '7559972542', 'anilkumar123@gmail.c', 'Test address', '1995-03-10', 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2022-02-16', '0000-00-00', 1, NULL, NULL),
-(4, 'Neena', '4', 'abstract1.jpg', 3, 2, '5689653242', 'neena@123.com', 'Test address', '1995-02-06', 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2022-01-03', '0000-00-00', 1, NULL, NULL),
-(5, 'RAHUL', 'ABC100', 'abstract3.jpg', 2, 1, '7558859456', 'rahul@gmail.com', 'Test address', '2022-03-06', 0, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-06', '0000-00-00', 1, NULL, NULL),
-(6, 'ALLEN', 'ABC101', 'abstract6.jpg', 2, 1, '7559865981', 'allen123@gmail.com', 'Test address', '1990-12-10', 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2022-02-19', '0000-00-00', 1, NULL, NULL),
-(7, 'adsadasd', '1234ed', 'profile_pic.png', 1, 2, '34134214', 'rajeev654@gamil.com', 'asdasdd', '2022-03-14', 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-14', '0000-00-00', 1, NULL, NULL),
-(8, 'Big Mall Ent', '478854', 'Not uploaded', 1, 1, '34134214', 'rajeev654@gamil.com', 'affafsdsadasd', '2022-03-15', 5, 5, 1, 2147483647, 'AEPD23DDD', 50, NULL, NULL, NULL, '2022-03-15', '0000-00-00', 1, NULL, NULL),
-(9, 'wewewd', '1234ed', 'Not uploaded', 2, 1, '34134214', 'rajeev654@gamil.com', 'adfadsasd', '2022-03-15', 5, 5, 1, NULL, NULL, NULL, '2343434', NULL, NULL, '2022-03-15', '0000-00-00', 1, NULL, NULL),
-(10, 'Kalika Shops', 'S12334e34', 'Not uploaded', 5, 1, '787454211', 'rajeev654@gamil.com', 'dsadasdasdasdasdasdsadaddasddasdasdadwrtvscfdgf', '2022-03-17', 4, 2, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-17', '0000-00-00', 1, NULL, NULL),
-(11, 'JAMES MATHEW', '84765415465', 'Not uploaded', 6, 1, '4567895113', 'james@gmail.com', 'aasdasdasdasdasdasd', '2022-03-23', 1, 1, 1, NULL, NULL, NULL, NULL, 'CHick Center', 'asd34dsds34ew', '2022-03-23', '0000-00-00', 1, NULL, NULL),
-(12, 'Rajesh', 'FS01', 'Not uploaded', 0, 1, '09962325950', 'freedomvarsha@gmail.', 'Souparnika, Kakkakkunnu P.O,\r\nSooranad South,\r\nKollam', '2022-04-02', 0, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', '0000-00-00', 1, NULL, NULL),
-(13, 'Prasad', 'FS2', 'Not uploaded', 0, 1, '09962325950', 'freedomvarsha@gmail.', 'Souparnika, Kakkakkunnu P.O,\r\nSooranad South,\r\nKollam', '0000-00-00', 0, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', '0000-00-00', 1, NULL, NULL),
-(14, 'Ponnu', '9876435435345', 'Not uploaded', 3, 1, '78451239894', 'ponnu@gmail.com', 'Havana', '2022-04-05', 4, 2, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-05', '0000-00-00', 1, 5000, 600);
+INSERT INTO `tbl_member` (`member_id`, `member_name`, `member_mid`, `member_img`, `member_type`, `member_gender`, `member_pnumber`, `member_email`, `member_address`, `member_dob`, `member_panchayath`, `member_district`, `member_state`, `member_share_aahar`, `member_share_pan`, `member_share_no_shares`, `member_outlet_code`, `member_shop`, `member_shop_name`, `member_shop_gst`, `member_gst`, `created_at`, `updated_at`, `member_status`, `area_of_shed`, `area_capacity`) VALUES
+(1, 'Ajith', '1', '1.jpg', 1, 1, '9809402838', '123@gmail.com', 'test', '1989-10-30', 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-01-30', '0000-00-00', 1, NULL, NULL),
+(2, 'Jishnu', '1', 'index.jpg', 1, 1, '7559972845', 'j4mejishnu@yahoo.com', 'Pulappatta House', '1995-03-05', 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-02-04', '0000-00-00', 1, NULL, NULL),
+(3, 'Anil Kumar', '3', '3.jpg', 1, 1, '7559972542', 'anilkumar123@gmail.c', 'Test address', '1995-03-10', 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-02-16', '0000-00-00', 1, NULL, NULL),
+(4, 'Neena', '4', 'abstract1.jpg', 3, 2, '5689653242', 'neena@123.com', 'Test address', '1995-02-06', 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-01-03', '0000-00-00', 1, NULL, NULL),
+(5, 'RAHUL', 'ABC100', 'abstract3.jpg', 2, 1, '7558859456', 'rahul@gmail.com', 'Test address', '2022-03-06', 0, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-06', '0000-00-00', 1, NULL, NULL),
+(6, 'ALLEN', 'ABC101', 'abstract6.jpg', 2, 1, '7559865981', 'allen123@gmail.com', 'Test address', '1990-12-10', 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-02-19', '0000-00-00', 1, NULL, NULL),
+(7, 'adsadasd', '1234ed', 'profile_pic.png', 1, 2, '34134214', 'rajeev654@gamil.com', 'asdasdd', '2022-03-14', 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-14', '0000-00-00', 1, NULL, NULL),
+(8, 'Big Mall Ent', '478854', 'Not uploaded', 1, 1, '34134214', 'rajeev654@gamil.com', 'affafsdsadasd', '2022-03-15', 5, 5, 1, 2147483647, 'AEPD23DDD', 50, NULL, NULL, NULL, NULL, NULL, '2022-03-15', '0000-00-00', 1, NULL, NULL),
+(9, 'wewewd', '1234ed', 'Not uploaded', 2, 1, '34134214', 'rajeev654@gamil.com', 'adfadsasd', '2022-03-15', 5, 5, 1, NULL, NULL, NULL, '2343434', NULL, NULL, NULL, NULL, '2022-03-15', '0000-00-00', 1, NULL, NULL),
+(10, 'Kalika Shops', 'S12334e34', 'Not uploaded', 5, 1, '787454211', 'rajeev654@gamil.com', 'dsadasdasdasdasdasdsadaddasddasdasdadwrtvscfdgf', '2022-03-17', 4, 2, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-17', '0000-00-00', 1, NULL, NULL),
+(11, 'JAMES MATHEW', '84765415465', 'Not uploaded', 6, 1, '4567895113', 'james@gmail.com', 'aasdasdasdasdasdasd', '2022-03-23', 1, 1, 1, NULL, NULL, NULL, NULL, 'CHick Center', NULL, NULL, 'asd34dsds34ew', '2022-03-23', '0000-00-00', 1, NULL, NULL),
+(12, 'Rajesh', 'FS01', 'Not uploaded', 0, 1, '09962325950', 'freedomvarsha@gmail.', 'Souparnika, Kakkakkunnu P.O,\r\nSooranad South,\r\nKollam', '2022-04-02', 0, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', '0000-00-00', 1, NULL, NULL),
+(13, 'Prasad', 'FS2', 'Not uploaded', 0, 1, '09962325950', 'freedomvarsha@gmail.', 'Souparnika, Kakkakkunnu P.O,\r\nSooranad South,\r\nKollam', '0000-00-00', 0, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', '0000-00-00', 1, NULL, NULL),
+(14, 'Ponnu', '9876435435345', 'Not uploaded', 3, 1, '78451239894', 'ponnu@gmail.com', 'Havana', '2022-04-05', 4, 2, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-05', '0000-00-00', 1, 5000, 600);
 
 -- --------------------------------------------------------
 
@@ -1170,7 +1170,7 @@ CREATE TABLE IF NOT EXISTS `tbl_product` (
   `product_created_date` date NOT NULL,
   `product_updated_date` date NOT NULL,
   PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_product`
@@ -1182,7 +1182,8 @@ INSERT INTO `tbl_product` (`product_id`, `product_name`, `product_code`, `produc
 (4, 'Vaccines', 'CODE3', 3, 0, 3, 50, 50, 10, 'Test description for vaccines', 1, '2022-02-22', '2022-02-22'),
 (5, 'Eggery', 'CODE4', 1, 0, 2, 100, 150, 10, 'Test Description', 1, '2022-02-22', '2022-02-22'),
 (6, 'Broiler Chicken', 'CODE5', 1, 0, 2, 100, 1100, 50, 'Test description', 1, '2022-02-22', '2022-02-22'),
-(7, 'Anti-biotic', 'CODE6', 4, 0, 4, 50, 50, 10, 'Anti Biotic', 1, '2022-03-15', '2022-03-15');
+(7, 'Anti-biotic', 'CODE6', 4, 0, 4, 50, 50, 10, 'Anti Biotic', 1, '2022-03-15', '2022-03-15'),
+(8, 'Agriculture', 'PC109', 2, 0, 4, 100, 100, 50, 'sadsadasdasd', 1, '2022-04-07', '2022-04-07');
 
 -- --------------------------------------------------------
 
@@ -1711,15 +1712,16 @@ CREATE TABLE IF NOT EXISTS `tbl_share_purchase_details` (
   `created_at` datetime NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`purchase_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_share_purchase_details`
 --
 
 INSERT INTO `tbl_share_purchase_details` (`purchase_id`, `purchase_shareholder_name`, `purchase_share_id_fk`, `share_purchase_period`, `share_purchase_paid`, `share_purchase_patronage_divident`, `purchase_status`, `created_at`, `updated_at`) VALUES
-(1, 'Jishnu Mohan', 2, NULL, NULL, NULL, 1, '2022-02-15 09:55:20', '2022-02-14 17:25:20'),
-(2, 'Aswin', 2, NULL, NULL, NULL, 1, '2022-02-15 10:02:35', '2022-02-14 17:32:35');
+(1, 'Jishnu Mohan', 1, 48, 100000, 10, 1, '2022-04-06 15:03:16', '2022-02-14 17:25:20'),
+(2, 'Aswin', 1, 36, 500000, 5.6, 1, '2022-04-06 15:02:56', '2022-02-14 17:32:35'),
+(3, 'Jausha', 1, 90, 1200000, 12, 1, '2022-04-06 15:12:21', '2022-04-06 09:42:21');
 
 -- --------------------------------------------------------
 
@@ -1869,7 +1871,7 @@ CREATE TABLE IF NOT EXISTS `tbl_unit` (
   `unit_description` text NOT NULL,
   `unit_status` int(11) NOT NULL,
   PRIMARY KEY (`unit_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_unit`
@@ -1881,7 +1883,10 @@ INSERT INTO `tbl_unit` (`unit_id`, `unit_name`, `unit_description`, `unit_status
 (3, 'NO', '', 1),
 (4, 'PCS', '', 1),
 (5, 'Dozen', '12 pieces', 1),
-(6, 'Barrel', '', 1);
+(6, 'Barrel', '', 1),
+(7, 'ML', 'Milliliter', 1),
+(8, 'LTR', 'Litre', 1),
+(9, 'BAGS', '', 1);
 
 -- --------------------------------------------------------
 
@@ -1955,15 +1960,14 @@ CREATE TABLE IF NOT EXISTS `tbl_vechicles_root` (
   `total_weight` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`vroot_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_vechicles_root`
 --
 
 INSERT INTO `tbl_vechicles_root` (`vroot_id`, `vehicle_id_fk`, `driver_id_fk`, `vroot_details`, `date`, `total_weight`, `status`) VALUES
-(1, 1, 1, '', '2022-02-28', 0, 1),
-(2, 2, 2, 'jktrdtrdgfhgv', '2022-02-28', 0, 1);
+(4, 1, 2, 'Poultry Delivery ', '2022-04-07', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -2143,6 +2147,32 @@ INSERT INTO `tbl_vendor` (`vendor_id`, `vendorname`, `vendoraddress`, `vendorpho
 (1, 'Venad Chicken', ' Venad Chicken  Opposite Kottarakkara Railway Station, Kottarakkara, ,Kottarakkara,Kerala,India,691506 ', 9809402838, 'hs@gmail.com', 10000, '32AWE#$Fdfdf', 1),
 (2, 'Lucky Market Pvt. Ltd.', '    Shop No. 7895, MG Road, Erankulam,123456789  ', 1234567890, 'luck@market.com', 100, '32ABX5346712U', 0),
 (3, 'Lucky Market Pvt. Ltd.', ' Shop No. 134, MG Road, Kaloor,  Kochi - 525410', 9638527410, 'lucky@hart.com', 10, '32ADQPA2740Q1ZE', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_destination`
+--
+
+DROP TABLE IF EXISTS `vehicle_destination`;
+CREATE TABLE IF NOT EXISTS `vehicle_destination` (
+  `v_destination_id` int(11) NOT NULL AUTO_INCREMENT,
+  `v_destination_fk_id` int(11) DEFAULT NULL,
+  `v_destination_name` varchar(255) DEFAULT NULL,
+  `v_detination_place` varchar(100) DEFAULT NULL,
+  `v_destination_km` int(11) DEFAULT NULL,
+  `v_destination_arrival_time` time DEFAULT NULL,
+  `v_destination_status` tinyint(2) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`v_destination_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `vehicle_destination`
+--
+
+INSERT INTO `vehicle_destination` (`v_destination_id`, `v_destination_fk_id`, `v_destination_name`, `v_detination_place`, `v_destination_km`, `v_destination_arrival_time`, `v_destination_status`) VALUES
+(3, 4, 'Venad Poultry Farm', 'Thrissur', 12, '00:00:00', 1),
+(4, 4, 'Royal Emarald Park Hotel', 'Venus Rd, Thrissur', 10, '10:10:00', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

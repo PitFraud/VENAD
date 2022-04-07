@@ -9,7 +9,7 @@
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
-      Allot Item Information
+      Allot to Integrators Information
       <small id="date" class="col-md-4"></small>
     </h1>
     <ol class="breadcrumb">
@@ -33,7 +33,7 @@
               <div class="panel panel-danger">
                 <div class="panel-heading">
                   <input type="hidden" name="allot_id" value="<?php if(isset($records->allot_id)) echo $records->allot_id ?>"/>
-                  <h3 class="panel-title"><b>ALLOT ITEM</b></h3>
+                  <h3 class="panel-title"><b>ALLOT TO INTEGARATORS</b></h3>
                   <!-- <div class="col-md-6"> -->
                   </div>
                     <div class="panel-body" style="font-weight:bold;">
@@ -41,12 +41,12 @@
 
                     <div class="col-md-6">
                       <label class="fsize">Choose Item</label>
-                      <select class="form-control" name="item_type" id="product">
+                      <select class="form-control" name="item_type" id="product22">
                         <?php foreach ($products as $product) {?>
                           <option <?php if(isset($records->allot_item_id)){if($records->allot_item_id==$product->product_id){echo "selected";}} ?> value="<?php echo $product->product_id; ?>"><?php echo $product->product_name; ?>&nbsp;&nbsp;-&nbsp;<?php echo $product->product_code; ?></option>
                         <?php } ?>
                       </select>
-                      <a class="btn btn-success" data-toggle="modal" data-target="#myItem">Add Item</a>
+                      <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#myItem">Add Item</a>
                     </div>
 
                     <div class="col-md-6">
@@ -64,11 +64,12 @@
 
                     <div class="col-md-6">
                       <label class="fsize">Choose Member</label>
-                      <select class="form-control" name="member_name" id="memberSelect">
+                      <select class="form-control" name="member_name" id="memberSelect22">
                         <?php foreach ($members as $member) {?>
                           <option <?php if(isset($records->allot_member_id_fk)){if($records->allot_member_id_fk==$type->member_type_id){echo "selected";}} ?> value="<?php echo $type->member_type_id; ?>"><?php echo $type->member_type_name; ?></option>
                         <?php } ?>
                       </select>
+                      <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#myMembers">Add Member</a>
                     </div>
 
                     <div class="col-md-6">
@@ -87,7 +88,7 @@
 
                     <div class="col-md-6">
                       <label class="fsize">Unit</label>
-                      <select class="form-control" name="unit" id="">
+                      <select class="form-control" name="unit" id="unit22">
                         <option value="" disabled>Select Unit</option>
                         <?php foreach ($units as $unit) {?>
                           <option  <?php if(isset($records->allot_unit_fk)){if($records->allot_unit_fk==$unit->unit_id){echo "selected";}} ?> value="<?php echo $unit->unit_id; ?>"><?php echo $unit->unit_name; ?></option>
@@ -157,14 +158,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">ADD Item</h4>
+        <h4 class="modal-title">ADD ITEM</h4>
       </div>
       <div class="modal-body">
         <form action="<?php echo base_url() ?>Allotment/addItem" method="POST">
           <div class="form-group">
             <div class="col-md-6">
               <label for="">Item Type</label>
-              <select name="item_type" id="item_type" class="form-control" required>
+              <select name="item_type" id="item_type22" class="form-control" required>
                 <option value="">-SELECT-</option>
                 <?php foreach($item_type as $item_types){ ?>
                   <option value="<?php echo $item_types->prod_cat_id ?>"><?php echo $item_types->prod_cat_name ?></option>
@@ -199,6 +200,46 @@
             <div class="col-md-12">
               <label for="">Description</label>
               <textarea name="description" class="form-control" id="" cols="30" rows="5" placeholder="Enter Item Discription"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12"><br></div>
+          <div class="col-md-12">
+              <center><input type="submit" class="btn btn-success" value="SAVE"></center>
+          </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="myMembers" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">ADD MEMBER</h4>
+      </div>
+      <div class="modal-body">
+        <form action="<?php echo base_url() ?>Allotment/addItem" method="POST">
+          <div class="form-group">
+          <div class="col-md-6">
+              <label for="">Member Type</label>
+              <select name="" id="" class="form-control">
+                <option value="">SELECT</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="">Member Name</label>
+              <input type="text" name="" id="" class="form-control">
             </div>
           </div>
           <div class="form-group">
