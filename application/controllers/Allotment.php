@@ -22,6 +22,7 @@ class Allotment extends MY_Controller {
 		$this->form_validation->set_rules('quantity', 'quantity', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$template['members']=$this->getMembers();
+			//var_dump($template['members']);die;
 			$template['member_types']=$this->getMemberTypes();
 			$template['products']=$this->getProducts();
 			$template['units']=$this->getUnits();
@@ -39,6 +40,7 @@ class Allotment extends MY_Controller {
 					'allot_item_id'=>$_POST['item_type'],
 					'allot_quantity'=>$_POST['quantity'],
 					'allot_member_id_fk'=>$_POST['member_name'],
+					'allot_integration_code'=>$_POST['integration_code'],
 					'allot_weight'=>$_POST['weight'],
 					'allot_unit_fk'=>$_POST['unit'],
 					'allot_vaccine_fk'=>$_POST['vaccination_days'],
@@ -53,9 +55,7 @@ class Allotment extends MY_Controller {
                      $result = $this->General_model->add($this->table,$insert_array);
                      $response_text = 'Panchayath added  successfully';
                 }
-				// echo"<pre>",print_r($insert_array),"</pre>"; die;
-				// $result = $this->General_model->add($this->table,$insert_array);
-				// $response_text = 'Alloted successfully';
+
 				if($result){
 	            $this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
 				}
@@ -76,7 +76,9 @@ class Allotment extends MY_Controller {
 		$template['vaccinationdays']=$this->getVaccinationdays();
 		$template['body'] = 'Allotment/add';
 		$template['script'] = 'Allotment/script';
-		$template['records'] = $this->General_model->get_row($this->table,'allot_id',$allot_id);
+		//$template['records'] = $this->General_model->get_row($this->table,'allot_id',$allot_id);
+		$template['records'] = $this->Allotment_model->editAllotementRecord($allot_id);
+		//var_dump($template['records']);die;
     	$this->load->view('template', $template);
 	}
 
@@ -233,6 +235,14 @@ class Allotment extends MY_Controller {
 			$this->session->set_flashdata('response',$response_text);
 			redirect('Allotment/add','refresh');
 		}		
+	}
+
+
+	public function addMember()
+	{
+		$insert_array = [];
+		$insert_array = [
+		];
 	}
 
 }

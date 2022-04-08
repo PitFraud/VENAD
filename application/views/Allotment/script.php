@@ -25,14 +25,15 @@ $table = $('#allotmentTable').DataTable( {
       $('td', row).eq(8).html('<center><p">'+data['vaccination_date']+'</p></center>');
     }
 
-    $('td', row).eq(10).html('<center><a href="<?php echo base_url();?>Allotment/receipt/'+data['allot_id']+'"><i class="fa fa-file iconFontSize-medium" ></i></a></center>');
-    $('td', row).eq(11).html('<center><a href="<?php echo base_url();?>Allotment/edit/'+data['allot_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a>&nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['allot_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
+    $('td', row).eq(11).html('<center><a href="<?php echo base_url();?>Allotment/receipt/'+data['allot_id']+'"><i class="fa fa-file iconFontSize-medium" ></i></a></center>');
+    $('td', row).eq(12).html('<center><a href="<?php echo base_url();?>Allotment/edit/'+data['allot_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a>&nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['allot_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
   },
 
   "columns": [
     { "data": "empty", "defaultContent":""},
     { "data": "product_name", "orderable": false },
     { "data": "member_name", "orderable": false },
+    { "data": "allot_integration_code", "orderable": false },
     { "data": "member_type_name", "orderable": false },
     { "data": "allot_quantity", "orderable": false },
     { "data": "allot_weight", "orderable": false },
@@ -83,12 +84,12 @@ function confirmDelete(allot_id){
       }
 	}
 
-  $( document ).ready(function() {
-    $("#product22").select2();
-    $("#memberTypeSelect").select2();
-    $("#memberSelect22").select2();
-    $("#unit22").select2();
-  });
+  // $( document ).ready(function() {
+  //   $("#product22").select2();
+  //   $("#memberTypeSelect").select2();
+  //   $("#memberSelect").select2();
+  //   $("#unit22").select2();
+  // });
 
 </script>
 
