@@ -34,8 +34,6 @@
                 <th>Quantity</th>
                 <th>Weight</th>
                 <th>Unit</th>
-                <th>Vaccination</th>
-                <th>Vaccination Date</th>
                 <th>Date&Time</th>
                 <th>Receipt</th>
                 <th>Action</th>

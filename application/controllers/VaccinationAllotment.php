@@ -1,9 +1,9 @@
 <?php
 ob_start();
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Vaccination extends MY_Controller {
-	public $table = 'tbl_vaccination';
-	public $page  = 'Vaccination';
+class VaccinationAllotment extends MY_Controller {
+	public $table = 'tbl_vaccination_allotment';
+	public $page  = 'VaccinationAllotment';
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('General_model');
@@ -85,12 +85,5 @@ class Vaccination extends MY_Controller {
 		echo $data_json;
 		redirect('/Vaccination/', 'refresh');
 	}
-	public function getMembers(){
-		$data = $this->Allotment_model->getMembers();
-		return $data;
-	}
-	public function getUnits(){
-		$data = $this->Allotment_model->getUnits();
-		return $data;
-	}
+
 }

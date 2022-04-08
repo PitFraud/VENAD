@@ -16,17 +16,17 @@ $table = $('#allotmentTable').DataTable( {
       $table.cell(node).data(index+1);
     });
 
-    var today=new Date();
-    var beforedate=new Date(data['beforetwodays']);
-    if(beforedate <= today){
-      $('td', row).eq(8).html('<center><b><p style="color:red;">'+data['vaccination_date']+'</p></b></center>');
-    }
-    else{
-      $('td', row).eq(8).html('<center><p">'+data['vaccination_date']+'</p></center>');
-    }
+    // var today=new Date();
+    // var beforedate=new Date(data['beforetwodays']);
+    // if(beforedate <= today){
+    //   $('td', row).eq(8).html('<center><b><p style="color:red;">'+data['vaccination_date']+'</p></b></center>');
+    // }
+    // else{
+    //   $('td', row).eq(8).html('<center><p">'+data['vaccination_date']+'</p></center>');
+    // }
 
-    $('td', row).eq(11).html('<center><a href="<?php echo base_url();?>Allotment/receipt/'+data['allot_id']+'"><i class="fa fa-file iconFontSize-medium" ></i></a></center>');
-    $('td', row).eq(12).html('<center><a href="<?php echo base_url();?>Allotment/edit/'+data['allot_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a>&nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['allot_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
+    $('td', row).eq(9).html('<center><a href="<?php echo base_url();?>Allotment/receipt/'+data['allot_id']+'"><i class="fa fa-file iconFontSize-medium" ></i></a></center>');
+    $('td', row).eq(10).html('<center><a href="<?php echo base_url();?>Allotment/edit/'+data['allot_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a>&nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['allot_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
   },
 
   "columns": [
@@ -38,8 +38,6 @@ $table = $('#allotmentTable').DataTable( {
     { "data": "allot_quantity", "orderable": false },
     { "data": "allot_weight", "orderable": false },
     { "data": "unit_name", "orderable": false },
-    { "data": "vaccination_name", "orderable": false },
-    { "data": "vaccination_date", "orderable": false },
     { "data": "allotment_date", "orderable": false },
     { "data": "product_name", "orderable": false },
     { "data": "product_name", "orderable": false }

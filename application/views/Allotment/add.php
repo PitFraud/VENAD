@@ -31,7 +31,7 @@
             <div class="col-lg-8">
               <div class="panel panel-danger">
                 <div class="panel-heading">
-                  <input type="hidden" name="allot_id" value="<?php if (isset($records->allot_id)) echo $records->allot_id ?>" />
+                  <input type="hidden" name="allot_id" value="<?php if (isset($records[0]->allot_id)) echo $records[0]->allot_id ?>" />
                   <h3 class="panel-title"><b>ALLOT TO INTEGARATORS</b></h3>
                   <!-- <div class="col-md-6"> -->
                 </div>
@@ -110,19 +110,7 @@
                       <label class="fsize">Weight</label>
                       <input class="form-control" type="text" name="weight" value="<?php if (isset($records[0]->allot_weight)) echo $records[0]->allot_weight ?>" placeholder="Weight of item">
                     </div>
-                    <div class="col-md-6">
-                      <label class="fsize">Vaccination Days</label>
-                      <select class="form-control" name="vaccination_days" id="">
-                        <option value="" disabled>Select Days</option>
-                        <?php foreach ($vaccinationdays as $days) { ?>
-                          <option <?php if (isset($records[0]->allot_vaccine_fk)) {
-                                    if ($records[0]->allot_vaccine_fk == $days->vaccination_id) {
-                                      echo "selected";
-                                    }
-                                  } ?> value="<?php echo $days->vaccination_id; ?>"><?php echo $days->vaccination_name . " - " . $days->vaccination_days . " Days"; ?></option>
-                        <?php } ?>
-                      </select>
-                    </div>
+                    
                   </div>
                 </div>
               </div>

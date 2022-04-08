@@ -26,7 +26,7 @@ class Allotment extends MY_Controller {
 			$template['member_types']=$this->getMemberTypes();
 			$template['products']=$this->getProducts();
 			$template['units']=$this->getUnits();
-			$template['vaccinationdays']=$this->getVaccinationdays();
+			// $template['vaccinationdays']=$this->getVaccinationdays();
 			$template['item_type']=$this->Allotment_model->getItemType();
 			$template['item_unit']=$this->Allotment_model->getItemUnit();
 			// member - pop up modal details
@@ -45,10 +45,9 @@ class Allotment extends MY_Controller {
 					'allot_item_id'=>$_POST['item_type'],
 					'allot_quantity'=>$_POST['quantity'],
 					'allot_member_id_fk'=>$_POST['member_name'],
-					'allot_integration_code'=>$_POST['integration_code'],
+					'allot_integration_code'=>strtoupper($_POST['integration_code']),
 					'allot_weight'=>$_POST['weight'],
 					'allot_unit_fk'=>$_POST['unit'],
-					'allot_vaccine_fk'=>$_POST['vaccination_days'],
 					'created_at'=>date('Y-m-d H:i:s'),
 				];
 				if($allot_id){
