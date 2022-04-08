@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 07, 2022 at 11:17 AM
+-- Generation Time: Apr 08, 2022 at 08:31 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.9
 
@@ -61,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `tbl_allotment` (
   `allot_item_id` int(11) NOT NULL,
   `allot_quantity` int(11) NOT NULL,
   `allot_member_id_fk` int(11) NOT NULL,
+  `allot_integration_code` varchar(200) DEFAULT NULL,
   `allot_weight` float NOT NULL,
   `allot_unit_fk` int(11) NOT NULL,
   `allot_vaccine_fk` int(11) NOT NULL,
@@ -68,18 +69,20 @@ CREATE TABLE IF NOT EXISTS `tbl_allotment` (
   `created_at` datetime NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`allot_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_allotment`
 --
 
-INSERT INTO `tbl_allotment` (`allot_id`, `allot_item_id`, `allot_quantity`, `allot_member_id_fk`, `allot_weight`, `allot_unit_fk`, `allot_vaccine_fk`, `allot_status`, `created_at`, `updated_at`) VALUES
-(1, 6, 50, 1, 110, 2, 4, 1, '2022-02-25 15:13:34', '2022-02-24 22:43:34'),
-(3, 5, 100, 1, 85, 2, 4, 1, '2022-03-02 04:18:20', '2022-03-01 11:48:20'),
-(4, 6, 20, 3, 35, 2, 2, 1, '2022-03-02 04:20:48', '2022-03-01 11:50:48'),
-(5, 6, 50, 2, 100, 2, 2, 1, '2022-03-14 14:03:40', '2022-03-13 21:33:40'),
-(6, 6, 10, 2, 120, 1, 2, 1, '2022-03-24 16:33:52', '2022-03-24 05:33:52');
+INSERT INTO `tbl_allotment` (`allot_id`, `allot_item_id`, `allot_quantity`, `allot_member_id_fk`, `allot_integration_code`, `allot_weight`, `allot_unit_fk`, `allot_vaccine_fk`, `allot_status`, `created_at`, `updated_at`) VALUES
+(1, 6, 50, 1, NULL, 110, 2, 4, 1, '2022-02-25 15:13:34', '2022-02-24 22:43:34'),
+(3, 5, 100, 1, NULL, 85, 2, 4, 1, '2022-03-02 04:18:20', '2022-03-01 11:48:20'),
+(4, 6, 20, 3, NULL, 35, 2, 2, 1, '2022-03-02 04:20:48', '2022-03-01 11:50:48'),
+(5, 6, 50, 2, NULL, 100, 2, 2, 1, '2022-03-14 14:03:40', '2022-03-13 21:33:40'),
+(6, 6, 10, 2, NULL, 120, 1, 2, 1, '2022-03-24 16:33:52', '2022-03-24 05:33:52'),
+(7, 5, 6, 4, 'as474545', 10, 2, 1, 1, '2022-04-08 11:00:22', '2022-04-08 05:30:22'),
+(8, 2, 1, 10, 'as474545', 90, 1, 1, 1, '2022-04-08 11:00:45', '2022-04-08 05:30:45');
 
 -- --------------------------------------------------------
 
@@ -679,15 +682,19 @@ CREATE TABLE IF NOT EXISTS `tbl_feed_item` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `feed_code` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`feed_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_feed_item`
 --
 
 INSERT INTO `tbl_feed_item` (`feed_id`, `feed_name`, `feed_status`, `created_at`, `updated_at`, `feed_code`) VALUES
-(1, 'Feed 1', 1, '2022-03-24 16:53:00', '2022-03-24 11:23:00', 'A34543'),
-(2, 'Feed 2', 1, '2022-02-20 13:24:27', '2022-02-19 20:54:27', NULL);
+(1, 'Pre - Starter', 1, '2022-04-08 09:24:53', '2022-04-08 03:54:53', 'FD10000'),
+(2, 'Starter', 1, '2022-04-08 09:25:28', '2022-04-08 03:55:28', 'FD10001'),
+(3, 'Finisher', 1, '2022-04-08 09:25:50', '2022-04-08 03:55:50', 'FD10002'),
+(4, 'Chick Starter', 1, '2022-04-08 09:32:11', '2022-04-08 04:02:11', 'FD10003'),
+(5, 'Groomer', 1, '2022-04-08 09:32:44', '2022-04-08 04:02:44', 'FD10004'),
+(6, 'Layer', 1, '2022-04-08 09:32:26', '2022-04-08 04:02:26', 'FD10005');
 
 -- --------------------------------------------------------
 
@@ -1180,7 +1187,7 @@ INSERT INTO `tbl_product` (`product_id`, `product_name`, `product_code`, `produc
 (2, 'Equipment', 'CODE1', 2, 0, 3, 50, 50, 10, 'Test description for equipment', 1, '2022-02-22', '2022-02-22'),
 (3, 'Medicine', 'CODE2', 4, 0, 3, 50, 50, 10, 'Test description for medicines', 1, '2022-02-22', '2022-02-22'),
 (4, 'Vaccines', 'CODE3', 3, 0, 3, 50, 50, 10, 'Test description for vaccines', 1, '2022-02-22', '2022-02-22'),
-(5, 'Eggery', 'CODE4', 1, 0, 2, 100, 150, 10, 'Test Description', 1, '2022-02-22', '2022-02-22'),
+(5, 'Layer', 'CODE4', 1, 0, 2, 100, 100, 10, 'Test Description', 1, '2022-04-08', '2022-04-08'),
 (6, 'Broiler Chicken', 'CODE5', 1, 0, 2, 100, 1100, 50, 'Test description', 1, '2022-02-22', '2022-02-22'),
 (7, 'Anti-biotic', 'CODE6', 4, 0, 4, 50, 50, 10, 'Anti Biotic', 1, '2022-03-15', '2022-03-15'),
 (8, 'Agriculture', 'PC109', 2, 0, 4, 100, 100, 50, 'sadsadasdasd', 1, '2022-04-07', '2022-04-07');
