@@ -29,6 +29,11 @@ class Allotment extends MY_Controller {
 			$template['vaccinationdays']=$this->getVaccinationdays();
 			$template['item_type']=$this->Allotment_model->getItemType();
 			$template['item_unit']=$this->Allotment_model->getItemUnit();
+			// member - pop up modal details
+			$template['modal_member_type']=$this->Allotment_model->getModalMemberType();
+			$template['modal_member_state']=$this->Allotment_model->getModalMemberState();
+			// end of member
+			//var_dump($template['modal_member_type']);die;
 			$template['body'] = 'Allotment/add';
 			$template['script'] = 'Allotment/script';
 			$template['items'] = 'Product/script';
@@ -242,7 +247,42 @@ class Allotment extends MY_Controller {
 	{
 		$insert_array = [];
 		$insert_array = [
+			'member_name'=>$_POST['mem_name'],
+			'member_type'=>$_POST['mem_type'],
+			'member_mid'=>$_POST['mem_id'],
+			'member_gender'=>$_POST['mem_gender'],
+			'member_address'=>$_POST['mem_address'],
+			'member_dob'=>$_POST['mem_dob'],
+			'member_state'=>$_POST['mem_state'],
+			'member_district'=>$_POST['mem_district'],
+			'member_panchayath'=>$_POST['mem_panchayat'],
 		];
+
+		$result = $this->General_model->add('tbl_member',$insert_array);
+		if($result){
+			$response = 'Member Added Successfully';
+			$this->session->set_flashdata('response',$response);
+			redirect('Allotment/add');
+		}
+		else{
+			$response = 'Something Went Wrong try Again Later';
+			$this->session->set_flashdata('response',$response);
+			redirect('Allotment/add');
+		}
+	}
+
+	public function getMemberDistrict()
+	{
+		$district_id = $_POST['dist_id'];
+		$data['records'] = $this->Allotment_model->getMemberDistrictDetails($district_id);
+		echo json_encode($data);
+	}
+
+	public function getMemberPanchayat()
+	{
+		$panchayat_id = $_POST['panchayat_id'];
+		$data['records'] = $this->Allotment_model->getMemberPanchayatDetails($panchayat_id);
+		echo json_encode($data);
 	}
 
 }

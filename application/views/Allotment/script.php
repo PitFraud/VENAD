@@ -84,12 +84,54 @@ function confirmDelete(allot_id){
       }
 	}
 
-  // $( document ).ready(function() {
-  //   $("#product22").select2();
-  //   $("#memberTypeSelect").select2();
-  //   $("#memberSelect").select2();
-  //   $("#unit22").select2();
-  // });
+  $( document ).ready(function() {
+    $("#product22").select2();
+    $("#memberTypeSelect").select2();
+    $("#memberSelect").select2();
+    $("#unit22").select2();
+  });
+
+  $('#mem_state').on('change',function(){
+    $('#mem_disctrict').empty();
+    var dist_id = $('#mem_state').val()
+    $.ajax({
+            url:"<?php echo base_url();?>Allotment/getMemberDistrict",
+            data:{dist_id:dist_id},
+            method:"POST",
+            datatype:"json",
+            success:function(data){
+                var response = JSON.parse(data);
+                //console.log(response);
+                var dataset = response.records;
+                var select = document.getElementById("mem_disctrict");
+                $(select).append('<option value="">--SELECT--</option>');
+                dataset.forEach((item) => {
+                  $(select).append('<option value="'+item.district_id+'">'+item.district_name+'</option>');
+                })
+            }
+        });
+  })
+
+  $('#mem_disctrict').on('change',function(){
+    $('#mem_panchayat').empty();
+    var panchayat_id = $('#mem_disctrict').val();
+    $.ajax({
+            url:"<?php echo base_url();?>Allotment/getMemberPanchayat",
+            data:{panchayat_id:panchayat_id},
+            method:"POST",
+            datatype:"json",
+            success:function(data){
+                var response = JSON.parse(data);
+                //console.log(response);
+                var dataset = response.records;
+                var select = document.getElementById("mem_panchayat");
+                $(select).append('<option value="">--SELECT--</option>');
+                dataset.forEach((item) => {
+                  $(select).append('<option value="'+item.panchayath_id+'">'+item.panchayath_name+'</option>');
+                })
+            }
+        });
+  })
 
 </script>
 

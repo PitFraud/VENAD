@@ -273,5 +273,43 @@ class Allotment_model extends CI_Model{
 			return $query->result();
 		}
 
+		public function getModalMemberType()
+		{
+			$this->db->select('member_type_id,member_type_name');
+			$this->db->from('tbl_member_type');
+			$this->db->where('member_type_status',1);
+			$query = $this->db->get();
+			return $query->result();
+		}
+
+		public function getModalMemberState()
+		{
+			$this->db->select('state_id,state_name');
+			$this->db->from('tbl_state');
+			$this->db->where('state_status',1);
+			$query = $this->db->get();
+			return $query->result();
+		}
+
+		public function getMemberDistrictDetails($district_id)
+		{
+			$this->db->select('district_id,district_name');
+			$this->db->from('tbl_district');
+			$this->db->where('district_status',1);
+			$this->db->where('district_state_id_fk',$district_id);
+			$query = $this->db->get();
+			return $query->result();
+		}
+
+		public function getMemberPanchayatDetails($panchayat_id)
+		{
+			$this->db->select('panchayath_id,panchayath_name');
+			$this->db->from('tbl_panchayath');
+			$this->db->where('panchayath_status',1);
+			$this->db->where('panchayath_district',$panchayat_id);
+			$query = $this->db->get();
+			return $query->result();
+		}
+
 }
 

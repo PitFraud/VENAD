@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-md-6">
                       <label for="">Integration Code</label>
-                      <input type="text" name="integration_code" class="form-control" placeholder="Enter Integartion Code" style="text-transform: uppercase ;" value="<?php echo $records[0]->allot_integration_code; ?>">
+                      <input type="text" name="integration_code" class="form-control" placeholder="Enter Integartion Code" style="text-transform: uppercase ;" value="<?php if(isset($records[0]->allot_integration_code)) echo $records[0]->allot_integration_code; ?>">
                     </div>
 
                   </div>
@@ -225,56 +225,56 @@
           <div class="form-group">
             <div class="col-md-6">
               <label for="">Member Type</label>
-              <select name="" id="" class="form-control">
+              <select name="mem_type" id="" class="form-control">
                 <option value="">SELECT</option>
+                <?php foreach($modal_member_type as $modal_member_types){ ?>
+                  <option value="<?php echo $modal_member_types->member_type_id ?>"><?php echo $modal_member_types->member_type_name ?></option>
+                <?php } ?>  
               </select>
             </div>
             <div class="col-md-6">
               <label for="">Member Name</label>
-              <input type="text" name="" id="" class="form-control">
+              <input type="text" name="mem_name" id="" class="form-control" placeholder="Enter Member Name">
             </div>
             <div class="col-md-6">
               <label for="">Member ID</label>
-              <input type="text" name="" id="" class="form-control">
+              <input type="text" name="mem_id" id="" class="form-control" placeholder="Enter Member ID">
             </div>
             <div class="col-md-6">
               <label for="">Member Gender</label>
-              <select name="" id="" class="form-control">
+              <select name="mem_gender" id="" class="form-control">
                 <option value="">SELECT</option>
-                <option value="">MALE</option>
-                <option value="">FEMALE</option>
+                <option value="1">MALE</option>
+                <option value="2">FEMALE</option>
               </select>
             </div>
             <div class="col-md-6">
               <label for="">Member Address</label>
-              <input type="text" name="" id="" class="form-control">
+              <input type="text" name="mem_address" id="" class="form-control" placeholder="Enter Member Address">
             </div>
             <div class="col-md-6">
               <label for="">Member DOB</label>
-              <input type="date" name="" id="" class="form-control">
+              <input type="date" name="mem_dob" id="" class="form-control" placeholder="Enter Member DOB">
             </div>
             <div class="col-md-6">
               <label for="">Member State</label>
-              <select name="" id="" class="form-control">
+              <select name="mem_state" id="mem_state" class="form-control">
                 <option value="">SELECT</option>
-                <option value="">MALE</option>
-                <option value="">FEMALE</option>
+                <?php foreach($modal_member_state as $modal_member_states){ ?>
+                  <option value="<?php echo $modal_member_states->state_id ?>"><?php echo $modal_member_states->state_name ?></option>
+                <?php } ?> 
               </select>
             </div>
             <div class="col-md-6">
               <label for="">Member District</label>
-              <select name="" id="" class="form-control">
-                <option value="">SELECT</option>
-                <option value="">MALE</option>
-                <option value="">FEMALE</option>
+              <select name="mem_district" id="mem_disctrict" class="form-control">
+
               </select>
             </div>
             <div class="col-md-6">
               <label for="">Member Panchayat</label>
-              <select name="" id="" class="form-control">
-                <option value="">SELECT</option>
-                <option value="">MALE</option>
-                <option value="">FEMALE</option>
+              <select name="mem_panchayat" id="mem_panchayat" class="form-control">
+
               </select>
             </div>
           </div>
