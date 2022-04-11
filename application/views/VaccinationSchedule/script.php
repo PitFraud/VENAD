@@ -42,6 +42,14 @@ $( document ).ready(function() {
     $('#allotment_list').select2();
 });
 
+// $('#allotment_list').on('change',function(){
+//   $('#notify').empty();
+//   var select = document.getElementById('allotment_list'),
+//   option = select.getElementsByTagName('option')[select.selectedIndex];  
+//   var date_given = option.getAttribute('data-date');
+//   var dateee = new Date(date_given);
+//   alert(dateee);
+// })
 
 $('#vaccine_list').on('change',function(){
   $('#notify').empty();
@@ -56,11 +64,9 @@ $('#vaccine_list').on('change',function(){
   var new_dates = new Date(new_date);
   var diffTime = Math.abs(today - new_dates);
   var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-  if(today > new_dates){
+  if(diffDays > new_dates){
   var html = 'Time To Take This Vaccine Has Exceeded:  '+ diffDays +' Days';
   }
-
   $('#notify').html(html);
-
 })
 </script>
