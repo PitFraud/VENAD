@@ -136,7 +136,7 @@
         <h4 class="modal-title">Add Production Item</h4>
       </div>
       <div class="modal-body">
-          <form action="">
+          <form action="<?php echo base_url() ?>" method="POST">
             <div class="row">
               <div class="form-group">
                 <div class="col-md-6">
@@ -154,14 +154,14 @@
                   <input type="date" name="exp_date" id="" class="form-control">
                 </div>
                 <div class="col-md-6">
-                  <label for="">Quantity/No.of Pockets</label>
+                  <label for="">Quantity/No.of Packets</label>
                   <input type="text" name="Qty" id="" class="form-control">
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-6">
                   <label for="">Weight Per Packet</label>
-                  <input type="date" name="weight_per_pack" id="" class="form-control">
+                  <input type="text" name="weight_per_pack" id="" class="form-control">
                 </div>
                 <div class="col-md-6">
                   <label for="">No. of Chicken Used</label>
@@ -171,15 +171,33 @@
               <div class="form-group">
                 <div class="col-md-6">
                   <label for="">Raw Material/Chicken used[weight]</label>
-                  <input type="date" name="raw_chicken_qty" id="" class="form-control">
+                  <input type="text" name="raw_chicken_qty" id="" class="form-control">
                 </div>
                 <div class="col-md-6">
-                  <label for="">No. of Chicken Used</label>
-                  <input type="text" name="no_chicken_used" id="" class="form-control">
+                  <label for="">Unit</label>
+                  <select name="" id="" class="form-control">
+                    <option value="">SELECT</option>
+                    <?php foreach($units as $unity){ ?>
+                      <option value="<?php echo $unity->unit_id ?>"><?php echo $unity->unit_name ?></option>
+                    <?php } ?>  
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6">
+                  <label for="">Price</label>
+                  <input type="text" name="price" class="form-control" id="">
+                </div>
+                <div class="col-md-6">
+                  <label for="">Product Code</label>
+                  <input type="text" name="prod_code" class="form-control" id="">
                 </div>
               </div>
             </div>
-          </form>
+            <br>
+            <div class="row">
+              <center><input type="submit" class="btn btn-primary" name="submit" id="" value="save"></div></center>
+          </form> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -136,4 +136,9 @@ class Distribution extends MY_Controller {
 			$result  = $this->Distribution_model->get_stock_balance($item_id);
 			echo json_encode($result);
 		}
+
+		public function addProductionItem()
+		{
+			
+		}
 }
