@@ -16,29 +16,28 @@ $table = $('#allotmentTable').DataTable( {
       $table.cell(node).data(index+1);
     });
 
-    var today=new Date();
-    var beforedate=new Date(data['beforetwodays']);
-    if(beforedate <= today){
-      $('td', row).eq(8).html('<center><b><p style="color:red;">'+data['vaccination_date']+'</p></b></center>');
-    }
-    else{
-      $('td', row).eq(8).html('<center><p">'+data['vaccination_date']+'</p></center>');
-    }
+    // var today=new Date();
+    // var beforedate=new Date(data['beforetwodays']);
+    // if(beforedate <= today){
+    //   $('td', row).eq(8).html('<center><b><p style="color:red;">'+data['vaccination_date']+'</p></b></center>');
+    // }
+    // else{
+    //   $('td', row).eq(8).html('<center><p">'+data['vaccination_date']+'</p></center>');
+    // }
 
-    $('td', row).eq(10).html('<center><a href="<?php echo base_url();?>Allotment/receipt/'+data['allot_id']+'"><i class="fa fa-file iconFontSize-medium" ></i></a></center>');
-    $('td', row).eq(11).html('<center><a href="<?php echo base_url();?>Allotment/edit/'+data['allot_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a>&nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['allot_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
+    $('td', row).eq(9).html('<center><a href="<?php echo base_url();?>Allotment/receipt/'+data['allot_id']+'"><i class="fa fa-file iconFontSize-medium" ></i></a></center>');
+    $('td', row).eq(10).html('<center><a href="<?php echo base_url();?>Allotment/edit/'+data['allot_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a>&nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['allot_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
   },
 
   "columns": [
     { "data": "empty", "defaultContent":""},
     { "data": "product_name", "orderable": false },
     { "data": "member_name", "orderable": false },
+    { "data": "allot_integration_code", "orderable": false },
     { "data": "member_type_name", "orderable": false },
     { "data": "allot_quantity", "orderable": false },
     { "data": "allot_weight", "orderable": false },
     { "data": "unit_name", "orderable": false },
-    { "data": "vaccination_name", "orderable": false },
-    { "data": "vaccination_date", "orderable": false },
     { "data": "allotment_date", "orderable": false },
     { "data": "product_name", "orderable": false },
     { "data": "product_name", "orderable": false }
@@ -86,9 +85,51 @@ function confirmDelete(allot_id){
   $( document ).ready(function() {
     $("#product22").select2();
     $("#memberTypeSelect").select2();
-    $("#memberSelect22").select2();
+    $("#memberSelect").select2();
     $("#unit22").select2();
   });
+
+  $('#mem_state').on('change',function(){
+    $('#mem_disctrict').empty();
+    var dist_id = $('#mem_state').val()
+    $.ajax({
+            url:"<?php echo base_url();?>Allotment/getMemberDistrict",
+            data:{dist_id:dist_id},
+            method:"POST",
+            datatype:"json",
+            success:function(data){
+                var response = JSON.parse(data);
+                //console.log(response);
+                var dataset = response.records;
+                var select = document.getElementById("mem_disctrict");
+                $(select).append('<option value="">--SELECT--</option>');
+                dataset.forEach((item) => {
+                  $(select).append('<option value="'+item.district_id+'">'+item.district_name+'</option>');
+                })
+            }
+        });
+  })
+
+  $('#mem_disctrict').on('change',function(){
+    $('#mem_panchayat').empty();
+    var panchayat_id = $('#mem_disctrict').val();
+    $.ajax({
+            url:"<?php echo base_url();?>Allotment/getMemberPanchayat",
+            data:{panchayat_id:panchayat_id},
+            method:"POST",
+            datatype:"json",
+            success:function(data){
+                var response = JSON.parse(data);
+                //console.log(response);
+                var dataset = response.records;
+                var select = document.getElementById("mem_panchayat");
+                $(select).append('<option value="">--SELECT--</option>');
+                dataset.forEach((item) => {
+                  $(select).append('<option value="'+item.panchayath_id+'">'+item.panchayath_name+'</option>');
+                })
+            }
+        });
+  })
 
 </script>
 

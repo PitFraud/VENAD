@@ -22,12 +22,18 @@ class Allotment extends MY_Controller {
 		$this->form_validation->set_rules('quantity', 'quantity', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$template['members']=$this->getMembers();
+			//var_dump($template['members']);die;
 			$template['member_types']=$this->getMemberTypes();
 			$template['products']=$this->getProducts();
 			$template['units']=$this->getUnits();
-			$template['vaccinationdays']=$this->getVaccinationdays();
+			// $template['vaccinationdays']=$this->getVaccinationdays();
 			$template['item_type']=$this->Allotment_model->getItemType();
 			$template['item_unit']=$this->Allotment_model->getItemUnit();
+			// member - pop up modal details
+			$template['modal_member_type']=$this->Allotment_model->getModalMemberType();
+			$template['modal_member_state']=$this->Allotment_model->getModalMemberState();
+			// end of member
+			//var_dump($template['modal_member_type']);die;
 			$template['body'] = 'Allotment/add';
 			$template['script'] = 'Allotment/script';
 			$template['items'] = 'Product/script';
@@ -39,9 +45,9 @@ class Allotment extends MY_Controller {
 					'allot_item_id'=>$_POST['item_type'],
 					'allot_quantity'=>$_POST['quantity'],
 					'allot_member_id_fk'=>$_POST['member_name'],
+					'allot_integration_code'=>strtoupper($_POST['integration_code']),
 					'allot_weight'=>$_POST['weight'],
 					'allot_unit_fk'=>$_POST['unit'],
-					'allot_vaccine_fk'=>$_POST['vaccination_days'],
 					'created_at'=>date('Y-m-d H:i:s'),
 				];
 				if($allot_id){
@@ -53,9 +59,7 @@ class Allotment extends MY_Controller {
                      $result = $this->General_model->add($this->table,$insert_array);
                      $response_text = 'Panchayath added  successfully';
                 }
-				// echo"<pre>",print_r($insert_array),"</pre>"; die;
-				// $result = $this->General_model->add($this->table,$insert_array);
-				// $response_text = 'Alloted successfully';
+
 				if($result){
 	            $this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
 				}
@@ -76,7 +80,9 @@ class Allotment extends MY_Controller {
 		$template['vaccinationdays']=$this->getVaccinationdays();
 		$template['body'] = 'Allotment/add';
 		$template['script'] = 'Allotment/script';
-		$template['records'] = $this->General_model->get_row($this->table,'allot_id',$allot_id);
+		//$template['records'] = $this->General_model->get_row($this->table,'allot_id',$allot_id);
+		$template['records'] = $this->Allotment_model->editAllotementRecord($allot_id);
+		//var_dump($template['records']);die;
     	$this->load->view('template', $template);
 	}
 
@@ -233,6 +239,49 @@ class Allotment extends MY_Controller {
 			$this->session->set_flashdata('response',$response_text);
 			redirect('Allotment/add','refresh');
 		}		
+	}
+
+
+	public function addMember()
+	{
+		$insert_array = [];
+		$insert_array = [
+			'member_name'=>$_POST['mem_name'],
+			'member_type'=>$_POST['mem_type'],
+			'member_mid'=>$_POST['mem_id'],
+			'member_gender'=>$_POST['mem_gender'],
+			'member_address'=>$_POST['mem_address'],
+			'member_dob'=>$_POST['mem_dob'],
+			'member_state'=>$_POST['mem_state'],
+			'member_district'=>$_POST['mem_district'],
+			'member_panchayath'=>$_POST['mem_panchayat'],
+		];
+
+		$result = $this->General_model->add('tbl_member',$insert_array);
+		if($result){
+			$response = 'Member Added Successfully';
+			$this->session->set_flashdata('response',$response);
+			redirect('Allotment/add');
+		}
+		else{
+			$response = 'Something Went Wrong try Again Later';
+			$this->session->set_flashdata('response',$response);
+			redirect('Allotment/add');
+		}
+	}
+
+	public function getMemberDistrict()
+	{
+		$district_id = $_POST['dist_id'];
+		$data['records'] = $this->Allotment_model->getMemberDistrictDetails($district_id);
+		echo json_encode($data);
+	}
+
+	public function getMemberPanchayat()
+	{
+		$panchayat_id = $_POST['panchayat_id'];
+		$data['records'] = $this->Allotment_model->getMemberPanchayatDetails($panchayat_id);
+		echo json_encode($data);
 	}
 
 }
