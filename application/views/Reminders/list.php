@@ -22,10 +22,12 @@
               <thead>
                 <tr>
                   <th>Sl.No</th>
-                  <th>Reminder Name</th>
+                  <th>Reminder Title</th>
                   <th>Description</th>
                   <th>Reminder Date</th>
-                  <th>Date&Time</th>
+                  <th>Broadcast Time</th>
+                  <th>Remining Times</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
