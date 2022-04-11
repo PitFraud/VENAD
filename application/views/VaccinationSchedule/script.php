@@ -52,27 +52,18 @@ $( document ).ready(function() {
 // })
 
 $('#vaccine_list').on('change',function(){
-  $('#notify2').empty();
+  $('#notify').empty();
   var select2 = document.getElementById('vaccine_list'),
   option2 = select2.getElementsByTagName('option')[select2.selectedIndex];  
   var vaccine_day = option2.getAttribute('data-days');
-
   var select = document.getElementById('allotment_list'),
   option = select.getElementsByTagName('option')[select.selectedIndex];  
   var date_given = option.getAttribute('data-date');
   var today = new Date();
-
-  //alert(date_given);
-  //alert(vaccine_day);
   var new_date = moment(date_given,"YYYY-MM-DD").add(vaccine_day,'days');
-  //alert(new_date);
-  //alert(today);
-
   var new_dates = new Date(new_date);
-  //alert(new_dates);
   var diffTime = Math.abs(today - new_dates);
   var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-  //alert(diffDays+' OF DAYS DIFFRENCE!');
   if(diffDays > new_dates){
   var html = 'Time To Take This Vaccine Has Exceeded:  '+ diffDays +' Days';
   }

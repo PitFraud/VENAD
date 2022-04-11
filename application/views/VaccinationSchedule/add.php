@@ -29,7 +29,6 @@
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
               <span id="notify" style="color:red;"></span>
-              <span id="notify2" style="color:red;"></span>
               <div class="panel panel-danger">
                 <div class="panel-heading">
                   <h3 class="panel-title"><b>ADD Vaccination</b></h3>
