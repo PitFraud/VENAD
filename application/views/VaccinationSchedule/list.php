@@ -20,7 +20,7 @@
         <div class="col-md-8"><h2 class="box-title"></h2> </div>
           <!-- <button type="button" class="btn btn-primary" name="button">Add allotment</button> -->
           <input type="hidden" id="response" value="<?php echo $this->session->flashdata('response'); ?>" />
-            <a href="<?php echo base_url();?>VaccinationSchedule/add" class="btn btn-primary"><i class="fa fa-plus-square"></i>  Add Vaccination schedule</a>
+            <a href="<?php echo base_url();?>VaccinationSchedule/add" class="btn btn-primary"><i class="fa fa-plus-square"></i>  Add Vaccination Schedule</a>
           <div class="">
             <div class="box-body table-responsive">
             <table id="scheduleTable" class="table table-bordered table-striped">

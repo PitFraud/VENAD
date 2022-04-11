@@ -28,6 +28,8 @@
           <div class="box-body">
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
+              <span id="notify" style="color:red;"></span>
+              <span id="notify2" style="color:red;"></span>
               <div class="panel panel-danger">
                 <div class="panel-heading">
                   <h3 class="panel-title"><b>ADD Vaccination</b></h3>
@@ -39,17 +41,17 @@
                   <?php echo validation_errors(); ?>
                   <div class="col-md-6">
                     <label class="fsize">Select Allotment</label>
-                    <select class="form-control" name="allotment_id">
+                    <select class="form-control" name="allotment_id" id="allotment_list">
                       <?php foreach ($allotment_details as $allotment): ?>
-                        <option <?php if(isset($records->schedule_allotment_fk)){if($records->schedule_allotment_fk==$allotment->allot_id){echo "selected";}} ?> value="<?php echo $allotment->allot_id; ?>"><?php echo $allotment->member_name.'  - '.$allotment->product_name.' - '.$allotment->allot_weight.''.$allotment->unit_name; ?></option>
+                        <option data-date="<?php echo $allotment->created_at; ?>" <?php if(isset($records->schedule_allotment_fk)){if($records->schedule_allotment_fk==$allotment->allot_id){echo "selected";}} ?> value="<?php echo $allotment->allot_id; ?>"><?php echo $allotment->member_name.'  - '.$allotment->product_name.' - '.$allotment->created_at.' - '.$allotment->allot_weight.''.$allotment->unit_name; ?></option>
                       <?php endforeach; ?>
                     </select>
                   </div>
                   <div class="col-md-6">
                     <label class="fsize">Select Vaccine</label>
-                    <select class="form-control" name="vaccine_name">
+                    <select class="form-control" name="vaccine_name" id="vaccine_list">
                       <?php foreach ($vaccine_list as $vaccine): ?>
-                        <option <?php if(isset($records->schedule_vaccine_fk)){if($records->schedule_vaccine_fk==$vaccine->vaccination_name){echo "selected";}} ?> value="<?php echo $vaccine->vaccination_id ?>"><?php echo $vaccine->vaccination_name; ?></option>
+                        <option data-days="<?php echo $vaccine->vaccination_days; ?>" <?php if(isset($records->schedule_vaccine_fk)){if($records->schedule_vaccine_fk==$vaccine->vaccination_name){echo "selected";}} ?> value="<?php echo $vaccine->vaccination_id ?>"><?php echo $vaccine->vaccination_name.' - '. $vaccine->vaccination_days .' Days' ?></option>
                       <?php endforeach; ?>
                     </select>
                   </div>
