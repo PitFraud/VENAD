@@ -165,7 +165,6 @@
     </a>
     <ul class="treeview-menu">
       <li class="<?php if($this->uri->segment(1)=="Vaccination"){echo "active";}?>" ><a  href="<?php echo base_url();?>Vaccination"><i class="fa fa-medkit"></i> <span>Vaccine details</span></a></li>
-      <li class="<?php if($this->uri->segment(1)=="VaccinationAllotment"){echo "active";}?>" ><a  href="<?php echo base_url();?>VaccinationAllotment"><i class="fa fa-medkit"></i> <span>Vaccine Allotment</span></a></li>
       <li class="<?php if($this->uri->segment(1)=="Vaccination"){echo "active";}?>" ><a  href="<?php echo base_url();?>VaccinationSchedule"><i class="fa fa-square"></i> <span>Vaccination Schedule</span></a></li>
     </ul>
     </li>
