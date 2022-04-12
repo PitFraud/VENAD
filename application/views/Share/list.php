@@ -27,6 +27,7 @@
               <tr>
                 <th>Sl.No</th>
                 <th>Share Name</th>
+                <th>Value</th>
                 <th>Action</th>
               </tr>
               </thead>
