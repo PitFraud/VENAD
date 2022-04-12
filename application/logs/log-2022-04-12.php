@@ -92,3 +92,9 @@ ERROR - 2022-04-12 10:28:06 --> Severity: Notice --> Undefined variable: notific
 ERROR - 2022-04-12 10:28:06 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
 ERROR - 2022-04-12 10:28:29 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
 ERROR - 2022-04-12 10:28:29 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-12 10:39:13 --> Severity: Notice --> Undefined variable: states C:\wamp64\www\VENAD\application\views\Member\add.php 596
+ERROR - 2022-04-12 10:39:13 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\Member\add.php 596
+ERROR - 2022-04-12 10:39:14 --> Severity: Notice --> Undefined variable: districts C:\wamp64\www\VENAD\application\views\Member\add.php 682
+ERROR - 2022-04-12 10:39:14 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\Member\add.php 682
+ERROR - 2022-04-12 10:39:14 --> 404 Page Not Found: Uploads/Not%20uploaded
+ERROR - 2022-04-12 10:45:09 --> 404 Page Not Found: Uploads/null
