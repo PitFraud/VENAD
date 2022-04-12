@@ -34,6 +34,7 @@
                   <h3 class="panel-title"><b>Add Share</b></h3>
                   <!-- <div class="col-md-6"> -->
                   </div>
+                  <div class="panel-body">
                   <div class="form-group row">
                     <input type="hidden" name="share_id" value="<?php if(isset($records->share_id)) echo $records->share_id ?>"/>
                            <?php echo validation_errors(); ?>
@@ -45,7 +46,9 @@
                       <label class="fsize">Share Value</label>
                       <input type="text" class="form-control" placeholder="Value of share" name="share_value" value="<?php if(isset($records->share_value)) echo $records->share_value; ?>">
                     </div>
-                    </div>
+                  </div>
+                  </div>
+                  
                   </div>
                 </div>
               </div>
