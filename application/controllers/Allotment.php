@@ -46,6 +46,7 @@ class Allotment extends MY_Controller {
 					'allot_quantity'=>$_POST['quantity'],
 					'allot_member_id_fk'=>$_POST['member_name'],
 					'allot_integration_code'=>strtoupper($_POST['integration_code']),
+					'allot_integration_type'=>$_POST['integartor_type'],
 					'allot_weight'=>$_POST['weight'],
 					'allot_unit_fk'=>$_POST['unit'],
 					'created_at'=>date('Y-m-d H:i:s'),

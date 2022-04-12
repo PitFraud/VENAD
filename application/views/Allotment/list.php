@@ -29,6 +29,7 @@
                 <th>Sl.No</th>
                 <th>Item Name</th>
                 <th>Member Name</th>
+                <th>Member Type</th>
                 <th>Integration Code</th>
                 <th>Member Type</th>
                 <th>Quantity</th>

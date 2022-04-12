@@ -88,8 +88,23 @@
                       <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#myMembers">Add Member</a>
                     </div>
                     <div class="col-md-6">
+                      <label for="">Integrator Type</label>
+                      <select name="integartor_type" id="" class="form-control">
+                        <option value="">SELECT</option>
+                        <option value="1">Integrated Broiler</option>
+                        <option value="2">Integrated Layer</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
                       <label class="fsize">Quanity</label>
                       <input class="form-control" type="text" name="quantity" value="<?php if (isset($records[0]->allot_quantity)) echo $records[0]->allot_quantity ?>" placeholder="Quantity of item">
+                    </div>
+                    
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <label class="fsize">Weight</label>
+                      <input class="form-control" type="text" name="weight" value="<?php if (isset($records[0]->allot_weight)) echo $records[0]->allot_weight ?>" placeholder="Weight of item">
                     </div>
                     <div class="col-md-6">
                       <label class="fsize">Unit</label>
@@ -104,13 +119,6 @@
                         <?php } ?>
                       </select>
                     </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-md-6">
-                      <label class="fsize">Weight</label>
-                      <input class="form-control" type="text" name="weight" value="<?php if (isset($records[0]->allot_weight)) echo $records[0]->allot_weight ?>" placeholder="Weight of item">
-                    </div>
-                    
                   </div>
                 </div>
               </div>
