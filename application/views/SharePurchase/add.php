@@ -41,7 +41,12 @@
                            <?php echo validation_errors(); ?>
                       <div class="col-md-6">
                         <label class="fsize">Share Holder's Name</label>
-                        <input type="text" class="form-control" name="purchase_shareholder_name" value="<?php if(isset($records->purchase_shareholder_name)) echo $records->purchase_shareholder_name ?>">
+                        <select class="form-control" name="shareholder">
+                          <?php foreach ($shareholders as $shareholder): ?>
+                            <option value="<?php echo $shareholder->member_id ?>"><?php echo $shareholder->member_name; ?></option>
+                          <?php endforeach; ?>
+                        </select>
+
                       </div>
 
                       <div class="col-md-6">
@@ -69,7 +74,7 @@
                       </div>
                     </div>
                   </div>
-                  
+
                   </div>
                 </div>
               </div>
@@ -89,4 +94,3 @@
           </section>
         </form>
       </div>
-

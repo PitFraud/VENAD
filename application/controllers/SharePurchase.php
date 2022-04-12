@@ -36,20 +36,20 @@ class SharePurchase extends MY_Controller
 
 	public function add()
 	{
-		$this->form_validation->set_rules('purchase_shareholder_name', 'Shareholder name', 'required');
-		$this->form_validation->set_rules('purchase_share_name', 'Share name', 'required');
+		$this->form_validation->set_rules('shareholder', 'Shareholder name', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$template['share_names'] = $this->getShareNames();
 			$template['body'] = 'SharePurchase/add';
 			$template['script'] = 'SharePurchase/script';
+			$template['shareholders'] = $this->SharePurchase_model->get_shareholders();
 			$this->load->view('template', $template);
 		} else {
 			$insert_array = [
-				'purchase_shareholder_name' => $_POST['purchase_shareholder_name'],
+				'purchase_shareholder_id' => $_POST['shareholder'],
 				'purchase_share_id_fk' => $_POST['purchase_share_name'],
-				'share_purchase_period' => $_POST['purchase_share_period'],
-				'share_purchase_paid' => $_POST['purchase_share_paid'],
-				'share_purchase_patronage_divident' => $_POST['purchase_share_patronage'],
+				'purchase_period ' => $_POST['purchase_share_period'],
+				'purchase_paid' => $_POST['purchase_share_paid'],
+				'purchase_share_divident' => $_POST['purchase_share_patronage'],
 				'created_at' => date('Y-m-d H:i:s'),
 			];
 			$purchase_id = $this->input->post('purchase_id');
@@ -61,9 +61,9 @@ class SharePurchase extends MY_Controller
 			else
 			{
 				$result = $this->General_model->add($this->table, $insert_array);
-				$response_text = 'share added successfully';
+				$response_text = 'Share purchase added successfully';
 			}
-			
+
 			if ($result) {
 				$this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
 			} else {

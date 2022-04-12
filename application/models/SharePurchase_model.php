@@ -21,6 +21,7 @@ class SharePurchase_model extends CI_Model{
     // $data['data'] = $query->result();
 		$query=$this->db->select('*,tbl_share_purchase_details.created_at as created_date')
 		->join('tbl_shares','tbl_shares.share_id=tbl_share_purchase_details.purchase_share_id_fk','left')
+		->join('tbl_member','tbl_member.member_id=tbl_share_purchase_details.purchase_shareholder_id','left')
 		->order_by('tbl_share_purchase_details.purchase_id','DESC')->get('tbl_share_purchase_details');
 
 		$data['data'] = $query->result();
@@ -72,7 +73,11 @@ class SharePurchase_model extends CI_Model{
 		return $query->result();
 	}
 
+	public function get_shareholders(){
+		$query=$this->db->select('*')->where('member_type',1)->get('tbl_member');
+		return $query->num_rows()>0 ? $query->result() : false;
+	}
+
 
 
 }
-

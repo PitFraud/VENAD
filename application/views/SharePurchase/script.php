@@ -19,11 +19,11 @@ $table = $('#sharePurchaseTable').DataTable( {
 
   "columns": [
     { "data": "empty", "defaultContent":""},
-    { "data": "purchase_shareholder_name", "orderable": false },
+    { "data": "member_name", "orderable": false },
     { "data": "share_name", "orderable": false },
-    { "data": "share_purchase_period", "orderable": false },
-    { "data": "share_purchase_paid", "orderable": false },
-    { "data": "share_purchase_patronage_divident", "orderable": false },
+    { "data": "purchase_period", "orderable": false },
+    { "data": "purchase_paid", "orderable": false },
+    { "data": "purchase_share_divident", "orderable": false },
     { "data": "created_date", "orderable": false },
     { "data": "purchase_id", "orderable": false },
   ]
@@ -47,4 +47,3 @@ function confirmDelete(share_id){
    }
    }
 </script>
-

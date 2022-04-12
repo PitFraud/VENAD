@@ -35,13 +35,13 @@
           <li class="<?php if($this->uri->segment(1)=="FinYear"){echo "active";}?>" ><a  href="<?php echo base_url();?>FinYear"><i class="fa fa-circle-o"></i> <span>Financial Year</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Changepass"){echo "active";}?>" ><a  href="<?php echo base_url(); ?>ChangePassword">
             <i class="fa fa-circle-o"></i> <span>Change Password</span></a></li>
-            <li class="<?php if($this->uri->segment(1)=="Panchayath"){echo "active";}?>" ><a href="<?php echo base_url();?>Panchayath"><i class="fa fa-circle-o"></i><span>Panchayath</span></a></li>
+            <!-- <li class="<?php if($this->uri->segment(1)=="Panchayath"){echo "active";}?>" ><a href="<?php echo base_url();?>Panchayath"><i class="fa fa-circle-o"></i><span>Panchayath</span></a></li>
             <li class="<?php if($this->uri->segment(1)=="District"){echo "active";}?>" ><a  href="<?php echo base_url();?>District"><i class="fa fa-circle-o"></i> <span>District</span></a></li>
-            <li class="<?php if($this->uri->segment(1)=="State"){echo "active";}?>" ><a  href="<?php echo base_url();?>State"><i class="fa fa-circle-o"></i> <span>State</span></a></li>
+            <li class="<?php if($this->uri->segment(1)=="State"){echo "active";}?>" ><a  href="<?php echo base_url();?>State"><i class="fa fa-circle-o"></i> <span>State</span></a></li> -->
             <li class="<?php if($this->uri->segment(1)=="Mlogin"){echo "active";}?>" ><a  href="<?php echo base_url(); ?>Mlogin">
               <i class="fa fa-circle-o"></i> <span>Member login</span></a></li>
-              <li class="<?php if($this->uri->segment(1)=="Plogin"){echo "active";}?>" ><a  href="<?php echo base_url(); ?>PanchayathLogin">
-                <i class="fa fa-circle-o"></i> <span>Panchayath Login</span></a></li>
+              <!-- <li class="<?php if($this->uri->segment(1)=="Plogin"){echo "active";}?>" ><a  href="<?php echo base_url(); ?>PanchayathLogin"> -->
+                <!-- <i class="fa fa-circle-o"></i> <span>Panchayath Login</span></a></li> -->
                 <li class="<?php if($this->uri->segment(1)=="Basicinfo"){echo "active";}?>" ><a  href="<?php echo base_url();?>Basicinfo"><i class="fa fa-circle-o"></i> <span>Basic Info</span></a></li>
                 <!-- <li class="<?php if($this->uri->segment(1)=="Dlogin"){echo "active";}?>" ><a  href="<?php echo base_url(); ?>District_login">
                 <i class="fa fa-circle-o"></i> <span>District Login</span></a></li>
@@ -267,6 +267,10 @@
         {echo "active";}
         else if($this->uri->segment(1)=="SharePurchase")
         {echo "active";}
+        else if($this->uri->segment(1)=="ShareSettings")
+        {echo "active";}
+        else if($this->uri->segment(1)=="ShareTransfer")
+        {echo "active";}
         ?>">
         <a><i class="fa fa-share-alt"></i><span>Shares</span>
           <span class="pull-right-container">
@@ -278,6 +282,12 @@
             <a  href="<?php echo base_url();?>Share/"><i class="fa fa-circle-o"></i> <span>Shares</span></a></li>
             <li class="<?php if($this->uri->segment(1)=="SharePurchase"){echo "active";}?>" >
               <a  href="<?php echo base_url();?>SharePurchase/"><i class="fa fa-circle-o"></i> <span>Share Purchase Details</span></a></li>
+              <li class="<?php if($this->uri->segment(1)=="ShareSettings"){echo "active";}?>">
+                <a href="<?php echo base_url();?>ShareSettings/"> <i class="fa fa-circle-o"></i> <span> Share Settings</span> </a>
+              </li>
+              <li class="<?php if($this->uri->segment(1)=="ShareTransfer"){echo "active";}?>">
+                <a href="<?php echo base_url();?>ShareTransfer/"> <i class="fa fa-circle-o"></i> <span> Share Transfer</span> </a>
+              </li>
             </ul>
           </li>
           <ul class="sidebar-menu" id="navi">
