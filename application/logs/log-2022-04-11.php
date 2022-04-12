@@ -427,3 +427,47 @@ ERROR - 2022-04-11 16:53:34 --> Severity: Notice --> Undefined variable: notific
 ERROR - 2022-04-11 16:53:34 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
 ERROR - 2022-04-11 16:53:38 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
 ERROR - 2022-04-11 16:53:38 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 16:57:02 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 16:57:02 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 16:57:37 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 16:57:37 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 16:57:39 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 16:57:39 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:00:03 --> 404 Page Not Found: Assets/EasyAutocomplete-1.3.5
+ERROR - 2022-04-11 17:01:59 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:01:59 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:02:02 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:02:02 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:02:04 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:02:04 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:02:11 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:02:11 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:02:22 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:02:22 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:07:51 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:07:51 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:07:54 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:07:54 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:20:13 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:20:13 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:20:15 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:20:15 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:20:17 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:20:17 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:22:27 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:22:27 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:24:21 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:24:21 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:24:49 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:24:49 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:27:27 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:27:27 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:27:29 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:27:29 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:27:30 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:27:30 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:28:52 --> Query error: Unknown column 'production_name' in 'field list' - Invalid query: INSERT INTO `tbl_production_itemlist` (`production_name`, `product_code`, `item_price`, `item_quantity`, `created_at`) VALUES ('Chicken Wings', 'as68554', 1, 1, '2022-04-11 05:28:47pm')
+ERROR - 2022-04-11 17:29:10 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:29:10 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:29:14 --> Severity: Notice --> Undefined variable: notifications C:\wamp64\www\VENAD\application\views\template\header.php 297
+ERROR - 2022-04-11 17:29:14 --> Severity: Warning --> Invalid argument supplied for foreach() C:\wamp64\www\VENAD\application\views\template\header.php 297

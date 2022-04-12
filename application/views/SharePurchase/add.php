@@ -35,6 +35,7 @@
                 <div class="panel-heading">
                   <h3 class="panel-title"><b>Add Share Purchase</b></h3>
                   </div>
+                  <div class="panel-body">
                   <div class="form-group row">
                     <input type="hidden" name="purchase_id" value="<?php if(isset($records->purchase_id)) echo $records->purchase_id ?>"/>
                            <?php echo validation_errors(); ?>
@@ -67,6 +68,8 @@
                         <input type="text" name="purchase_share_patronage" id="" class="form-control" value="<?php if(isset($records->share_purchase_patronage_divident)) echo $records->share_purchase_patronage_divident ?>">
                       </div>
                     </div>
+                  </div>
+                  
                   </div>
                 </div>
               </div>
