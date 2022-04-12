@@ -12,7 +12,7 @@
       $table.column(0).nodes().each(function(node, index, dt) {
         $table.cell(node).data(index + 1);
       });
-      $('td', row).eq(8).html('<center><a href="<?php echo base_url(); ?>Distribution/edit/' + data['dist_id'] + '"><i class="fa fa-edit iconFontSize-medium" ></i></a>&nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete(' + data['dist_id'] + ')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
+      $('td', row).eq(11).html('<center><a href="<?php echo base_url(); ?>Distribution/edit/' + data['dist_id'] + '"><i class="fa fa-edit iconFontSize-medium" ></i></a>&nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete(' + data['dist_id'] + ')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
     },
     "columns": [{
         "data": "dist_quantity_fk",
@@ -44,6 +44,18 @@
       },
       {
         "data": "created_date",
+        "orderable": false
+      },
+      {
+        "data": "dist_next_date",
+        "orderable": false
+      },
+      {
+        "data": "dist_mop",
+        "orderable": false
+      },
+      {
+        "data": "dist_paid",
         "orderable": false
       },
       {

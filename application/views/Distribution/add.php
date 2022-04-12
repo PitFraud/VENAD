@@ -95,7 +95,7 @@
                   <div class="form-group">
                     <div class="col-md-6">
                       <label for="">Distribution Code</label>
-                      <input type="text" class="form-control" name="dist_code" autofocus required>
+                      <input type="text" class="form-control" name="dist_code" autofocus required placeholder="Enter Distribution Code" value="<?php if (isset($records->dist_code)) echo $records->dist_code ?>">
                     </div>
                     <div class="col-md-6">
                       <label for="">Available stock</label><br>
@@ -106,7 +106,21 @@
                   <div class="form-group">
                     <div class="col-md-6">
                         <label for="">Next Distribution Date</label>
-                        <input type="date" name="next_dist_date" class="form-control" id="" value="">
+                        <input type="date" name="next_dist_date" class="form-control" id="" value="<?php if (isset($records->dist_next_date)) echo $records->dist_next_date ?>">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Mode Of Purchase</label>
+                        <select name="mop" id="" class="form-control">
+                          <option value="">SELECT</option>
+                          <option <?php if ($records->dist_mop == 1) echo "selected" ?> value="1">DEBIT</option>
+                          <option <?php if ($records->dist_mop == 2) echo "selected" ?> value="2">CREDIT</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                  <div class="col-md-6">
+                      <label for="">Paid</label>
+                      <input type="text" name="paid_amt" class="form-control" placeholder="Enter Amount" value="<?php if (isset($records->dist_paid)) echo $records->dist_paid ?>">
                     </div>
                   </div>
                 </div>

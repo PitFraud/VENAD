@@ -38,6 +38,8 @@ class Distribution extends MY_Controller {
 					'dist_unit'=>$_POST['unit'],
 					'dist_code'=>$_POST['dist_code'],
 					'dist_next_date'=>$_POST['next_dist_date'],
+					'dist_mop'=>$_POST['mop'],
+					'dist_paid'=>$_POST['paid_amt'],
 					'created_at'=>date('Y-m-d H:i:s'),
 				];
 				$dist_id = $this->input->post('dist_id');

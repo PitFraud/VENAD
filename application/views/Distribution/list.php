@@ -36,6 +36,9 @@
                   <th>Weight</th>
                   <th>Unit</th>
                   <th>Date and time</th>
+                  <th>Next Distribution Date</th>
+                  <th>Mop</th>
+                  <th>Paid</th>
                   <th>Action</th>
                 </tr>
               </thead>

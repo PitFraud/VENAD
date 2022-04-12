@@ -125,3 +125,4 @@ ERROR - 2022-04-12 11:59:18 --> 404 Page Not Found: GLedger/get_sum
 ERROR - 2022-04-12 11:59:24 --> 404 Page Not Found: GLedger/get_sum
 ERROR - 2022-04-12 12:02:45 --> 404 Page Not Found: Purchase/add
 ERROR - 2022-04-12 12:03:37 --> 404 Page Not Found: Notifications/index
+ERROR - 2022-04-12 14:05:39 --> Severity: Notice --> Undefined variable: records C:\wamp64\www\VENAD\application\views\ReceiveItem\add.php 34

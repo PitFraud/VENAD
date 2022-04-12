@@ -202,13 +202,13 @@
     else if($this->uri->segment(1)=="Commission")
     {echo "active";}
     ?>">
-    <a><i class="fa fa-pie-chart"></i><span>Distribution</span>
+    <a><i class="fa fa-pie-chart"></i><span>Sales</span>
       <span class="pull-right-container">
         <i class="fa fa-angle-left pull-right"></i>
       </span>
     </a>
     <ul class="treeview-menu">
-      <li class="<?php if($this->uri->segment(1)=="Distribution"){echo "active";}?>" ><a  href="<?php echo base_url();?>Distribution"><i class="fa fa-circle-o"></i> <span>Distribution Sales</span></a></li>
+      <li class="<?php if($this->uri->segment(1)=="Distribution"){echo "active";}?>" ><a  href="<?php echo base_url();?>Distribution"><i class="fa fa-circle-o"></i> <span>Sales</span></a></li>
       <li class="<?php if($this->uri->segment(1)=="FCR"){echo "active";}?>" >
         <a  href="<?php echo base_url();?>FCR"><i class="fa fa-circle-o"></i> <span>Feed Conversion Ratio</span></a></li>
         <!-- <li class="<?php if($this->uri->segment(1)=="Commission"){echo "active";}?>" ><a  href="<?php echo base_url();?>Commission"><i class="fa fa-circle-o"></i> <span>Commission Management</span></a></li> -->
