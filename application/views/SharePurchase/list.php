@@ -19,6 +19,7 @@
       <div class="box-header">
         <!-- <button type="button" class="btn btn-primary" name="button">Add allotment</button> -->
         <input type="hidden" id="response" value="<?php echo $this->session->flashdata('response'); ?>" />
+        <div class="col-md-8"><small></small></div>
         <a href="<?php echo base_url(); ?>SharePurchase/add" class="btn btn-primary"><i class="fa fa-plus-square"></i> Add SharePurchase</a>
         <center>Number Of Share Holder: <span style="color:red;"><b><?php if(isset($no_of_share_holder[0]->count)) echo $no_of_share_holder[0]->count ?></b></span></center>
         <div class="">

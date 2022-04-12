@@ -37,6 +37,7 @@ class Distribution extends MY_Controller {
 					'dist_weight'=>$_POST['weight'],
 					'dist_unit'=>$_POST['unit'],
 					'dist_code'=>$_POST['dist_code'],
+					'dist_next_date'=>$_POST['next_dist_date'],
 					'created_at'=>date('Y-m-d H:i:s'),
 				];
 				$dist_id = $this->input->post('dist_id');
@@ -135,5 +136,43 @@ class Distribution extends MY_Controller {
 			$item_id = $_POST['item_id'];
 			$result  = $this->Distribution_model->get_stock_balance($item_id);
 			echo json_encode($result);
+		}
+
+		public function addProductionItem()
+		{
+			$name = $this->input->post('production_name');
+			if(!empty($name)){
+				$input_array = [
+					'item_name' => $this->input->post('production_name'),
+					'product_code' => $this->input->post('production_code'),
+					'created_at' => date('Y-m-d h:i:sa'),
+				];
+				$result = $this->General_model->add('tbl_production_itemlist',$input_array);
+				$last_id = $this->db->insert_id();
+
+				$input_array2 = [
+					'production_item_id_fk' => $last_id,
+					'production_mfd' => $this->input->post('mf_date'),
+					'production_expiry' => $this->input->post('exp_date'),
+					'production_quantity' => $this->input->post('Qty'),
+					'production_price' => $this->input->post('price'),
+					'production_row_mat_count' => $this->input->post('weight_per_pack'),
+					'production_unit_id_fk' => $this->input->post('unity'),
+					'production_packet_weight' => $this->input->post('raw_chicken_qty'),
+					'production_chicken_count' => $this->input->post('no_chicken_used'),
+					'created_at' => date('Y-m-d h:i:sa'),
+				];
+
+				$result2 = $this->General_model->add('tbl_production_details',$input_array2);
+
+				if($result2)
+				{
+					redirect('/Distribution/add');
+				}
+				else
+				{
+					redirect('/Distribution/add');
+				}
+			}
 		}
 }
