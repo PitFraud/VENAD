@@ -12,11 +12,11 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?php echo base_url(); ?>Dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="<?php echo base_url(); ?>Feeditem/"><i class="fa fa-dashboard"></i> Back to List</a></li>
+            <li><a href="<?php echo base_url(); ?>IntegratedProduction/"><i class="fa fa-dashboard"></i> Back to List</a></li>
             <li class="active"></li>
         </ol>
     </section>
-    <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>Feeditem/add" enctype="multipart/form-data">
+    <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>IntegratedProduction/add" enctype="multipart/form-data">
         <section class="content">
             <div class="row">
                 <div class="box">
@@ -38,15 +38,11 @@
                                         <input type="hidden" name="feed_id" value="<?php if (isset($records->feed_id)) echo $records->feed_id ?>" />
                                         <div class="col-md-6">
                                             <label class="fsize">Feed Item</label>
-                                            <input type="text" class="form-control" name="feed_item" value="<?php if (isset($records->feed_name)) {
-                                                                                                                echo $records->feed_name;
-                                                                                                            } ?>">
+                                            <input type="text" class="form-control" name="feed_item" value="<?php if (isset($records->feed_name)) { echo $records->feed_name; } ?>">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="fsize">Item Code</label>
-                                            <input type="text" class="form-control" style="text-transform: uppercase;" name="feed_code" value="<?php if (isset($records->feed_code)) {
-                                                                                                                                                    echo $records->feed_code;
-                                                                                                                                                } ?>">
+                                            <input type="text" class="form-control" style="text-transform: uppercase;" name="feed_code" value="<?php if (isset($records->feed_code)) { echo $records->feed_code; } ?>">
                                         </div>
                                         <!-- ################################################# -->
                                     </div>

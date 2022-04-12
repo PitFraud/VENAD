@@ -3,13 +3,13 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Feeding details
+      Integration Production
       <small id="date" class="col-md-4"></small>
       <!-- <small>Optional description</small> -->
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url();?>Dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url();?>Feeditem/add"><i class="fa fa-dashboard"></i> Back To Add</a></li>
+      <li><a href="<?php echo base_url();?>IntegratedProduction/add"><i class="fa fa-dashboard"></i> Back To Add</a></li>
       <li class="active"></li>
     </ol>
   </section>
@@ -20,7 +20,7 @@
           <div class="col-md-8"><h2 class="box-title"></h2> </div>
           <!-- <button type="button" class="btn btn-primary" name="button">Add allotment</button> -->
           <input type="hidden" id="response" value="<?php echo $this->session->flashdata('response'); ?>" />
-            <a href="<?php echo base_url();?>Feeditem/add" class="btn btn-primary"><i class="fa fa-plus-square"></i>Add Feeds</a>
+            <a href="<?php echo base_url();?>IntegratedProduction/add" class="btn btn-primary"><i class="fa fa-plus-square"></i>Add Integrated Production</a>
           <div class="">
             <div class="box-body table-responsive">
             <table id="feedsTable" class="table table-bordered table-striped">
