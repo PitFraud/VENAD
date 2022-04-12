@@ -289,6 +289,10 @@
         {echo "active";}
         else if($this->uri->segment(1)=="SharePurchase")
         {echo "active";}
+        else if($this->uri->segment(1)=="ShareSettings")
+        {echo "active";}
+        else if($this->uri->segment(1)=="ShareTransfer")
+        {echo "active";}
         ?>">
         <a><i class="fa fa-share-alt"></i><span>Shares</span>
           <span class="pull-right-container">
@@ -300,6 +304,12 @@
             <a  href="<?php echo base_url();?>Share/"><i class="fa fa-circle-o"></i> <span>Shares</span></a></li>
             <li class="<?php if($this->uri->segment(1)=="SharePurchase"){echo "active";}?>" >
               <a  href="<?php echo base_url();?>SharePurchase/"><i class="fa fa-circle-o"></i> <span>Share Purchase Details</span></a></li>
+              <li class="<?php if($this->uri->segment(1)=="ShareSettings"){echo "active";}?>">
+                <a href="<?php echo base_url();?>ShareSettings/"> <i class="fa fa-circle-o"></i> <span> Share Settings</span> </a>
+              </li>
+              <li class="<?php if($this->uri->segment(1)=="ShareTransfer"){echo "active";}?>">
+                <a href="<?php echo base_url();?>ShareTransfer/"> <i class="fa fa-circle-o"></i> <span> Share Transfer</span> </a>
+              </li>
             </ul>
           </li>
           <ul class="sidebar-menu" id="navi">
