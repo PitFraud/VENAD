@@ -9,7 +9,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>Dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url(); ?>Product/add"><i class="fa fa-dashboard"></i> Back To Add</a></li>
+      <li><a href="<?php echo base_url(); ?>Product/addCategory"><i class="fa fa-dashboard"></i> Back To Add</a></li>
       <li class="active"></li>
     </ol>
   </section>

@@ -9,7 +9,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url();?>Dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url();?>Panchayath/add"><i class="fa fa-dashboard"></i> Back To Add</a></li>
+      <li><a href="<?php echo base_url();?>Allotment/add"><i class="fa fa-dashboard"></i> Back To Add</a></li>
       <li class="active"></li>
     </ol>
   </section>
@@ -29,6 +29,7 @@
                 <th>Sl.No</th>
                 <th>Item Name</th>
                 <th>Member Name</th>
+                <th>Member Type</th>
                 <th>Integration Code</th>
                 <th>Member Type</th>
                 <th>Quantity</th>

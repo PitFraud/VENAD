@@ -19,7 +19,7 @@ class Allotment_model extends CI_Model{
 
 
 		$query=$this->db->select('*,tbl_allotment.created_at as allotment_date,tbl_vaccination.vaccination_name as vaccinenamedays, DATE_ADD(tbl_allotment.created_at, INTERVAL tbl_vaccination.vaccination_days DAY) AS vaccination_date, DATE_SUB(DATE_ADD(tbl_allotment.created_at, INTERVAL tbl_vaccination.vaccination_days DAY), INTERVAL 2 DAY) AS beforetwodays')
-		->join('tbl_vaccination','tbl_vaccination.vaccination_id=tbl_allotment.allot_vaccine_fk')
+		->join('tbl_vaccination','tbl_vaccination.vaccination_id=tbl_allotment.allot_vaccine_fk','left')
 		->join('tbl_product','tbl_product.product_id=tbl_allotment.allot_item_id','left')
 		->join('tbl_unit','tbl_unit.unit_id=tbl_allotment.allot_unit_fk','left')
 		->join('tbl_member','tbl_member.member_id=tbl_allotment.allot_member_id_fk','left')

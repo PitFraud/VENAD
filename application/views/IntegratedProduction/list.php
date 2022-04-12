@@ -3,13 +3,13 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Product Categories Management
+      Integration Production
       <small id="date" class="col-md-4"></small>
       <!-- <small>Optional description</small> -->
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url();?>Dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url();?>ProductManagement/add"><i class="fa fa-dashboard"></i> Back To Add</a></li>
+      <li><a href="<?php echo base_url();?>IntegratedProduction/add"><i class="fa fa-dashboard"></i> Back To Add</a></li>
       <li class="active"></li>
     </ol>
   </section>
@@ -19,18 +19,16 @@
         <div class="box-header">
           <div class="col-md-8"><h2 class="box-title"></h2> </div>
           <!-- <button type="button" class="btn btn-primary" name="button">Add allotment</button> -->
-          <input type="hidden" id="response" value="<?php echo $this->session->flashdata('response');?>" />
-            <a href="<?php echo base_url();?>ProductManagement/add" class="btn btn-primary"><i class="fa fa-plus-square"></i>  Production items</a>
-            <a href="<?php echo base_url();?>ProductManagement/addProductionDetails" class="btn btn-primary"><i class="fa fa-plus-square"></i>  Production Details</a>
+          <input type="hidden" id="response" value="<?php echo $this->session->flashdata('response'); ?>" />
+            <a href="<?php echo base_url();?>IntegratedProduction/add" class="btn btn-primary"><i class="fa fa-plus-square"></i>Add Integrated Production</a>
           <div class="">
             <div class="box-body table-responsive">
-            <table id="productionItemsTable" class="table table-bordered table-striped">
+            <table id="feedsTable" class="table table-bordered table-striped">
               <thead>
               <tr>
                 <th>Sl.No</th>
-                <th>Item Name</th>
-                <th>Item Code</th>
-                <th>Created at</th>
+                <th>Feed Name</th>
+                <th>Feed Code</th>
                 <th>Action</th>
               </tr>
               </thead>
@@ -39,7 +37,6 @@
             </table>
           </div>
         </div>
-          <!-- <div class="col-md-8"><h2 class="box-title"></h2> </div> -->
         </div>
         </div>
       </div>

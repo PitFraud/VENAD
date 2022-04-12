@@ -11,6 +11,7 @@ class District extends MY_Controller {
         $this->load->model('General_model');
         $this->load->model('District_model');
         $this->load->model('Member_model');
+
 	}
 	public function index()
 	{
@@ -52,6 +53,7 @@ class District extends MY_Controller {
 	            $this->session->set_flashdata('response', '{&quot;text&quot;:&quot;Something went wrong,please try again later&quot;,&quot;layout&quot;:&quot;bottomRight&quot;,&quot;type&quot;:&quot;error&quot;}');
 				}
 	        redirect('/District/', 'refresh');
+
 		}
 	}
 	public function get(){
@@ -83,11 +85,13 @@ class District extends MY_Controller {
         echo $data_json;
 		redirect('/District/', 'refresh');
     }
+
 	public function edit($district_id){
 		$template['body'] = 'District/add';
 		$template['script'] = 'District/script';
 		$template['state'] = $this->Member_model->get_state();
 		$template['records'] = $this->General_model->get_row($this->table,'district_id',$district_id);
     	$this->load->view('template', $template);
+
 	}
 }

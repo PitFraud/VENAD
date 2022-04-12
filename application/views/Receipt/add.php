@@ -9,6 +9,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url();?>dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="<?php echo base_url();?>Receipt"><i class="fa fa-dashboard"></i> Back to list</a></li>
 	  </ol>
     </section>
 	<!-- Main content -->

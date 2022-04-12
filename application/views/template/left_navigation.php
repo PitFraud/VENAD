@@ -116,10 +116,6 @@
         {echo "active";}
         else if($this->uri->segment(1)=="Purchase")
         {echo "active";}
-        else if($this->uri->segment(1)=="Allotment")
-        {echo "active";}
-        else if($this->uri->segment(1)=="ReceiveItem")
-        {echo "active";}
         else if($this->uri->segment(1)=="FeedPurchase")
         {echo "active";}
         else if($this->uri->segment(1)=="Feeds")
@@ -143,8 +139,6 @@
           <li class="<?php if($this->uri->segment(2)=="Product/itemCategory"){echo "active";}?>" ><a  href="<?php echo base_url();?>Product/itemCategory"><i class="fa fa-circle-o"></i> <span>Item Category</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Product"){echo "active";}?>" ><a  href="<?php echo base_url();?>Product"><i class="fa fa-circle-o"></i> <span>Items</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Purchaseitem"){echo "active";}?>" ><a  href="<?php echo base_url();?>Purchaseitem"><i class="fa fa-circle-o"></i> <span>Purchase</span></a></li>
-          <li class="<?php if($this->uri->segment(1)=="Allotment"){echo "active";}?>" ><a  href="<?php echo base_url();?>Allotment"><i class="fa fa-circle-o"></i> <span>Allot Item</span></a></li>
-          <li class="<?php if($this->uri->segment(1)=="ReceiveItem"){echo "active";}?>" ><a  href="<?php echo base_url();?>ReceiveItem"><i class="fa fa-circle-o"></i> <span>Receive back/Integration</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Feeditem"){echo "active";}?>" ><a  href="<?php echo base_url();?>Feeditem"><i class="fa fa-circle-o"></i> <span>Feeds Item</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="FeedPurchase"){echo "active";}?>" ><a  href="<?php echo base_url();?>FeedPurchase"><i class="fa fa-circle-o"></i> <span>Feeds Purchase Details</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Feeds"){echo "active";}?>" ><a  href="<?php echo base_url();?>Feeds"><i class="fa fa-circle-o"></i> <span>Feeding Details</span></a></li>
@@ -153,6 +147,34 @@
             <a  href="<?php echo base_url();?>Stock"><i class="fa fa-circle-o"></i> <span>Stock Details</span></a></li>
           </ul>
         </li>
+
+        <!-- ############################################################################################################################################################################################################################## -->
+        <!-- INTEGRATION SECTION -->
+        <!-- ADDED BY RAJEEV -->
+        <li class="treeview <?php
+          if($this->uri->segment(1)=="Allotment")
+          {echo "active";}
+          else if($this->uri->segment(1)=="ReceiveItem")
+          {echo "active";}
+          else if($this->uri->segment(1)=="FCR")
+          {echo "active";}
+          else if($this->uri->segment(1)=="IntegratedProduction")
+          {echo "active";}
+          ?>">
+          <a><i class="fa fa-industry"></i><span>Integration</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu ">
+            <li class="<?php if($this->uri->segment(1)=="Allotment"){echo "active";}?>" ><a  href="<?php echo base_url();?>Allotment"><i class="fa fa-circle-o"></i> <span>Allot Item</span></a></li>
+            <li class="<?php if($this->uri->segment(1)=="ReceiveItem"){echo "active";}?>" ><a  href="<?php echo base_url();?>ReceiveItem"><i class="fa fa-circle-o"></i> <span>Receive back/Integration</span></a></li>
+            <li class="<?php if($this->uri->segment(1)=="FCR"){echo "active";}?>" ><a  href="<?php echo base_url();?>FCR"><i class="fa fa-circle-o"></i> <span>Feed Conversion Ratio</span></a></li>
+            <li class="<?php if($this->uri->segment(1)=="IntegratedProduction"){echo "active";}?>" ><a  href="<?php echo base_url();?>IntegratedProduction"><i class="fa fa-circle-o"></i> <span>Production Of Integrated</span></a></li>
+          </ul>
+        </li>
+        <!-- END OF INTEGRATION SECTION -->
+        <!-- ############################################################################################################################################################################################################################## -->
         <!-- <li class="<?php if($this->uri->segment(1)=="Vaccination"){echo "active";}?>" ><a  href="<?php echo base_url();?>Vaccination"><i class="fa fa-medkit"></i> <span>Vaccination Management</span></a></li> -->
         <li class="treeview <?php
         if($this->uri->segment(1)=="Vaccination")
@@ -166,6 +188,7 @@
         <ul class="treeview-menu">
           <li class="<?php if($this->uri->segment(1)=="Vaccination"){echo "active";}?>" ><a  href="<?php echo base_url();?>Vaccination"><i class="fa fa-medkit"></i> <span>Vaccine details</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Vaccination"){echo "active";}?>" ><a  href="<?php echo base_url();?>VaccinationSchedule"><i class="fa fa-square"></i> <span>Vaccination Schedule</span></a></li>
+          
         </ul>
       </li>
       <!-- ########################################################################################################### -->
@@ -202,15 +225,14 @@
     else if($this->uri->segment(1)=="Commission")
     {echo "active";}
     ?>">
-    <a><i class="fa fa-pie-chart"></i><span>Distribution</span>
+    <a><i class="fa fa-pie-chart"></i><span>Sales</span>
       <span class="pull-right-container">
         <i class="fa fa-angle-left pull-right"></i>
       </span>
     </a>
     <ul class="treeview-menu">
-      <li class="<?php if($this->uri->segment(1)=="Distribution"){echo "active";}?>" ><a  href="<?php echo base_url();?>Distribution"><i class="fa fa-circle-o"></i> <span>Distribution Sales</span></a></li>
-      <li class="<?php if($this->uri->segment(1)=="FCR"){echo "active";}?>" >
-        <a  href="<?php echo base_url();?>FCR"><i class="fa fa-circle-o"></i> <span>Feed Conversion Ratio</span></a></li>
+      <li class="<?php if($this->uri->segment(1)=="Distribution"){echo "active";}?>" ><a  href="<?php echo base_url();?>Distribution"><i class="fa fa-circle-o"></i> <span>Sales</span></a></li>
+      
         <!-- <li class="<?php if($this->uri->segment(1)=="Commission"){echo "active";}?>" ><a  href="<?php echo base_url();?>Commission"><i class="fa fa-circle-o"></i> <span>Commission Management</span></a></li> -->
       </ul>
     </li>
