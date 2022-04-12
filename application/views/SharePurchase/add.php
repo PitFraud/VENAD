@@ -15,7 +15,7 @@
 
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url();?>Dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url();?>District/"><i class="fa fa-dashboard"></i> Back to List</a></li>
+      <li><a href="<?php echo base_url();?>SharePurchase/"><i class="fa fa-dashboard"></i> Back to List</a></li>
       <li class="active"></li>
     </ol>
   </section>

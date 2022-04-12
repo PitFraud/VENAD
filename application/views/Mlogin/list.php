@@ -6,7 +6,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>Dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url(); ?>Mlogin/"><i class="fa fa-dashboard"></i>Member Login</a></li>
+      <li><a href="<?php echo base_url(); ?>Mlogin/add"><i class="fa fa-dashboard"></i>Member Login Add</a></li>
       <li class="active"></li>
     </ol>
   </section>
