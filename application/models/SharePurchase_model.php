@@ -87,6 +87,11 @@ class SharePurchase_model extends CI_Model{
 		return $query->num_rows()>0 ? $query->row() : false;
 	}
 
+	public function get_shares(){
+		$query=$this->db->select('*')->get('tbl_shares');
+		return $query->num_rows()>0 ? $query->result() : false;
+	}
+
 
 
 }

@@ -74,11 +74,11 @@ class SharePurchase extends MY_Controller
 		}
 	}
 
-	public function editSharePurchase($purchase_id)
-	{
+	public function editSharePurchase($purchase_id){
 		$template['body'] = 'SharePurchase/add';
 		$template['script'] = 'SharePurchase/script';
-		$template['share_names'] = $this->getShareNames();
+		$template['shareholders'] = $this->SharePurchase_model->get_shareholders();
+		$template['shares'] = $this->SharePurchase_model->get_shares();
 		$template['records'] = $this->General_model->get_row($this->table,'purchase_id',$purchase_id);
 		$this->load->view('template', $template);
 	}
