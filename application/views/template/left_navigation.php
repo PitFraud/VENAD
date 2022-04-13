@@ -302,11 +302,12 @@
         <ul class="treeview-menu">
           <li class="<?php if($this->uri->segment(1)=="Shares"){echo "active";}?>" >
             <a  href="<?php echo base_url();?>Share/"><i class="fa fa-circle-o"></i> <span>Shares</span></a></li>
+            <li class="<?php if($this->uri->segment(1)=="ShareSettings"){echo "active";}?>">
+              <a href="<?php echo base_url();?>ShareSettings/"> <i class="fa fa-circle-o"></i> <span> Share Settings</span> </a>
+            </li>
             <li class="<?php if($this->uri->segment(1)=="SharePurchase"){echo "active";}?>" >
               <a  href="<?php echo base_url();?>SharePurchase/"><i class="fa fa-circle-o"></i> <span>Share Purchase Details</span></a></li>
-              <li class="<?php if($this->uri->segment(1)=="ShareSettings"){echo "active";}?>">
-                <a href="<?php echo base_url();?>ShareSettings/"> <i class="fa fa-circle-o"></i> <span> Share Settings</span> </a>
-              </li>
+
               <li class="<?php if($this->uri->segment(1)=="ShareTransfer"){echo "active";}?>">
                 <a href="<?php echo base_url();?>ShareTransfer/"> <i class="fa fa-circle-o"></i> <span> Share Transfer</span> </a>
               </li>
