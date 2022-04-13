@@ -188,7 +188,7 @@
         <ul class="treeview-menu">
           <li class="<?php if($this->uri->segment(1)=="Vaccination"){echo "active";}?>" ><a  href="<?php echo base_url();?>Vaccination"><i class="fa fa-medkit"></i> <span>Vaccine details</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Vaccination"){echo "active";}?>" ><a  href="<?php echo base_url();?>VaccinationSchedule"><i class="fa fa-square"></i> <span>Vaccination Schedule</span></a></li>
-          
+
         </ul>
       </li>
       <!-- ########################################################################################################### -->
@@ -232,7 +232,7 @@
     </a>
     <ul class="treeview-menu">
       <li class="<?php if($this->uri->segment(1)=="Distribution"){echo "active";}?>" ><a  href="<?php echo base_url();?>Distribution"><i class="fa fa-circle-o"></i> <span>Sales</span></a></li>
-      
+
         <!-- <li class="<?php if($this->uri->segment(1)=="Commission"){echo "active";}?>" ><a  href="<?php echo base_url();?>Commission"><i class="fa fa-circle-o"></i> <span>Commission Management</span></a></li> -->
       </ul>
     </li>
