@@ -23,19 +23,24 @@ $table = $('#shareTable').DataTable( {
   ]
 } );
 function confirmDelete(share_id){
-   var conf = confirm("Do you want to Delete Share Details ?");
-   if(conf){
-       $.ajax({
-           url:"<?php echo base_url();?>Vaccination/delete",
-           data:{vaccination_id:vaccination_id},
-           method:"POST",
-           datatype:"json",
-           success:function(data){
-               var options = $.parseJSON(data);
-               noty(options);
-               $table.ajax.reload();
-           }
-       });
-   }
-   }
+  var conf = confirm("Do you want to Delete Share Details ?");
+  if(conf){
+    $.ajax({
+      url:"<?php echo base_url();?>Vaccination/delete",
+      data:{vaccination_id:vaccination_id},
+      method:"POST",
+      datatype:"json",
+      success:function(data){
+        var options = $.parseJSON(data);
+        noty(options);
+        $table.ajax.reload();
+      }
+    });
+  }
+}
+
+$('#shareSelect').on('change',function(){
+  alert("hi");
+});
+
 </script>
