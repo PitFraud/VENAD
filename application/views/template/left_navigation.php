@@ -170,7 +170,7 @@
             <li class="<?php if($this->uri->segment(1)=="Allotment"){echo "active";}?>" ><a  href="<?php echo base_url();?>Allotment"><i class="fa fa-circle-o"></i> <span>Allot Item</span></a></li>
             <li class="<?php if($this->uri->segment(1)=="ReceiveItem"){echo "active";}?>" ><a  href="<?php echo base_url();?>ReceiveItem"><i class="fa fa-circle-o"></i> <span>Receive back/Integration</span></a></li>
             <li class="<?php if($this->uri->segment(1)=="FCR"){echo "active";}?>" ><a  href="<?php echo base_url();?>FCR"><i class="fa fa-circle-o"></i> <span>Feed Conversion Ratio</span></a></li>
-            <li class="<?php if($this->uri->segment(1)=="IntegratedProduction"){echo "active";}?>" ><a  href="<?php echo base_url();?>IntegratedProduction"><i class="fa fa-circle-o"></i> <span>Production Of Integrated</span></a></li>
+          
           </ul>
         </li>
         <!-- END OF INTEGRATION SECTION -->

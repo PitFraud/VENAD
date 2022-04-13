@@ -90,5 +90,19 @@ $(document).ready(function(){
   $('#allotment_id').select2();
 })
 
+$('#allotment_id').on('change',function(){
+  var allot_id = this.value;
+  $.ajax({
+            url:"<?php echo base_url();?>ReceiveItem/getIntegrationType",
+            data:{allot_id:allot_id},
+            method:"POST",
+            datatype:"json",
+            success:function(data){
+                var response = JSON.parse(data);
+                $('#integration_type_ids').val(response.allot_integration_type);
+            }
+        });
+})
+
 
 </script>

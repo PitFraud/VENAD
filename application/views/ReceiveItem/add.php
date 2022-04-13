@@ -40,14 +40,14 @@
                     <div class="col-md-6">
                       <label class="fsize">Select From Allotments</label>
                       <select class="form-control" name="allotment" id="allotment_id">
-                        <?php foreach ($allotment_details as $allotment) : ?>
-                          <option <?php if (isset($records->rec_allotment_fk)) {
-                                    if ($records->rec_allotment_fk == $allotment->allot_id) {
-                                      echo "selected";
-                                    }
-                                  } ?> value="<?php echo $allotment->allot_id; ?>"><?php echo $allotment->member_name . " - " . $allotment->product_name . " - " . $allotment->allot_integration_code . " - " . $allotment->allot_weight . " " . $allotment->unit_name . " - " . $allotment->allotment_date; ?></option>
+                        <?php foreach ($allotment_details as $allotment) : 
+                          if($allotment->allot_integration_type == 1){
+                            $x='Broiler';
+                          }else{ $x='Layer';} ?>
+                          <option <?php if (isset($records->rec_allotment_fk)) { if ($records->rec_allotment_fk == $allotment->allot_id) { echo "selected"; }} ?> value="<?php echo $allotment->allot_id; ?>"><?php echo $allotment->member_name . " - " . $x . " - " . $allotment->allot_integration_code . " - " . $allotment->allot_weight . " " . $allotment->unit_name . " - " . $allotment->allotment_date; ?></option>
                         <?php endforeach; ?>
                       </select>
+                      <input type="hidden" name="integration_type" id="integration_type_ids" value="">
                     </div>
                     <div class="col-md-6">
                       <label class="fsize">Quanity</label>
@@ -65,11 +65,7 @@
                       <select class="form-control" name="unit" id="unit">
                         <option value="" disabled>Select Unit</option>
                         <?php foreach ($units as $unit) { ?>
-                          <option <?php if (isset($records->rec_unit)) {
-                                    if ($records->rec_unit == $unit->unit_id) {
-                                      echo "selected";
-                                    }
-                                  } ?> value="<?php echo $unit->unit_id; ?>"><?php echo $unit->unit_name; ?></option>
+                          <option <?php if (isset($records->rec_unit)) { if ($records->rec_unit == $unit->unit_id) { echo "selected"; }} ?> value="<?php echo $unit->unit_id; ?>"><?php echo $unit->unit_name; ?></option>
                         <?php } ?>
                       </select>
                     </div>
