@@ -98,4 +98,15 @@ class ShareTransfer extends MY_Controller {
 		$result=$this->ShareTransfer_model->get_shareholder_share_details($id);
 		echo json_encode($result);
 	}
+
+	public function getSingleShareTotal(){
+		$share_id=$_POST['share_id'];
+		$shareholder_id=$_POST['shareholder_id'];
+		$result=$this->ShareTransfer_model->get_single_share_total($share_id,$shareholder_id);
+		echo json_encode($result);
+	}
+
+	public function transferShare(){
+		echo "<pre>"; print_r($_POST);
+	}
 }

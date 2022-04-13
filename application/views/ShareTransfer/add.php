@@ -21,7 +21,7 @@
       </ol>
     </section>
      <!-- Main content -->
-     <form class="form-horizontal" method="POST" action="<?php echo base_url();?>/ShareTransfer/add" enctype="multipart/form-data">
+     <form class="form-horizontal" method="POST" action="<?php echo base_url();?>ShareTransfer/transferShare" enctype="multipart/form-data">
     <section class="content">
     <div class="row">
         <div class="box">
@@ -30,6 +30,8 @@
               <!-- <h3 class="box-title">Data Table With Full Features</h3> -->
               <div class="col-md-8"><h2 class="box-title"></h2> </div>
             </div>
+            <!-- <form class="form-control" action="<?php echo base_url() ?>ShareTransfer/transferShare" method="post"> -->
+
             <div class="box-body">
               <div class="col-lg-2"></div>
               <div class="col-lg-8">
@@ -49,33 +51,49 @@
                     <?php endforeach; ?>
                   </select>
                 </div>
-                <!-- <div class="col-md-6">
-                  <label class="fsize">To</label>
+
+                <div class="col-md-6">
+                  <label class="fsize">Shares available</label>
+                  <select class="form-control" name="from" id="avlshareSelect">
+                    <option value="" selected>--SELECT--</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="fsize">Available Quantity</label>
+                  <input type="text" name="" value="" id="avl_sharestock" class="form-control" readonly>
+                  <!-- <span id="avl_sharestock"><h3></h3></span> -->
+                </div>
+                <div class="col-md-6">
+                  <label class="fsize">Transfer quantity</label>
+                  <input type="number" name="" value="" id="transfer_qty" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                  <label class="fsize">Tranfer to</label>
                   <select class="form-control" name="from" id="toSelect">
+                    <option value="" selected>--SELECT--</option>
                     <?php foreach ($shareholders as $shareholder): ?>
                       <option value="<?php echo $shareholder->member_id; ?>"><?php echo $shareholder->member_name; ?></option>
                     <?php endforeach; ?>
                   </select>
-                </div> -->
-                <div class="col-md-6">
-                  <label class="fsize">Holding shares</label>
-                  <select class="form-control" name="from" id="avlshareSelect">
-
-                  </select>
                 </div>
+
+
 
               </div><br>
 
+              <button type="submit" name="button" class="btn btn-success form-control">Proceed</button>
               </div><!--form-group--><br>
             <!-- /.box-header -->
           </div>
         </div>
       </div>
+    </form>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
              <br>
-          <div class="box-footer">
+          <!-- <div class="box-footer">
           <div class="row">
           <div class="col-md-6">
           </div>
@@ -84,7 +102,7 @@
           <button type="submit" class="btn btn-primary">Save</button>
           </div>
           </div>
-          </div>
+          </div> -->
      </div>
     </section>
   </form>

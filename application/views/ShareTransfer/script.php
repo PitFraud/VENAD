@@ -44,23 +44,6 @@ $(document).ready(function(){
     } );
   });
 })
-function confirmDelete(district_id){
-  var conf = confirm("Do you want to Delete Class ?");
-  if(conf){
-    $.ajax({
-      url:"<?php echo base_url();?>District/delete",
-      data:{district_id:district_id},
-      method:"POST",
-      datatype:"json",
-      success:function(data){
-        var options = $.parseJSON(data);
-        noty(options);
-        $table.ajax.reload();
-      }
-    });
-  }
-}
-
 $('#fromSelect').on('change',function(){
   var shareholder_id=this.value;
   $.ajax({
@@ -71,7 +54,63 @@ $('#fromSelect').on('change',function(){
     success:function(response){
       data=JSON.parse(response);
       console.log(data);
+      if(data==false){
+        alert('No shares availble')
+      }
+      else{
+        $('#avlshareSelect').empty();
+        var select=document.getElementById("avlshareSelect");
+        data.forEach((item) => {
+          $(select).append('<option value="'+item.share_id+'">'+item.share_name+' - Value : '+item.share_value+'</option>');
+        });
+
+        var share_id=$('#avlshareSelect').val();
+        var shareholder_id=$('#fromSelect').val();
+        $.ajax({
+          url:"<?php echo base_url();?>ShareTransfer/getSingleShareTotal",
+          data:{share_id:share_id,shareholder_id:shareholder_id},
+          method:"POST",
+          datatype:"json",
+          success:function(response){
+            data=JSON.parse(response);
+            $('#avl_sharestock').val(data);
+            // console.log(data);
+          }
+        });
+
+      }
     }
   });
+})
+
+$('#avlshareSelect').on('change',function(){
+  var share_id=this.value;
+  var shareholder_id=$('#fromSelect').val();
+  $.ajax({
+    url:"<?php echo base_url();?>ShareTransfer/getSingleShareTotal",
+    data:{share_id:share_id,shareholder_id:shareholder_id},
+    method:"POST",
+    datatype:"json",
+    success:function(response){
+      data=JSON.parse(response);
+      $('#avl_sharestock').val(data);
+    }
+  });
+})
+
+$('#toSelect').on('change',function(){
+  var from_id = $("#fromSelect").val();
+  if(this.value==from_id){
+    alert('Shareholders chose same. Please choose another !');
+  }
+})
+
+$('#transfer_qty').on('keyup',function(){
+  var qty=this.value;
+  var avl=parseInt($('#avl_sharestock').val());
+  if(qty>avl){
+    alert('Available quantity is less than mentioned quantity!');
+    $('#transfer_qty').val(0);
+  }
 })
 </script>
