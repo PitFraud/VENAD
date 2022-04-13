@@ -404,24 +404,7 @@
     </ul>-->
   </li>
 </ul>
-<!-- ######################################################################################### -->
-<li class="treeview <?php
-if($this->uri->segment(1)=="Notifications")
-{echo "active";}
 
-?>">
-
-<a><i class="fa fa-bell"></i><span>Notifications</span>
-  <span class="pull-right-container">
-    <i class="fa fa-angle-left pull-right"></i>
-  </span>
-</a>
-<ul class="treeview-menu ">
-  <li class="<?php if($this->uri->segment(1)=="Notifications"){echo "active";}?>" ><a  href="<?php echo base_url();?>Notifications"><i class="fa fa-plus"></i> <span>Add notification</span></a></li>
-</li>
-</ul>
-
-<!-- ################################################################################# -->
 <!-- <li class="treeview <?php
 if($this->uri->segment(1)=="Stock")
 {echo "active";}
