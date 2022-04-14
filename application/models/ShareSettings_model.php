@@ -47,4 +47,25 @@ class ShareSettings_model extends CI_Model{
 		return $query->num_rows()>0 ? $query->row() : false;
 	}
 
+	public function get_current_share_settings($param){
+		$arOrder = array('','share_name');
+		$searchValue =($param['searchValue'])?$param['searchValue']:'';
+		if($searchValue){
+			$this->db->like('share_name', $searchValue);
+		}
+		// $this->db->where("allotmen",1);
+		if ($param['start'] != 'false' and $param['length'] != 'false') {
+			$this->db->limit($param['length'],$param['start']);
+		}
+		$query=$this->db->select('tbl_shares.share_name,tbl_shares.share_value,tbl_share_settings.*')
+		->join('tbl_share_settings','tbl_share_settings.settings_share_id=tbl_shares.share_id','left')
+		->order_by('tbl_shares.share_id','DESC')
+		->get('tbl_shares');
+		// return $query->num_rows()>0 ? $query->result() : false;
+		$data['data'] = $query->result();
+		$data['recordsTotal'] = $query->num_rows();
+		$data['recordsFiltered'] = $query->num_rows();
+		return $data;
+	}
+
 }

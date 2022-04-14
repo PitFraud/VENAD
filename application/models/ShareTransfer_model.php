@@ -60,8 +60,20 @@ class ShareTransfer_model extends CI_Model{
 	}
 
 	public function get_shareholder_share_details($id){
-		$query=$this->db->select('*')->where('purchase_id',$id)->get('tbl_share_purchase_details');
+		$query=$this->db->select('*')
+		->join('tbl_shares','tbl_shares.share_id=tbl_share_purchase_details.purchase_share_id','left')
+		->where('purchase_shareholder_id',$id)
+		->group_by('tbl_share_purchase_details.purchase_share_id')
+		->get('tbl_share_purchase_details');
 		return $query->num_rows()>0 ? $query->result() : false;
+	}
+
+	public function get_single_share_total($share_id,$shareholder_id){
+		$query=$this->db->select_sum('purchase_qty')
+		->where('purchase_share_id',$share_id)
+		->where('purchase_shareholder_id',$shareholder_id)
+		->get('tbl_share_purchase_details');
+		return $query->num_rows()>0 ? $query->row()->purchase_qty : 0;
 	}
 }
 ?>

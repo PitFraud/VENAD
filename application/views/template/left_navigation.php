@@ -188,7 +188,7 @@
         <ul class="treeview-menu">
           <li class="<?php if($this->uri->segment(1)=="Vaccination"){echo "active";}?>" ><a  href="<?php echo base_url();?>Vaccination"><i class="fa fa-medkit"></i> <span>Vaccine details</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Vaccination"){echo "active";}?>" ><a  href="<?php echo base_url();?>VaccinationSchedule"><i class="fa fa-square"></i> <span>Vaccination Schedule</span></a></li>
-          
+
         </ul>
       </li>
       <!-- ########################################################################################################### -->
@@ -233,7 +233,7 @@
     </a>
     <ul class="treeview-menu">
       <li class="<?php if($this->uri->segment(1)=="Distribution"){echo "active";}?>" ><a  href="<?php echo base_url();?>Distribution"><i class="fa fa-circle-o"></i> <span>Sales</span></a></li>
-      
+
         <!-- <li class="<?php if($this->uri->segment(1)=="Commission"){echo "active";}?>" ><a  href="<?php echo base_url();?>Commission"><i class="fa fa-circle-o"></i> <span>Commission Management</span></a></li> -->
       </ul>
     </li>
@@ -303,11 +303,12 @@
         <ul class="treeview-menu">
           <li class="<?php if($this->uri->segment(1)=="Shares"){echo "active";}?>" >
             <a  href="<?php echo base_url();?>Share/"><i class="fa fa-circle-o"></i> <span>Shares</span></a></li>
+            <li class="<?php if($this->uri->segment(1)=="ShareSettings"){echo "active";}?>">
+              <a href="<?php echo base_url();?>ShareSettings/"> <i class="fa fa-circle-o"></i> <span> Share Settings</span> </a>
+            </li>
             <li class="<?php if($this->uri->segment(1)=="SharePurchase"){echo "active";}?>" >
               <a  href="<?php echo base_url();?>SharePurchase/"><i class="fa fa-circle-o"></i> <span>Share Purchase Details</span></a></li>
-              <li class="<?php if($this->uri->segment(1)=="ShareSettings"){echo "active";}?>">
-                <a href="<?php echo base_url();?>ShareSettings/"> <i class="fa fa-circle-o"></i> <span> Share Settings</span> </a>
-              </li>
+
               <li class="<?php if($this->uri->segment(1)=="ShareTransfer"){echo "active";}?>">
                 <a href="<?php echo base_url();?>ShareTransfer/"> <i class="fa fa-circle-o"></i> <span> Share Transfer</span> </a>
               </li>
@@ -405,24 +406,7 @@
     </ul>-->
   </li>
 </ul>
-<!-- ######################################################################################### -->
-<li class="treeview <?php
-if($this->uri->segment(1)=="Notifications")
-{echo "active";}
 
-?>">
-
-<a><i class="fa fa-bell"></i><span>Notifications</span>
-  <span class="pull-right-container">
-    <i class="fa fa-angle-left pull-right"></i>
-  </span>
-</a>
-<ul class="treeview-menu ">
-  <li class="<?php if($this->uri->segment(1)=="Notifications"){echo "active";}?>" ><a  href="<?php echo base_url();?>Notifications"><i class="fa fa-plus"></i> <span>Add notification</span></a></li>
-</li>
-</ul>
-
-<!-- ################################################################################# -->
 <!-- <li class="treeview <?php
 if($this->uri->segment(1)=="Stock")
 {echo "active";}
