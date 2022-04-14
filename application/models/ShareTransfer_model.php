@@ -75,5 +75,14 @@ class ShareTransfer_model extends CI_Model{
 		->get('tbl_share_purchase_details');
 		return $query->num_rows()>0 ? $query->row()->purchase_qty : 0;
 	}
+
+	public function get_single_current_share_qty($user_id,$share_id){
+		$query=$this->db->select('purchase_qty')
+		->where('purchase_shareholder_id',$user_id)
+		->where('purchase_share_id',$share_id)
+		->get('tbl_share_purchase_details');
+		return $query->num_rows()>0 ? $query->row()->purchase_qty :0;
+
+	}
 }
 ?>
