@@ -57,3 +57,5 @@ WHERE `item_status` = 1
  LIMIT 10
 ERROR - 2022-04-14 11:18:51 --> Severity: error --> Exception: Call to a member function result() on bool C:\wamp64\www\VENAD\application\models\IntegrationDetails_model.php 24
 ERROR - 2022-04-14 11:41:10 --> 404 Page Not Found: Assets/EasyAutocomplete-1.3.5
+ERROR - 2022-04-14 12:25:48 --> 404 Page Not Found: IntegrationStock/index
+ERROR - 2022-04-14 12:26:19 --> Severity: error --> Exception: C:\wamp64\www\VENAD\application\models/IntegrationStock_model.php exists, but doesn't declare class IntegrationStock_model C:\wamp64\www\VENAD\system\core\Loader.php 671

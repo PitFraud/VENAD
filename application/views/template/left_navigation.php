@@ -171,6 +171,7 @@
             <li class="<?php if($this->uri->segment(1)=="ReceiveItem"){echo "active";}?>" ><a  href="<?php echo base_url();?>ReceiveItem"><i class="fa fa-circle-o"></i> <span>Receive back/Integration</span></a></li>
             <li class="<?php if($this->uri->segment(1)=="FCR"){echo "active";}?>" ><a  href="<?php echo base_url();?>FCR"><i class="fa fa-circle-o"></i> <span>Feed Conversion Ratio</span></a></li>
             <li class="<?php if($this->uri->segment(1)=="IntegrationDetails"){echo "active";}?>" ><a  href="<?php echo base_url();?>IntegrationDetails"><i class="fa fa-circle-o"></i> <span>Integration Details</span></a></li>
+            <li class="<?php if($this->uri->segment(1)=="IntegrationStock"){echo "active";}?>" ><a  href="<?php echo base_url();?>IntegrationStock"><i class="fa fa-circle-o"></i> <span>Integration Stock</span></a></li>
           </ul>
         </li>
         <!-- END OF INTEGRATION SECTION -->
