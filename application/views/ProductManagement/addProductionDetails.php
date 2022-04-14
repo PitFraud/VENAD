@@ -79,7 +79,7 @@
                     </div>
                     <div class="col-md-6">
                       <label class="fsize">Quantity/No. Packets</label>
-                      <input type="number" name="quantity" class="form-control" value="<?php if (isset($records->production_quantity)) { echo $records->production_quantity; } ?>" placeholder="Quantity">
+                      <input type="number" name="no_of_packets" class="form-control" value="<?php if (isset($records->production_quantity)) { echo $records->production_quantity; } ?>" placeholder="Quantity">
                     </div>
                   </div>
                   <div class="form-group row">

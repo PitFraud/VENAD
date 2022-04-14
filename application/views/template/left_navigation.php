@@ -170,7 +170,7 @@
             <li class="<?php if($this->uri->segment(1)=="Allotment"){echo "active";}?>" ><a  href="<?php echo base_url();?>Allotment"><i class="fa fa-circle-o"></i> <span>Allot Item</span></a></li>
             <li class="<?php if($this->uri->segment(1)=="ReceiveItem"){echo "active";}?>" ><a  href="<?php echo base_url();?>ReceiveItem"><i class="fa fa-circle-o"></i> <span>Receive back/Integration</span></a></li>
             <li class="<?php if($this->uri->segment(1)=="FCR"){echo "active";}?>" ><a  href="<?php echo base_url();?>FCR"><i class="fa fa-circle-o"></i> <span>Feed Conversion Ratio</span></a></li>
-          
+            <li class="<?php if($this->uri->segment(1)=="IntegrationDetails"){echo "active";}?>" ><a  href="<?php echo base_url();?>IntegrationDetails"><i class="fa fa-circle-o"></i> <span>Integration Details</span></a></li>
           </ul>
         </li>
         <!-- END OF INTEGRATION SECTION -->
@@ -213,6 +213,7 @@
         <li class="<?php if($this->uri->segment(1)=="ProductManagement"){echo "active";}?>" ><a  href="<?php echo base_url();?>ProductManagement"><i class="fa fa-circle-o"></i> <span>Manage Products</span></a></li>
         <li class="<?php if($this->uri->segment(2)=="showProductionDetails"){echo "active";}?>" ><a  href="<?php echo base_url();?>ProductManagement/showProductionDetails"><i class="fa fa-circle-o"></i> <span>Production Details</span></a></li>
         <li class="<?php if($this->uri->segment(2)=="Pstock"){echo "active";}?>" ><a  href="<?php echo base_url();?>PStock/"><i class="fa fa-circle-o"></i> <span>Product Stock</span></a></li>
+        <li class="<?php if($this->uri->segment(2)=="ProductionStock"){echo "active";}?>" ><a  href="<?php echo base_url();?>ProductionStock/"><i class="fa fa-circle-o"></i> <span>Production Stock</span></a></li>
         <li class="<?php if($this->uri->segment(2)=="Progressive_details"){echo "active";}?>" ><a  href="<?php echo base_url();?>Progressive_details/"><i class="fa fa-circle-o"></i> <span>Progressive Details</span></a></li>
         <li class="<?php if($this->uri->segment(2)=="Sale"){echo "active";}?>" ><a  href="<?php echo base_url();?>Sale/"><i class="fa fa-circle-o"></i> <span>Sale Details</span></a></li>
       </ul>

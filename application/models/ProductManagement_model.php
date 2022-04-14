@@ -117,4 +117,24 @@ class ProductManagement_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->row();
 	}
+
+	public function getBroilerStock()
+    {
+        $this->db->select('integration_stock_qty,integration_stock_weight');
+        $this->db->from('tbl_integration_stock');
+        $this->db->where('integration_stock_type',1);
+        $this->db->where('integration_stock_status',1);
+        $query = $this->db->get();
+    	return $query->num_rows();
+    }
+
+    public function getLayerStock()
+    {
+        $this->db->select('integration_stock_qty,integration_stock_weight');
+        $this->db->from('tbl_integration_stock');
+        $this->db->where('integration_stock_type',2);
+        $this->db->where('integration_stock_status',1);
+        $query = $this->db->get();
+    	return $query->num_rows();
+    }
 }

@@ -100,39 +100,94 @@ class ProductManagement extends MY_Controller {
 		$this->load->view('template', $template);
 	}
 	public function addProductionDetailsData(){
+		$new_bal = $_POST['current_weight'] - $_POST['chicken_weight_count'];
+		$chicken_type = $_POST['chicken_type'];	
 		$insert_array=[
 			'production_item_id_fk'=>$_POST['item_name'],
 			'production_mfd'=>$_POST['mfd'],
+			'production_chicken_type'=>$_POST['chicken_type'],
 			'production_expiry'=>$_POST['expiry_date'],
-			'production_quantity'=>$_POST['quantity'],
+			'production_quantity'=>$_POST['chicken_weight_count'],
 			'production_row_mat_count'=>$_POST['row_mat_count'],
 			'production_unit_id_fk'=>$_POST['unit'],
 			'production_packet_weight'=>$_POST['packet_weight'],
+			'production_packet_count'=>$_POST['no_of_packets'],
 			'production_chicken_count'=>$_POST['chicken_used_count'],
 			'production_chicken_weight'=>$_POST['chicken_weight_count'],
 			'production_chicken_waste'=>$_POST['prod_waste'],
 			'production_price'=>$_POST['price'],
 			'production_code'=>strtoupper($_POST['prod_code']),
+			'production_chicken_old_stock'=>$_POST['current_weight'],
+			'production_chicken_new_bal'=>$new_bal,
 			'created_at'=>date('Y-m-d H:i:s'),
 		];
 		$production_id = $this->input->post('production_id');
 		if($production_id){
 			$data['production_id'] = $production_id;
 			$result = $this->General_model->update($this->table1,$insert_array,'production_id',$production_id);
+			if($result)
+			{
+				if($chicken_type == 1){
+					$broiler = $this->ProductManagement_model->getBroilerStock();
+					@$newbal_qty = $broiler->integration_stock_qty - $_POST['chicken_used_count'];
+					@$newbal_weight = $broiler->integration_stock_weight - $_POST['chicken_weight_count'];
+					$update_inte_stock = [
+						'integration_stock_qty' => $newbal_qty,
+						'integration_stock_weight' => $newbal_weight,
+					];
+					$data = $this->General_model->update('tbl_integration_stock',$update_inte_stock,'integration_stock_type',1);
+				}
+				else if($chicken_type == 2){
+					$layer = $this->ProductManagement_model->getLayerStock();
+					@$newbal_qty = $layer->integration_stock_qty - $_POST['chicken_used_count'];
+					@$newbal_weight = $layer->integration_stock_weight - $_POST['chicken_weight_count'];
+					$update_inte_stock = [
+						'integration_stock_qty' => $newbal_qty,
+						'integration_stock_weight' => $newbal_weight,
+					];
+					$data = $this->General_model->update('tbl_integration_stock',$update_inte_stock,'integration_stock_type',1);
+				}
+			}
 			$response_text = 'Panchayath updated successfully';
 			redirect('/ProductManagement/showProductionDetails', 'refresh');
 		}
 		else{
+
+			
 			$result_id = $this->General_model->add_returnID($this->table1,$insert_array);
 			$item = $this->Sale_model->get_product($_POST['item_name']);
 			$item_price =$_POST['price'];
 			$item_id=$_POST['item_name'];
 			$item_quantity1 =$item[0]->item_quantity;
-			$item_quantity =$item_quantity1+$_POST['quantity'];
+			$item_quantity =$item_quantity1+$_POST['chicken_weight_count'];
 			$uData1 = array('item_price' =>$item_price,
 							'item_quantity' =>$item_quantity,
 								);
 			$result = $this->General_model->update($this->table,$uData1,'item_id',$item_id);
+			
+			if($result)
+			{
+				if($chicken_type == 1){
+					$broiler = $this->ProductManagement_model->getBroilerStock();
+					@$newbal_qty = $broiler->integration_stock_qty - $_POST['chicken_used_count'];
+					@$newbal_weight = $broiler->integration_stock_weight - $_POST['chicken_weight_count'];
+					$update_inte_stock = [
+						'integration_stock_qty' => $newbal_qty,
+						'integration_stock_weight' => $newbal_weight,
+					];
+					$data = $this->General_model->update('tbl_integration_stock',$update_inte_stock,'integration_stock_type',1);
+				}
+				else if($chicken_type == 2){
+					$layer = $this->ProductManagement_model->getLayerStock();
+					@$newbal_qty = $layer->integration_stock_qty - $_POST['chicken_used_count'];
+					@$newbal_weight = $layer->integration_stock_weight - $_POST['chicken_weight_count'];
+					$update_inte_stock = [
+						'integration_stock_qty' => $newbal_qty,
+						'integration_stock_weight' => $newbal_weight,
+					];
+					$data = $this->General_model->update('tbl_integration_stock',$update_inte_stock,'integration_stock_type',1);
+				}
+			}
 			if($result_id){
 				$response=$this->ProductManagement_model->getProductionDetailsWhere($result_id);
 				if($response){
@@ -163,6 +218,7 @@ class ProductManagement extends MY_Controller {
 						// $status=$this->ProductManagement_model->update_data_new($condition,$insert_array);
 						$status=$this->General_model->update('tbl_production_details',$insert_array,'production_id',$result_id);
 						$status1=$this->General_model->update('tbl_production_itemlist',$insert_array1,'item_id',$item_id);
+						
 						if($status&&$status1){
 							$response_text = 'Production details added successfully';
 							$this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
@@ -175,6 +231,7 @@ class ProductManagement extends MY_Controller {
 				}
 			}
 		}
+
 	}
 	public function editProductionDetails($item_id){
 		$template['productionItems']=$this->getProductionItemsList();
