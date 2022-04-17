@@ -107,6 +107,14 @@ class ShareTransfer extends MY_Controller {
 	}
 
 	public function transferShare(){
-		echo "<pre>"; print_r($_POST);
+		// echo "<pre>"; print_r($_POST); die;
+		$shareholder_from_id=$_POST['from'];
+		$shareholder_to_id=$_POST['transfer_to'];
+		$share_id=$_POST['item'];
+		$available_qty=$_POST['avl_qty'];
+		$transfer_quantity=$_POST['transfer_qty'];
+		$current_stock=$this->ShareTransfer_model->get_single_current_share_qty($shareholder_from_id,$share_id);
+		$new_from_stock=intval($current_stock)-intval($transfer_quantity);
+		var_dump($new_from_stock); die;
 	}
 }

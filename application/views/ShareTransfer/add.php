@@ -54,23 +54,23 @@
 
                 <div class="col-md-6">
                   <label class="fsize">Shares available</label>
-                  <select class="form-control" name="from" id="avlshareSelect">
+                  <select class="form-control" name="item" id="avlshareSelect">
                     <option value="" selected>--SELECT--</option>
                   </select>
                 </div>
                 <div class="col-md-6">
                   <label class="fsize">Available Quantity</label>
-                  <input type="text" name="" value="" id="avl_sharestock" class="form-control" readonly>
+                  <input type="text" name="avl_qty" value="" id="avl_sharestock" class="form-control" readonly>
                   <!-- <span id="avl_sharestock"><h3></h3></span> -->
                 </div>
                 <div class="col-md-6">
                   <label class="fsize">Transfer quantity</label>
-                  <input type="number" name="" value="" id="transfer_qty" class="form-control">
+                  <input type="number" name="transfer_qty" value="" id="transfer_qty" class="form-control">
                 </div>
 
                 <div class="col-md-6">
                   <label class="fsize">Tranfer to</label>
-                  <select class="form-control" name="from" id="toSelect">
+                  <select class="form-control" name="transfer_to" id="toSelect">
                     <option value="" selected>--SELECT--</option>
                     <?php foreach ($shareholders as $shareholder): ?>
                       <option value="<?php echo $shareholder->member_id; ?>"><?php echo $shareholder->member_name; ?></option>
