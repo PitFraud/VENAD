@@ -21,7 +21,7 @@ class Daybook extends MY_Controller
 		$template['body'] = 'Daybook/list';
 		$template['script'] = 'Daybook/script';
 		//$sdate=date('Y-m-d');
-		$sdate = date('Y-m');
+		$sdate = date('Y-m-d');
 		//$prid =$this->session->userdata('prid');
 		$template['opening'] = $this->Daybook_model->popening();
 		//$template['sum']=$this->Daybook_model->get_sum($gid);
@@ -52,6 +52,8 @@ class Daybook extends MY_Controller
 		$template['payroll'] = $this->Daybook_model->getpayroll($sdate);
 		$template['advance'] = $this->Daybook_model->getadvance($sdate);
 		$template['sdate'] = $sdate;
+		$pay=$this->Daybook_model->getpayroll($sdate);
+		$template['count']=count($pay);
 		$this->load->view('template', $template);
 	}
 	public function get_sum()
@@ -107,7 +109,7 @@ echo $json_data;
 		$stat = $this->input->post('stat');
 		$date = str_replace('/', '-', $this->input->post('cdate'));
 		//$date =  date("Y-m-d",strtotime($date));
-		$date =  date("Y-m", strtotime($this->input->post('cdate')));
+		$date =  date("Y-m-d", strtotime($this->input->post('cdate')));
 		$prid = $this->session->userdata('prid');
 		$result = $this->Daybook_model->pclosebalance($date);
 		if ($result) {

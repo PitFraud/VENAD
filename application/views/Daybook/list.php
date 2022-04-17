@@ -31,10 +31,8 @@
                   <button type="button" class="btn btn-primary nohover">Date</button>
                 </div><!-- /btn-group -->
                 <input type="date" class="form-control" id="daybuk_date" name="daybuk_date" value="<?php if (isset($sdate)) {
-                                                                                                      echo date('M-Y', strtotime($sdate));
-                                                                                                    } else {
-                                                                                                      echo date('M-Y');
-                                                                                                    } ?>" style="font-weight: bold;font-size: 16px;">
+                                                                                                      echo  $sdate;
+                                                                                                    }  ?>" style="font-weight: bold;font-size: 16px;">
               </div><!-- /input-group -->
 
             </div>
@@ -68,14 +66,16 @@
 
               <tr>
 
-                <th style="border-color:#d4d6d5;">DATE</th>
+                
                 <th style="border-color:#d4d6d5;">LEDGER NAME</th>
+                <th style="border-color:#d4d6d5;">BILL NO</th>
                 <th style="border-color:#d4d6d5;">RECEIPTS</th>
                 <th style="border-color:#d4d6d5;">PAYMENTS</th>
               </tr>
               <tr style="font-weight: bold;color:red;">
-                <td style="border-color:#d4d6d5;"></td>
+               
                 <td style="border-color:#d4d6d5;"><strong>Opening Balance</strong></td>
+                 <td style="border-color:#d4d6d5;"></td>
                 <?php $obalance = 0;
                 $obalance1 = 0; ?>
                 <!-- <td style="border-color:#d4d6d5;"><?php if (isset($opening->closing_amount)) {
@@ -124,57 +124,63 @@
               $adv = 0;
 
               ?>
-              <?php foreach ($payroll as $rows1) { ?>
+              <?php foreach ($payroll as $rows1) {if($rows1->salary!=0){ ?>
                 <tr>
-                  <td style="border-color:#d4d6d5;"><?php if(!empty($rows1->payroll_salarydate)){ echo date('d/m/Y', strtotime($rows1->payroll_salarydate)); } else { echo ""; } ?></td>
+                 
                   <td style="border-color:#d4d6d5;">TOTAL SALARY PAID TO EMPLOYEES </td>
+                   <td style="border-color:#d4d6d5;"></td>
                   <td style="border-color:#d4d6d5;"></td>
                   <td style="border-color:#d4d6d5;"><?php if(!empty($rows1->salary)){ echo $rows1->salary; } else { echo 0; } ?></td>
                 </tr>
               <?php $sal = $sal + $rows1->salary;
-              } ?>
-              <?php foreach ($advance as $rows1) { ?>
+              }} ?>
+              <?php foreach ($advance as $rows1) {if($rows1->adv_amount!=0){ ?>
                 <tr>
-                  <td style="border-color:#d4d6d5;"><?php if(!empty($rows1->adv_date)){ echo date('d/m/Y', strtotime($rows1->adv_date)); } else { echo ""; } ?></td>
+                 
                   <td style="border-color:#d4d6d5;">ADVANCE SALARY PAID TO EMPLOYEES</td>
+                   <td style="border-color:#d4d6d5;"></td>
                   <td style="border-color:#d4d6d5;"></td>
                   <td style="border-color:#d4d6d5;"><?php if(!empty($rows1->adv_amount)){  echo $rows1->adv_amount; } else { echo 0; } ?></td>
                 </tr>
               <?php $adv = $adv + $rows1->adv_amount;
-              } ?>
-              <?php foreach ($purc as $rows1) { ?>
+              }} ?>
+              <?php foreach ($purc as $rows1) {if($rows1->pur_paid_amt!=0){ ?>
                 <tr>
-                  <td style="border-color:#d4d6d5;"><?php if(!empty($rows1->purchase_date)){ echo date('d/m/Y', strtotime($rows1->purchase_date)); } else { echo ""; } ?></td>
+                  
                   <td style="border-color:#d4d6d5;">Purchase Items from <?php echo $rows1->vendorname; ?></td>
+                  <td style="border-color:#d4d6d5;"><?php echo $rows1->invoice_number; ?></td>
                   <td style="border-color:#d4d6d5;"></td>
                   <td style="border-color:#d4d6d5;"><?php if($rows1->pur_paid_amt){ echo $rows1->pur_paid_amt; } else { echo 0; } ?></td>
                 </tr>
               <?php $purchase = $purchase + $rows1->pur_paid_amt;
-              } ?>
-              <?php foreach ($feed as $rows1) { ?>
+              }} ?>
+              <?php foreach ($feed as $rows1) {if($rows1->purchase_total_cost!=0){ ?>
                 <tr>
-                  <td style="border-color:#d4d6d5;"><?php if(!empty($rows1->purchase_date)){ echo date('d/m/Y', strtotime($rows1->created_at)); } else { echo ""; } ?></td>
+                 
                   <td style="border-color:#d4d6d5;">Purchase Feeds from <?php echo $rows1->purchase_vendor_name; ?></td>
+                   <td style="border-color:#d4d6d5;"></td>
                   <td style="border-color:#d4d6d5;"></td>
                   <td style="border-color:#d4d6d5;"><?php if($rows1->purchase_total_cost){ echo $rows1->purchase_total_cost; } else { echo 0; } ?></td>
                 </tr>
               <?php $feedpurchase = $feedpurchase + $rows1->purchase_total_cost;
-              } ?>
-              <?php foreach ($saleincome as $rows) { ?>
+              }} ?>
+              <?php foreach ($saleincome as $rows) {if($rows->total_amount!=0){ ?>
                 <tr>
-                  <td style="border-color:#d4d6d5;"><?php if(!empty($rows->sale_date)){ echo $rows->sale_date; } else { echo ""; } ?></td>
+                  
                   <td style="border-color:#d4d6d5;"><?php echo "Sale Income"; ?></td>
+                 <td style="border-color:#d4d6d5;"><?php echo $rows->invoice_number; ?></td>
                   <td style="border-color:#d4d6d5;"><?php if(!empty($rows->total_amount)) { echo $rows->total_amount; } else { echo 0; } ?></td>
                   <td style="border-color:#d4d6d5;"></td>
                 </tr>
               <?php $test = $test + $rows->total_amount;
-              } ?>
+              }} ?>
 
               <!-------------------------------------------------------------------------------------------------------->
               <?php foreach ($voucher as $row) { ?>
                 <tr>
-                  <td style="border-color:#d4d6d5;"><?php if(!empty($row->voucher_date)){ echo date('d/m/Y', strtotime($row->voucher_date)); } else { echo ""; } ?></td>
+                
                   <td style="border-color:#d4d6d5;"><?php echo $row->vouch_head; ?></td>
+                   <td style="border-color:#d4d6d5;"><?php echo $row->voucher_number; ?></td>
                   <td style="border-color:#d4d6d5;"></td>
                   <td style="border-color:#d4d6d5;"><?php echo $row->voucher_amount; ?></td>
                 </tr>
@@ -183,8 +189,9 @@
               <!-------------------------------------------------------------------------------------------------------->
               <?php foreach ($receipt as $rows) { ?>
                 <tr>
-                  <td style="border-color:#d4d6d5;"><?php if($rows->rept_date){ echo date('d/m/Y', strtotime($rows->rept_date)); } else { echo ""; } ?></td>
+                 
                   <td style="border-color:#d4d6d5;"><?php echo $rows->receipt_head; ?></td>
+                    <td style="border-color:#d4d6d5;"><?php echo $rows->receipt_number; ?></td>
                   <td style="border-color:#d4d6d5;"><?php echo $rows->receipt_amount; ?></td>
                   <td style="border-color:#d4d6d5;"></td>
                 </tr>

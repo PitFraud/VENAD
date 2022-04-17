@@ -44,6 +44,7 @@ class ReceiveItem extends MY_Controller
 				'rec_unit' => $_POST['unit'],
 				'rec_given_feeds_total' => $_POST['feed_given'],
 				'rec_fcr' => $_POST['fcr'],
+				'allot_dead_chicken_qty' => $_POST['chicken_dead'],
 			];
 			$rec_id = $this->input->post('rec_id');
 			if ($rec_id) {

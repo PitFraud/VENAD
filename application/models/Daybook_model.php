@@ -688,14 +688,14 @@ public function getgroupfedloan($gid,$cdate)
 
 public function popening()
 {
-	$date = date('Y-m');
+	$date = date('Y-m-d');
 	$this->db->select('*');
 	$this->db->from('tbl_daybook');
 	$this->db->order_by('daybook_id',"desc");
 	$this->db->limit(1);
 	$date = isset($_GET['date']) ? $_GET['date'] : date('Y-m');
-	// $d = date('Y-m', strtotime($date .' last day of last month'));
-	$d=date("Y-m", strtotime ( '-1 month' , strtotime ( $date ) )) ;
+	//$d=date("Y-m", strtotime ( '-1 month' , strtotime ( $date ) )) ;
+	$d = date('Y-m-d', strtotime($date .' -1 day'));
 	$this->db->where('date', $d);
 	//$this->db->where("status",2);
 	// $this->db->where('project_id_fk', $prid);
@@ -712,8 +712,8 @@ public function get_popening($date)
 	$this->db->from('tbl_daybook');
 	$this->db->order_by('daybook_id',"desc");
 	$this->db->limit(1);
-	//$d = date('Y-m-d', strtotime($date .' -1 day'));
-	$d=date("Y-m", strtotime ( '-1 month' , strtotime ( $date ) )) ;
+	$d = date('Y-m-d', strtotime($date .' -1 day'));
+	//$d=date("Y-m", strtotime ( '-1 month' , strtotime ( $date ) )) ;
 	$this->db->where('date', $d);
 	// $this->db->where('project_id_fk', $prid);
 	$query = $this->db->get();
@@ -731,8 +731,8 @@ public function getpvoucher($cdate)
 	$this->db->join('tbl_project_vouchhead','vouch_id = vouch_id_fk');
 	$this->db->where("voucher_status",1);
 	// $this->db->where("project_id_fk",$prid);
-	$this->db->where('voucher_date >=',date('Y-m-01',strtotime($cdate)));
-	$this->db->where('voucher_date <=',date('Y-m-t',strtotime($cdate)));
+	$this->db->where('voucher_date',$cdate);
+	//$this->db->where('voucher_date <=',date('Y-m-t',strtotime($cdate)));
 	$query = $this->db->get();
 	$result=$query->result();
 	return $result;
@@ -745,8 +745,8 @@ public function getpreceipt($cdate)
 	$this->db->join('tbl_project_receipthead','tbl_project_receipthead.receipt_id = receipt_id_fk');
 	$this->db->where("tbl_project_receipt.receipt_status",1);
 	// $this->db->where("project_id_fk",$prid);
-	$this->db->where('rept_date >=',date('Y-m-01',strtotime($cdate)));
-	$this->db->where('rept_date <=',date('Y-m-t',strtotime($cdate)));
+	$this->db->where('rept_date',$cdate);
+	//$this->db->where('rept_date <=',date('Y-m-t',strtotime($cdate)));
 	$query = $this->db->get();
 	$result=$query->result();
 	return $result;
@@ -780,8 +780,8 @@ public function pupdate_daybook($date,$profit,$stat){
             $this->db->from('tbl_purchase');
             $this->db->join('tbl_vendor','vendor_id = vendor_id_fk','left');
             $this->db->where("tbl_purchase.purchase_status",1);
-            $this->db->where('purchase_date >=',date('Y-m-01',strtotime($cdate)));
-            $this->db->where('purchase_date <=',date('Y-m-t',strtotime($cdate)));
+            $this->db->where('purchase_date',$cdate);
+            //$this->db->where('purchase_date <=',date('Y-m-t',strtotime($cdate)));
             //$this->db->group_by('auto_invoice');
             $this->db->group_by('invoice_number');
 			$this->db->group_by('vendor_id_fk');
@@ -798,8 +798,8 @@ public function pupdate_daybook($date,$profit,$stat){
             $this->db->select('*,sum(tbl_sale.total_price) as total_amount,DATE_FORMAT(MAX(sale_date),\'%d/%m/%Y\') AS sale_date');
             $this->db->from('tbl_sale');
             $this->db->where("tbl_sale.sale_status",1);
-             $this->db->where('sale_date >=',date('Y-m-01',strtotime($cdate)));
-            $this->db->where('sale_date <=',date('Y-m-t',strtotime($cdate)));
+             $this->db->where('sale_date',$cdate);
+           // $this->db->where('sale_date <=',date('Y-m-t',strtotime($cdate)));
             $query = $this->db->get();
             $result=$query->result();
             return $result;
@@ -807,11 +807,12 @@ public function pupdate_daybook($date,$profit,$stat){
 
             public function getfeedpurchase($cdate)
         {
+        	$cdate1=date('Y-m-d H:i:s',strtotime($cdate));
             $this->db->select('*,SUM(purchase_total_cost) as purchase_total_cost');
             $this->db->from('tbl_feed_purchase');
             $this->db->where("tbl_feed_purchase.purchase_status",1);
-            $this->db->where('created_at >=',date('Y-m-01 01:00:00',strtotime($cdate)));
-            $this->db->where('created_at <=',date('Y-m-t 12:59:59',strtotime($cdate)));
+            $this->db->where('created_at',$cdate1);
+          //  $this->db->where('created_at <=',date('Y-m-t 12:59:59',strtotime($cdate)));
             //$this->db->group_by('auto_invoice');
            // $this->db->group_by('purchase_vendor_name');
             $query = $this->db->get();
@@ -824,8 +825,8 @@ public function pupdate_daybook($date,$profit,$stat){
             $this->db->select('*,sum(payroll_salary) as salary');
             $this->db->from('tbl_payroll');
           
-             $this->db->where('payroll_salarydate >=',date('Y-m-01',strtotime($cdate)));
-            $this->db->where('payroll_salarydate <=',date('Y-m-t',strtotime($cdate)));
+             $this->db->where('payroll_salarydate',$cdate);
+           // $this->db->where('payroll_salarydate <=',date('Y-m-t',strtotime($cdate)));
             $query = $this->db->get();
             $result=$query->result();
             return $result;
@@ -836,8 +837,8 @@ public function pupdate_daybook($date,$profit,$stat){
             $this->db->select('*,sum(adv_amount) as adv_amount');
             $this->db->from('tbl_advancepayment');
           
-             $this->db->where('adv_date >=',date('Y-m-01',strtotime($cdate)));
-            $this->db->where('adv_date <=',date('Y-m-t',strtotime($cdate)));
+             $this->db->where('adv_date',$cdate);
+           // $this->db->where('adv_date <=',date('Y-m-t',strtotime($cdate)));
             $query = $this->db->get();
             $result=$query->result();
             return $result;

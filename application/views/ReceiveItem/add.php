@@ -69,6 +69,17 @@
                         <?php } ?>
                       </select>
                     </div>
+                    
+                  </div>
+                  <div class="form-group row">
+                  <div class="col-md-6">
+                      <input type="radio" name="fcr_type" id="fcr_broiler" value="1">Broiler&nbsp;
+                      <input type="radio" name="fcr_type" id="fcr_layer" value="2">Layer
+                  </div>
+                  <div class="col-md-6">
+                    <label for="">Chicken Dead</label>
+                    <input type="text" name="chicken_dead" class="form-control">
+                  </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-md-6">
@@ -76,10 +87,16 @@
                       <input type="text" name="feed_given" value="<?php if (isset($records->rec_given_feeds_total)) echo $records->rec_given_feeds_total ?>" class="form-control" id="feeding_quantity" readonly>
                       </select>
                     </div>
-                    <div class="col-md-6">
-                      <label class="fsize">FCR</label>
+                    <div class="col-md-6" id="fcr_broiler_type" style="display: none;">
+                      <label class="fsize">FCR Broiler</label>
                       <input type="text" name="fcr" value="<?php if (isset($records->rec_fcr)) echo $records->rec_fcr ?>" class="form-control" id="fcr" readonly>
                       <button type="button" name="button" class="btn btn-success form-control" id="fcr_btn">Calculate FCR</button>
+                      </select>
+                    </div>
+                    <div class="col-md-6" id="fcr_layer_type" style="display: none;">
+                      <label class="fsize">FCR Layer</label>
+                      <input type="text" name="fcr" value="<?php if (isset($records->rec_fcr)) echo $records->rec_fcr ?>" class="form-control" id="fcr_layers" readonly>
+                      <button type="button" name="button" class="btn btn-success form-control" id="fcr_layer_btn">Calculate FCR</button>
                       </select>
                     </div>
                   </div>

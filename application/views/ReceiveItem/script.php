@@ -22,6 +22,7 @@ $table = $('#ReceivalTable').DataTable( {
     { "data": "member_name", "orderable": false },
     { "data": "member_type_name", "orderable": false },
     { "data": "rec_quantity", "orderable": false },
+    { "data": "allot_dead_chicken_qty", "orderable": false },
     { "data": "rec_weight", "orderable": false },
     { "data": "unit_name", "orderable": false },
     { "data": "rec_given_feeds_total", "orderable": false },
@@ -70,6 +71,45 @@ $('#fcr_btn').click(function(){
 });
 })
 
+$('#fcr_layer_btn').click(function(){
+  var allotment_id=$('#allotment_id').val();
+  var quantity=$('#quantity').val();
+  var weight=$('#weight').val();
+  var unit=$('#unit').val();
+  if(quantity==""){
+    alert("Please enter quantity");
+    return;
+  }
+  if(weight==""){
+    alert("Please enter weight");
+    return;
+  }
+  if(unit==""){
+    alert("Please enter unit");
+    return;
+  }
+  $.ajax({
+  url: '<?php echo base_url(); ?>Feeds/getAllotedFeedDetails',
+  type: 'post',
+  data: {
+    allotment_id:allotment_id
+  },
+  success: function(response){
+    var data=JSON.parse(response);
+    console.log(data);
+    if(data.total_feed_given==null){
+      var feed_conversion_ratio="No feeding given";
+      $('#feeding_quantity').val(0);
+    }
+    else{
+      var feed_conversion_ratio=parseFloat(quantity)*parseFloat(data.total_feed_given).toFixed(2)*0.27;
+      $('#feeding_quantity').val(data.total_feed_given);
+    }
+    $('#fcr_layers').val(feed_conversion_ratio);
+  }
+});
+})
+
 function confirmDelete(rec_id){
     var conf = confirm("Do you want to Delete Class ?");
     if(conf){
@@ -104,5 +144,14 @@ $('#allotment_id').on('change',function(){
         });
 })
 
+$('#fcr_broiler').on('click',function(){
+  $('#fcr_broiler_type').show();
+  $('#fcr_layer_type').hide();
+})
+
+$('#fcr_layer').on('click',function(){
+  $('#fcr_broiler_type').hide();
+  $('#fcr_layer_type').show();
+})
 
 </script>
