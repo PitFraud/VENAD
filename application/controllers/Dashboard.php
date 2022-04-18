@@ -22,6 +22,8 @@ class Dashboard extends MY_Controller {
 		$template['allot']  = $this->Dashboard_model->getallotment();
 		$template['rec']  = $this->Dashboard_model->getrec();
 		$template['feed']  = $this->Dashboard_model->getfeed();
+		$template['notifications']=$this->Dashboard_model->get_notifications();
+
 		if($this->session->userdata['user_type']=='1')
 		{
 			$mem_id= $this->session->userdata('mem_id');

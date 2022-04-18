@@ -335,7 +335,6 @@ public function getallotment()
 		$yesterday = date('Y-m-d',strtotime("-1 days"));
 		$query=$this->db->select('*')->order_by('reminder_date','DESC')->limit(6)->get('tbl_reminders');
 		$result=$query->result();
-		// echo "<pre>",print_r($notifications['reminders']),"</pre>"; die;
 		return $result;
 	}
 	public function getBranchDetails($param)
