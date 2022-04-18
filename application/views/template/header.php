@@ -76,6 +76,101 @@ HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <link href='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js'>
 <link href='https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js'>
 <script src="<?php echo base_url();?>assets/js/sweetalert.min.js"></script>
+
+<style>
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 999px;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 260px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropdown-content li {
+  color: black;
+  padding: 12px 16px 4px 1px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content li:hover {
+  background-color: #ddd;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+.fa-stack[data-count]:after {
+  position: absolute;
+  right: 0%;
+  top: 1%;
+  content: attr(data-count);
+  font-size: 30%;
+  padding: .6em;
+  border-radius: 999px;
+  line-height: .75em;
+  color: white;
+  background: rgba(255, 0, 0, .85);
+  text-align: center;
+  min-width: 2em;
+  font-weight: bold;
+}
+
+
+</style>
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -108,6 +203,7 @@ desired effect
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg" ></span>
       </a>
+
       <!-- Header Navbar -->
       <nav style="background-color:#cb262d; " class="navbar navbar-static-top" role="navigation">
         <span class="logo-lg" ><a href="<?php echo base_url() ?>Dashboard"><img src="<?php echo base_url();?>Images/logo.jpeg" align="center" style="max: width 100px;;height: 55px;"></a></span>
@@ -116,6 +212,21 @@ desired effect
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
           <span class="sr-only"></span>
         </a>
+        <!-- ################################################################################### -->
+        <div class="dropdown">
+          <button onclick="" class="dropbtn"> <i class="fa fa-bell"></i> </button>
+
+          <?php $notifications=$this->session->userdata('notifications');
+          if(!empty($notifications)){ ?>
+          <div id="notificationDropdown" class="dropdown-content">
+            <?php foreach ($notifications as $notification): ?>
+              <a href="<?php echo base_url(); ?>Reminders"><?php echo $notification->reminder_title.' : '.$notification->reminder_description; echo "<br>"; echo $notification->created_at; ?> </a>
+            <?php endforeach; ?>
+          </div>
+        <?php } ?>
+        </div>
+
+        <!-- ################################################################################### -->
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">

@@ -12,7 +12,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>Dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url(); ?>District/"><i class="fa fa-dashboard"></i> Back to List</a></li>
+      <li><a href="<?php echo base_url(); ?>ReceiveItem/"><i class="fa fa-dashboard"></i> Back to List</a></li>
       <li class="active"></li>
     </ol>
   </section>
@@ -40,14 +40,14 @@
                     <div class="col-md-6">
                       <label class="fsize">Select From Allotments</label>
                       <select class="form-control" name="allotment" id="allotment_id">
-                        <?php foreach ($allotment_details as $allotment) : ?>
-                          <option <?php if (isset($records->rec_allotment_fk)) {
-                                    if ($records->rec_allotment_fk == $allotment->allot_id) {
-                                      echo "selected";
-                                    }
-                                  } ?> value="<?php echo $allotment->allot_id; ?>"><?php echo $allotment->member_name . " - " . $allotment->product_name . " - " . $allotment->allot_integration_code . " - " . $allotment->allot_weight . " " . $allotment->unit_name . " - " . $allotment->allotment_date; ?></option>
+                        <?php foreach ($allotment_details as $allotment) : 
+                          if($allotment->allot_integration_type == 1){
+                            $x='Broiler';
+                          }else{ $x='Layer';} ?>
+                          <option <?php if (isset($records->rec_allotment_fk)) { if ($records->rec_allotment_fk == $allotment->allot_id) { echo "selected"; }} ?> value="<?php echo $allotment->allot_id; ?>"><?php echo $allotment->member_name . " - " . $x . " - " . $allotment->allot_integration_code . " - " . $allotment->allot_weight . " " . $allotment->unit_name . " - " . $allotment->allotment_date; ?></option>
                         <?php endforeach; ?>
                       </select>
+                      <input type="hidden" name="integration_type" id="integration_type_ids" value="">
                     </div>
                     <div class="col-md-6">
                       <label class="fsize">Quanity</label>
@@ -65,14 +65,21 @@
                       <select class="form-control" name="unit" id="unit">
                         <option value="" disabled>Select Unit</option>
                         <?php foreach ($units as $unit) { ?>
-                          <option <?php if (isset($records->rec_unit)) {
-                                    if ($records->rec_unit == $unit->unit_id) {
-                                      echo "selected";
-                                    }
-                                  } ?> value="<?php echo $unit->unit_id; ?>"><?php echo $unit->unit_name; ?></option>
+                          <option <?php if (isset($records->rec_unit)) { if ($records->rec_unit == $unit->unit_id) { echo "selected"; }} ?> value="<?php echo $unit->unit_id; ?>"><?php echo $unit->unit_name; ?></option>
                         <?php } ?>
                       </select>
                     </div>
+                    
+                  </div>
+                  <div class="form-group row">
+                  <div class="col-md-6">
+                      <input type="radio" name="fcr_type" id="fcr_broiler" value="1">Broiler&nbsp;
+                      <input type="radio" name="fcr_type" id="fcr_layer" value="2">Layer
+                  </div>
+                  <div class="col-md-6">
+                    <label for="">Chicken Dead</label>
+                    <input type="text" name="chicken_dead" class="form-control">
+                  </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-md-6">
@@ -80,10 +87,16 @@
                       <input type="text" name="feed_given" value="<?php if (isset($records->rec_given_feeds_total)) echo $records->rec_given_feeds_total ?>" class="form-control" id="feeding_quantity" readonly>
                       </select>
                     </div>
-                    <div class="col-md-6">
-                      <label class="fsize">FCR</label>
+                    <div class="col-md-6" id="fcr_broiler_type" style="display: none;">
+                      <label class="fsize">FCR Broiler</label>
                       <input type="text" name="fcr" value="<?php if (isset($records->rec_fcr)) echo $records->rec_fcr ?>" class="form-control" id="fcr" readonly>
                       <button type="button" name="button" class="btn btn-success form-control" id="fcr_btn">Calculate FCR</button>
+                      </select>
+                    </div>
+                    <div class="col-md-6" id="fcr_layer_type" style="display: none;">
+                      <label class="fsize">FCR Layer</label>
+                      <input type="text" name="fcr" value="<?php if (isset($records->rec_fcr)) echo $records->rec_fcr ?>" class="form-control" id="fcr_layers" readonly>
+                      <button type="button" name="button" class="btn btn-success form-control" id="fcr_layer_btn">Calculate FCR</button>
                       </select>
                     </div>
                   </div>

@@ -41,6 +41,7 @@ class Receipt extends MY_Controller {
 			           // 'finyear_id_fk' =>$fyear,	
 						//'project_id_fk' =>$this->session->userdata('prid'),	
 						'receipt_id_fk' =>$this->input->post('receipt_id'),	
+						'receipt_number' =>$this->input->post('receipt_number'),
 						'rept_date' =>$created_date,
 						'receipt_amount' =>$this->input->post('receipt_amount'),						
 						'paid_to' =>strtoupper($this->input->post('paid_to')),

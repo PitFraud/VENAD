@@ -1,0 +1,135 @@
+<script>
+  var k = new Date();
+  var n = k.toString();
+  var c = n.substr(0, 34);
+  var d = c + "(IST)";
+  $('#date').html(d);
+  var response = $("#response").val();
+  if (response) {
+    console.log(response, 'response');
+    var options = $.parseJSON(response);
+    noty(options);
+  }
+  $(function() {
+    var enquiry_type = {
+      'J': 'Job',
+      'C': 'Complaint',
+      'F': 'Follow-up'
+    };
+    //Datemask dd/mm/yyyy
+    $("#datemask").inputmask("dd/mm/yyyy", {
+      "placeholder": "dd/mm/yyyy"
+    });
+    //Date picker
+    $('#date').datepicker({
+      autoclose: true,
+      format: 'dd/mm/yyyy'
+    });
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass: 'iradio_minimal-blue'
+    });
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass: 'iradio_flat-green'
+    });
+    $table = $('#classinfo_table').DataTable({
+      "processing": true,
+      "serverSide": true,
+      "bDestroy": true,
+      "ajax": {
+        "url": "<?php echo base_url(); ?>ProductionStock/get/",
+        "type": "POST",
+        "data": function(d) {
+            console.log(d);
+        }
+      },
+      "createdRow": function(row, data, index) {
+        //            $('td',row).eq(0).html(index+1);
+        $table.column(0).nodes().each(function(node, index, dt) {
+          $table.cell(node).data(index + 1);
+        });
+        $('td', row).eq(0).css("font-weight", "bold");
+        $('td', row).eq(0).css("text-align", "center");
+        $('td', row).eq(1).css("font-weight", "bold");
+        $('td', row).eq(2).css("font-weight", "bold");
+        $('td', row).eq(2).css("text-align", "center");
+        $('td', row).eq(3).css("font-weight", "bold");
+        $('td', row).eq(3).css("text-align", "center");
+        $('td', row).eq(4).css("font-weight", "bold");
+        $('td', row).eq(4).css("text-align", "center");
+        $('td', row).eq(5).css("font-weight", "bold");
+        $('td', row).eq(5).css("text-align", "center");
+        $('td', row).eq(6).css("font-weight", "bold");
+        $('td', row).eq(6).css("text-align", "center");
+        $('td', row).eq(7).css("font-weight", "bold");
+        $('td', row).eq(7).css("text-align", "center");
+        
+      },
+      "columns": [{
+          "data": "production_status",
+          "orderable": false
+        },
+        {
+          "data": "production_mfd",
+          "orderable": false
+        },
+        {
+          "data": "item_name",
+          "orderable": false
+        },
+        {
+          "data": "production_chicken_weight",
+          "orderable": false
+        },
+        {
+          "data": "unit_name",
+          "orderable": false
+        },
+        {
+          "data": "production_packet_count",
+          "orderable": false
+        },
+        {
+          "data": "production_row_mat_count",
+          "orderable": false
+        },
+        {
+          "data": "production_chicken_new_bal",
+          "orderable": false
+        },
+        {
+          "data": "production_chicken_old_stock",
+          "orderable": false
+        },
+      ]
+    });
+  });
+  function confirmDelete(raw_id) {
+    var conf = confirm("Do you want to Delete Class ?");
+    if (conf) {
+      $.ajax({
+        url: "<?php echo base_url(); ?>Product/delete",
+        data: {
+          raw_id: raw_id
+        },
+        method: "POST",
+        datatype: "json",
+        success: function(data) {
+          var options = $.parseJSON(data);
+          noty(options);
+          $table.ajax.reload();
+        }
+      });
+    }
+  }
+  function printDiv(divName) {
+    var printContents = document.getElementById(divName).innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+}
+</script>

@@ -36,20 +36,21 @@ class SharePurchase extends MY_Controller
 
 	public function add()
 	{
-		$this->form_validation->set_rules('purchase_shareholder_name', 'Shareholder name', 'required');
-		$this->form_validation->set_rules('purchase_share_name', 'Share name', 'required');
+		$this->form_validation->set_rules('shareholder', 'Shareholder name', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$template['share_names'] = $this->getShareNames();
+			$template['shareholders'] = $this->SharePurchase_model->get_shareholders();
 			$template['body'] = 'SharePurchase/add';
 			$template['script'] = 'SharePurchase/script';
 			$this->load->view('template', $template);
 		} else {
 			$insert_array = [
-				'purchase_shareholder_name' => $_POST['purchase_shareholder_name'],
-				'purchase_share_id_fk' => $_POST['purchase_share_name'],
-				'share_purchase_period' => $_POST['purchase_share_period'],
-				'share_purchase_paid' => $_POST['purchase_share_paid'],
-				'share_purchase_patronage_divident' => $_POST['purchase_share_patronage'],
+				'purchase_shareholder_id' => $_POST['shareholder'],
+				'purchase_share_id' => $_POST['purchase_share_name'],
+				'purchase_qty ' => $_POST['share_qty'],
+				'purchase_total' => $_POST['total_amount'],
+				'purchase_payment' => $_POST['paid_amount'],
+				'purchase_status' => 1,
 				'created_at' => date('Y-m-d H:i:s'),
 			];
 			$purchase_id = $this->input->post('purchase_id');
@@ -61,9 +62,9 @@ class SharePurchase extends MY_Controller
 			else
 			{
 				$result = $this->General_model->add($this->table, $insert_array);
-				$response_text = 'share added successfully';
+				$response_text = 'Share purchase added successfully';
 			}
-			
+
 			if ($result) {
 				$this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
 			} else {
@@ -73,11 +74,11 @@ class SharePurchase extends MY_Controller
 		}
 	}
 
-	public function editSharePurchase($purchase_id)
-	{
+	public function editSharePurchase($purchase_id){
 		$template['body'] = 'SharePurchase/add';
 		$template['script'] = 'SharePurchase/script';
-		$template['share_names'] = $this->getShareNames();
+		$template['shareholders'] = $this->SharePurchase_model->get_shareholders();
+		$template['shares'] = $this->SharePurchase_model->get_shares();
 		$template['records'] = $this->General_model->get_row($this->table,'purchase_id',$purchase_id);
 		$this->load->view('template', $template);
 	}
@@ -132,5 +133,11 @@ class SharePurchase extends MY_Controller
 	{
 		$data = $this->Allotment_model->getUnits();
 		return $data;
+	}
+
+	public function getSingleShareDetails(){
+		$share_id=$_POST['share_id'];
+		$result=$this->SharePurchase_model->get_single_share_details($share_id);
+		echo json_encode($result);
 	}
 }

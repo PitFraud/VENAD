@@ -9,7 +9,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>Dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url(); ?>Panchayath/add"><i class="fa fa-dashboard"></i> Back To Add</a></li>
+      <li><a href="<?php echo base_url(); ?>Distribution/add"><i class="fa fa-dashboard"></i> Back To Add</a></li>
       <li class="active"></li>
     </ol>
   </section>
@@ -36,6 +36,9 @@
                   <th>Weight</th>
                   <th>Unit</th>
                   <th>Date and time</th>
+                  <th>Next Distribution Date</th>
+                  <th>Mop</th>
+                  <th>Paid</th>
                   <th>Action</th>
                 </tr>
               </thead>

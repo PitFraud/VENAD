@@ -9,7 +9,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>Dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url(); ?>Panchayath/add"><i class="fa fa-dashboard"></i> Back To Add</a></li>
+      <li><a href="<?php echo base_url(); ?>SharePurchase/add"><i class="fa fa-dashboard"></i> Back To Add</a></li>
       <li class="active"></li>
     </ol>
   </section>
@@ -28,12 +28,15 @@
               <thead>
                 <tr>
                   <th>Sl.No</th>
-                  <th>Share Holder Name</th>
+                  <th>Share Holder</th>
                   <th>Share Name/Value</th>
-                  <th>Share Period(Months)</th>
-                  <th>Paid Amount</th>
+                  <th>Period</th>
+                  <th>Value</th>
                   <th>Patronage Divident %</th>
-                  <th>Date&Time</th>
+                  <th>Quantity</th>
+                  <th>Total amount</th>
+                  <th>Paid</th>
+                  <th>Date and Time</th>
                   <th>Action</th>
                 </tr>
               </thead>
