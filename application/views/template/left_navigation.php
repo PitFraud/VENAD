@@ -39,7 +39,7 @@
             <li class="<?php if($this->uri->segment(1)=="District"){echo "active";}?>" ><a  href="<?php echo base_url();?>District"><i class="fa fa-circle-o"></i> <span>District</span></a></li>
             <li class="<?php if($this->uri->segment(1)=="State"){echo "active";}?>" ><a  href="<?php echo base_url();?>State"><i class="fa fa-circle-o"></i> <span>State</span></a></li> -->
             <li class="<?php if($this->uri->segment(1)=="Mlogin"){echo "active";}?>" ><a  href="<?php echo base_url(); ?>Mlogin">
-              <i class="fa fa-circle-o"></i> <span>Member login</span></a></li>
+              <i class="fa fa-circle-o"></i> <span>Integration Farmer/Retailers Login</span></a></li>
               <!-- <li class="<?php if($this->uri->segment(1)=="Plogin"){echo "active";}?>" ><a  href="<?php echo base_url(); ?>PanchayathLogin"> -->
                 <!-- <i class="fa fa-circle-o"></i> <span>Panchayath Login</span></a></li> -->
                 <li class="<?php if($this->uri->segment(1)=="Basicinfo"){echo "active";}?>" ><a  href="<?php echo base_url();?>Basicinfo"><i class="fa fa-circle-o"></i> <span>Basic Info</span></a></li>
@@ -426,12 +426,20 @@ if($this->uri->segment(1)=="Stock")
   <li class="<?php if($this->uri->segment(1)=="dashboard"){echo "active";}?>" ><a  href="<?php echo base_url();?>dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
   <li class="<?php if($this->uri->segment(1)=="Allotment" && $this->uri->segment(1)=="view"){echo "active";}?>" ><a  href="<?php echo base_url();?>Allotment/view"><i class="fa fa-tasks"></i> <span>Allot Item</span></a></li>
   <li class="<?php if($this->uri->segment(1)=="ReceiveItem" && $this->uri->segment(1)=="view"){echo "active";}?>" ><a  href="<?php echo base_url();?>ReceiveItem/view"><i class="fa fa-tasks"></i> <span>Receive back/Integration</span></a></li>
+  <!-- ############### -->
+  <li class="<?php if($this->uri->segment(1)=="ReceiveItem" && $this->uri->segment(1)=="view"){echo "active";}?>" ><a  href="<?php echo base_url();?>Orders/"><i class="fa fa-tasks"></i> <span>Orders</span></a></li>
+  <!-- ####################### -->
+
 <?php } ?>
 <?php if($this->session->userdata['user_type']=='7'){ ?>
   <li class="<?php if($this->uri->segment(1)=="dashboard"){echo "active";}?>" ><a  href="<?php echo base_url();?>dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
   <li class="<?php if($this->uri->segment(1)=="Member" && $this->uri->segment(1)=="view"){echo "active";}?>" ><a  href="<?php echo base_url();?>Member/view"><i class="fa fa-tasks"></i> <span>Members</span></a></li>
   <li class="<?php if($this->uri->segment(1)=="Allotment" && $this->uri->segment(1)=="pview"){echo "active";}?>" ><a  href="<?php echo base_url();?>Allotment/pview"><i class="fa fa-tasks"></i> <span>Allot Item</span></a></li>
   <li class="<?php if($this->uri->segment(1)=="ReceiveItem" && $this->uri->segment(1)=="pview"){echo "active";}?>" ><a  href="<?php echo base_url();?>ReceiveItem/pview"><i class="fa fa-tasks"></i> <span>Receive back/Integration</span></a></li>
+  <!-- ############## -->
+  <li class="<?php if($this->uri->segment(1)=="ReceiveItem" && $this->uri->segment(1)=="pview"){echo "active";}?>" ><a  href="<?php echo base_url();?>Orders"><i class="fa fa-tasks"></i> <span>Orders</span></a></li>
+  <!-- ################# -->
+
 <?php } ?>
 <?php if($this->session->userdata['user_type']=='6'){ ?>
   <li class="<?php if($this->uri->segment(1)=="dashboard"){echo "active";}?>" ><a  href="<?php echo base_url();?>dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
