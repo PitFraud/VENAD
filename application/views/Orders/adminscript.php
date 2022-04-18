@@ -48,15 +48,18 @@ $(document).ready(function(){
         if(data['status']==1)
         {
           $('td',row).eq(4).html('COMPLETED');
+          $('td', row).eq(5).html('<center style="color:green;">Delivered</center>');
         }
         else
         {
           $('td',row).eq(4).html('PENDING');
+          $('td', row).eq(5).html('<center style="color:red;"><a href="<?php echo base_url(); ?>Orders/changeStatusToDelivered/'+data['order_id']+'">Change status to delivered</a></center>');
         }
-        $('td', row).eq(5).html('<center><a href="<?php echo base_url();?>index.php/Orders/edit/'+data['order_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a> &nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['order_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
+
       },
       "columns": [
         { "data": "order_id", "orderable": false },
+        { "data": "member_name", "orderable": false },
         { "data": "item_name", "orderable": false },
         { "data": "quantity", "orderable": false },
         { "data": "status", "orderable": false },

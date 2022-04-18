@@ -18,7 +18,8 @@ class Orders_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('tbl_orders');
 		$this->db->join('tbl_production_itemlist','tbl_production_itemlist.item_id= tbl_orders.item_id','left');
-		$this->db->order_by('order_id', 'DESC');
+		$this->db->join('tbl_member','tbl_member.member_id= tbl_orders.user_id','left');
+		// $this->db->order_by('order_id', 'DESC');
         $query = $this->db->get();
         $data['data'] = $query->result();
         $data['recordsTotal'] = $this->getClassinfoTotalCount($param);
@@ -62,6 +63,14 @@ class Orders_model extends CI_Model{
 	public function get_all_products(){
 		$query=$this->db->select('*')->get('tbl_production_itemlist');
 		return $query->num_rows()>0 ? $query->result() : false;
+	}
+
+	public function update_delivery_status($order_id){
+		$update_array=[
+			'status'=>1
+		];
+		$query=$this->db->where('order_id',$order_id)->update('tbl_orders',$update_array);
+		return $query ? true : false;
 	}
 }
 ?>

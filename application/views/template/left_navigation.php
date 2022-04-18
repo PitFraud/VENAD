@@ -148,6 +148,8 @@
           </ul>
         </li>
 
+        <li class="<?php if($this->uri->segment(1)=="adminView"){echo "active";}?>" ><a  href="<?php echo base_url();?>Orders/adminView"><i class="fa fa-shield"></i> <span>Orders</span></a></li>
+
         <!-- ############################################################################################################################################################################################################################## -->
         <!-- INTEGRATION SECTION -->
         <!-- ADDED BY RAJEEV -->
