@@ -65,6 +65,7 @@ class ShareTransfer extends MY_Controller {
 		// $param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
 		// $param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
 		$data = $this->ShareTransfer_model->getClassinfoTable();
+		// echo "<pre>"; print_r($data); die;
 		$json_data = json_encode($data);
 		echo $json_data;
 	}
@@ -107,14 +108,30 @@ class ShareTransfer extends MY_Controller {
 	}
 
 	public function transferShare(){
-		// echo "<pre>"; print_r($_POST); die;
 		$shareholder_from_id=$_POST['from'];
 		$shareholder_to_id=$_POST['transfer_to'];
 		$share_id=$_POST['item'];
 		$available_qty=$_POST['avl_qty'];
 		$transfer_quantity=$_POST['transfer_qty'];
-		$current_stock=$this->ShareTransfer_model->get_single_current_share_qty($shareholder_from_id,$share_id);
-		$new_from_stock=intval($current_stock)-intval($transfer_quantity);
-		var_dump($new_from_stock); die;
+		// $current_stock=$this->ShareTransfer_model->get_single_current_share_qty($shareholder_from_id,$share_id);
+		// $new_from_stock=intval($current_stock)-intval($transfer_quantity);
+		// var_dump($new_from_stock); die;
+		$insert_array=[
+			'transfer_from_id'=>$shareholder_from_id,
+			'transfer_to_id'=>$shareholder_to_id,
+			'transfer_share_id'=>$share_id,
+			'transfer_no_of_shares'=>$transfer_quantity,
+			'created_at'=>date('Y-m-d H:i:s'),
+		];
+		$result=$this->ShareTransfer_model->addShareTransfer($insert_array);
+		if($result){
+			$response_text = 'Added successfully';
+			$this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
+			redirect('/ShareTransfer/','refresh');
+		}
+		else{
+			$this->session->set_flashdata('response', '{&quot;text&quot;:&quot;Something went wrong,please try again later&quot;,&quot;layout&quot;:&quot;bottomRight&quot;,&quot;type&quot;:&quot;error&quot;}');
+			redirect('/ShareTransfer/','refresh');
+		}
 	}
 }
