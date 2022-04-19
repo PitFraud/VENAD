@@ -395,6 +395,7 @@
           <li class="<?php if($this->uri->segment(1)=="Purchasereport"){echo "active";}?>" ><a  href="<?php echo base_url();?>Purchasereport"><i class="fa fa-circle-o"></i> <span>Purchase Report</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Salereport"){echo "active";}?>" ><a  href="<?php echo base_url();?>Salereport"><i class="fa fa-circle-o"></i> <span>Sale Report</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Travel_report"){echo "active";}?>" ><a  href="<?php echo base_url();?>Travel_report"><i class="fa fa-circle-o"></i> <span>Travel Report</span></a></li>
+          <li class="<?php if($this->uri->segment(1)=="Allotment_integration_report"){echo "active";}?>" ><a  href="<?php echo base_url();?>Allotment_integration_report"><i class="fa fa-circle-o"></i> <span>Feed Chart Report</span></a></li>
           <!-- <li class="<?php if($this->uri->segment(1)=="Allotment_report"){echo "active";}?>" ><a  href="<?php echo base_url();?>Allotment_report"><i class="fa fa-circle-o"></i> <span>Allotment Report</span></a></li> -->
           <!-- <li class="<?php if($this->uri->segment(1)=="Member_report"){echo "active";}?>" ><a  href="<?php echo base_url();?>Member_report"><i class="fa fa-circle-o"></i> <span>Member Report</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Attendancereport"){echo "active";}?>" >
