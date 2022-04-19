@@ -3,7 +3,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Integration Production
+      Feed details
       <small id="date" class="col-md-4"></small>
       <!-- <small>Optional description</small> -->
     </h1>
