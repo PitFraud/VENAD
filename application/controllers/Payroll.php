@@ -17,6 +17,7 @@ class Payroll extends MY_Controller {
 	}
 	public function index()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Payroll/list';
 		$template['script'] = 'Payroll/script';
 		$this->load->view('template', $template);
@@ -24,6 +25,7 @@ class Payroll extends MY_Controller {
 	public function add(){
 		$this->form_validation->set_rules('emp_id', 'Name', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['body'] = 'Payroll/add';
 			$template['script'] = 'Payroll/script';
 			$template['staffnames'] = $this->Employee_model->view_by();
@@ -77,9 +79,10 @@ class Payroll extends MY_Controller {
 		}
 	}
 		public function edit($payroll_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Payroll/add';
 		$template['script'] = 'Payroll/script';
-			$template['staffnames'] = $this->Employee_model->view_by();
+		$template['staffnames'] = $this->Employee_model->view_by();
 		
 		$template['records'] = $this->General_model->get_row($this->table,'payroll_id',$payroll_id);
     	$this->load->view('template', $template);
@@ -100,6 +103,7 @@ class Payroll extends MY_Controller {
     	echo $json_data;
     }
 	public function payslip($payroll_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Payroll/payslip';
 		$template['script'] = 'Payroll/script';
 		$template['records'] = $this->Payroll_model->get_data($payroll_id);

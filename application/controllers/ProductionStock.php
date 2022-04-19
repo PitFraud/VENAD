@@ -14,6 +14,7 @@ class ProductionStock extends MY_Controller {
 	}
 	public function index()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'ProductionStock/list';
 		$template['script'] = 'ProductionStock/script';
 		$this->load->view('template', $template);

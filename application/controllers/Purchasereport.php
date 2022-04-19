@@ -13,6 +13,7 @@ class Purchasereport extends MY_Controller {
 	}
 	public function index()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Purchasereport/list';
 		$template['script'] = 'Purchasereport/script';
 		$template['product_num'] = $this->Purchasereport_model->get_productnum();

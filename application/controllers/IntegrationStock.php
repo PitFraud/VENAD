@@ -10,6 +10,7 @@ class IntegrationStock extends MY_Controller {
 	}
 
 	public function index(){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'IntegrationStock/list';
 		$template['script'] = 'IntegrationStock/script';
 		$this->load->view('template', $template);

@@ -15,6 +15,7 @@ class District extends MY_Controller {
 	}
 	public function index()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'District/list';
 		$template['script'] = 'District/script';
 		$this->load->view('template', $template);
@@ -22,6 +23,7 @@ class District extends MY_Controller {
 	public function add(){
 		$this->form_validation->set_rules('district_name', 'Name', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['body'] = 'District/add';
 			$template['script'] = 'District/script';
 			$template['state'] = $this->Member_model->get_state();
@@ -87,6 +89,7 @@ class District extends MY_Controller {
     }
 
 	public function edit($district_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'District/add';
 		$template['script'] = 'District/script';
 		$template['state'] = $this->Member_model->get_state();

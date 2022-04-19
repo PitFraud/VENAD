@@ -25,6 +25,7 @@ class ReceiveItem extends MY_Controller
 	{
 		$this->form_validation->set_rules('quantity', 'quantity', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['allotment_details'] = $this->getAllotments();
 			//var_dump($template['allotment_details']);die;
 			$template['members'] = $this->getMembers();
@@ -51,6 +52,11 @@ class ReceiveItem extends MY_Controller
 				$data['rec_id'] = $rec_id;
 				$result = $this->General_model->update($this->table, $insert_array, 'rec_id', $rec_id);
 				$response_text = 'Receive item updated successfully';
+				$allot_item = [
+					'allot_status' => 2,
+				];
+				$allotments_id = $_POST['allotment'];
+				$update_allot = $this->General_model->update('tbl_allotment',$allot_item,'allot_status',$allotments_id);
 				if(!empty($integration_type)){
 					if($integration_type == 1){
 						$broiler_stock = $this->General_model->get_row('tbl_integration_stock','integration_stock_type',1);
@@ -80,6 +86,11 @@ class ReceiveItem extends MY_Controller
 			} else {
 				$result = $this->General_model->add($this->table, $insert_array);
 				$response_text = 'Received item added  successfully';
+				$allot_item = [
+					'allot_status' => 2,
+				];
+				$allotments_id = $_POST['allotment'];
+				$update_allot = $this->General_model->update('tbl_allotment',$allot_item,'allot_status',$allotments_id);
 				if(!empty($integration_type)){
 					if($integration_type == 1){
 						$broiler_stock = $this->General_model->get_row('tbl_integration_stock','integration_stock_type',1);
@@ -118,6 +129,7 @@ class ReceiveItem extends MY_Controller
 
 	public function edit($rec_id)
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['allotment_details'] = $this->getAllotments();
 		$template['members'] = $this->getMembers();
 		$template['member_types'] = $this->getMemberTypes();
@@ -163,6 +175,7 @@ class ReceiveItem extends MY_Controller
 
 	public function view()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'ReceiveItem/list-back';
 		$template['script'] = 'ReceiveItem/script-back';
 		$this->load->view('template', $template);
@@ -185,6 +198,7 @@ class ReceiveItem extends MY_Controller
 
 	public function pview()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'ReceiveItem/list-pback';
 		$template['script'] = 'ReceiveItem/script-pback';
 		$this->load->view('template', $template);

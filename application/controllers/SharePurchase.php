@@ -21,6 +21,7 @@ class SharePurchase extends MY_Controller
 	{
 		$template['body'] = 'SharePurchase/list';
 		$template['script'] = 'SharePurchase/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['no_of_share_holder'] = $this->SharePurchase_model->getShareHolderCount();
 		//var_dump($template['no_of_share_holder']);die;
 		$this->load->view('template', $template);
@@ -40,6 +41,7 @@ class SharePurchase extends MY_Controller
 		if ($this->form_validation->run() == FALSE) {
 			$template['share_names'] = $this->getShareNames();
 			$template['shareholders'] = $this->SharePurchase_model->get_shareholders();
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['body'] = 'SharePurchase/add';
 			$template['script'] = 'SharePurchase/script';
 			$this->load->view('template', $template);
@@ -77,6 +79,7 @@ class SharePurchase extends MY_Controller
 	public function editSharePurchase($purchase_id){
 		$template['body'] = 'SharePurchase/add';
 		$template['script'] = 'SharePurchase/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['shareholders'] = $this->SharePurchase_model->get_shareholders();
 		$template['shares'] = $this->SharePurchase_model->get_shares();
 		$template['records'] = $this->General_model->get_row($this->table,'purchase_id',$purchase_id);
@@ -87,6 +90,7 @@ class SharePurchase extends MY_Controller
 	{
 		$template['body'] = 'Share/add';
 		$template['script'] = 'Share/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['records'] = $this->General_model->get_row($this->table,'share_id', $share_id);
 		$this->load->view('template', $template);
 	}

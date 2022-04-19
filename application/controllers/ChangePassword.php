@@ -9,6 +9,7 @@ class ChangePassword extends MY_Controller {
 		$this->load->model('Loginmodel');
 	}
 	public function index(){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'changePassword/list';
 		$template['script'] = 'changePassword/script';
 		$this->load->view('template', $template);

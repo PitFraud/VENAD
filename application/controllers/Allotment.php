@@ -12,6 +12,7 @@ class Allotment extends MY_Controller {
 
 
 	public function index(){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Allotment/list';
 		$template['script'] = 'Allotment/script';
 		$this->load->view('template', $template);
@@ -21,6 +22,7 @@ class Allotment extends MY_Controller {
 	public function add(){
 		$this->form_validation->set_rules('quantity', 'quantity', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['members']=$this->getMembers();
 			//var_dump($template['members']);die;
 			$template['member_types']=$this->getMemberTypes();
@@ -74,6 +76,7 @@ class Allotment extends MY_Controller {
 
 
 	public function edit($allot_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['members']=$this->getMembers();
 		$template['member_types']=$this->getMemberTypes();
 		$template['products']=$this->getProducts();
@@ -172,6 +175,7 @@ class Allotment extends MY_Controller {
     }
 
     public function pview(){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Allotment/list-pallotment';
 		$template['script'] = 'Allotment/script-pallotment';
 		$this->load->view('template', $template);
@@ -194,6 +198,7 @@ class Allotment extends MY_Controller {
 	}
 
 	public function receipt($allot_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Allotment/receipt';
 		$template['script'] = 'Allotment/script-receipt';
 		$template['records'] = $this->Allotment_model->getallotment($allot_id);

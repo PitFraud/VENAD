@@ -48,6 +48,7 @@ class Sale extends MY_Controller {
 			$template['invno'] = $alpha.$inv_no;
 			//$template['customers'] = $this->Sale_model->get_members();
 			$template['customer_names'] = $this->Customer_model->view_by();
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['body'] = 'Sale/add';
 			$template['script'] = 'Sale/script';
 			$this->load->view('template', $template);
@@ -153,6 +154,7 @@ class Sale extends MY_Controller {
 	{
 		$template['body'] = 'Sale_Invoice/Invoice2';
 		$template['script'] = 'Sale_Invoice/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['records'] = $this->Sale_model->get_invc($invoice_no);
 		$this->load->view('template', $template);
 	}
@@ -160,6 +162,7 @@ class Sale extends MY_Controller {
 	{
 		$template['body'] = 'Sale_Invoice/Invoice2';
 		$template['script'] = 'Sale_Invoice/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['records'] = $this->Sale_model->get_invoice($invoice_no);
 		//var_dump($template['records']);die;
 		//echo "<pre>"; print_r($template['records']);

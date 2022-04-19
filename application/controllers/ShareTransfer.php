@@ -17,6 +17,7 @@ class ShareTransfer extends MY_Controller {
 	{
 		$template['body'] = 'ShareTransfer/list';
 		$template['script'] = 'ShareTransfer/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$this->load->view('template', $template);
 	}
 	public function add(){
@@ -24,6 +25,7 @@ class ShareTransfer extends MY_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$template['body'] = 'ShareTransfer/add';
 			$template['script'] = 'ShareTransfer/script';
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['shares'] = $this->ShareTransfer_model->get_shares();
 			$template['shareholders'] = $this->ShareTransfer_model->get_shareholders();
 			$this->load->view('template', $template);
@@ -89,6 +91,7 @@ class ShareTransfer extends MY_Controller {
 	public function edit($district_id){
 		$template['body'] = 'District/add';
 		$template['script'] = 'District/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['state'] = $this->Member_model->get_state();
 		$template['records'] = $this->General_model->get_row($this->table,'district_id',$district_id);
 		$this->load->view('template', $template);

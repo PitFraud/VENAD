@@ -14,6 +14,7 @@ class Vaccination extends MY_Controller {
 	public function index(){
 		$template['body'] = 'Vaccination/list';
 		$template['script'] = 'Vaccination/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$this->load->view('template', $template);
 	}
 	public function add(){
@@ -21,6 +22,7 @@ class Vaccination extends MY_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$template['body'] = 'Vaccination/add';
 			$template['script'] = 'Vaccination/script';
+			$template['notifications']=$this->General_model->get_notifications();
 			$this->load->view('template', $template);
 		}
 		else {
@@ -54,6 +56,7 @@ class Vaccination extends MY_Controller {
 	public function edit($vaccination_id){
 		$template['body'] = 'Vaccination/add';
 		$template['script'] = 'Vaccination/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['records'] = $this->General_model->get_row($this->table,'vaccination_id',$vaccination_id);
 		$this->load->view('template', $template);
 	}

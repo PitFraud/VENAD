@@ -14,6 +14,7 @@ class PStock extends MY_Controller {
 	}
 	public function index()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'PStock/list';
 		$template['script'] = 'PStock/script';
 		$this->load->view('template', $template);
@@ -32,6 +33,7 @@ class PStock extends MY_Controller {
     }
 	public function receipt($item_id)
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['records'] = $this->PStock_model->receiptList($item_id);
 		$template['body'] = 'PStock/receipt';
 		$template['script'] = 'PStock/script';

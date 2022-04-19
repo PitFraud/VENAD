@@ -21,6 +21,7 @@ class Purchaseitem extends MY_Controller
 	}
 	public function index()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Purchaseitem/list';
 		$template['script'] = 'Purchaseitem/script';
 		$template['vendor_names'] = $this->Vendor_model->view_by();
@@ -28,6 +29,7 @@ class Purchaseitem extends MY_Controller
 	}
 	public function purc($purchase_id)
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Purchaseview/edit';
 		$template['script'] = 'Purchaseview/script';
 		$template['vendor_names'] = $this->Vendor_model->view_by();
@@ -40,6 +42,7 @@ class Purchaseitem extends MY_Controller
 		$template['vendor_names'] = $this->Vendor_model->view_by();
 		$this->form_validation->set_rules('vendor_id', ' Vendor Name', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['modal_prod_type'] = $this->Purchase_model->getProductType();
 			$template['modal_prod_unit'] = $this->Purchase_model->getProductUnit();
 			$template['body'] = 'Purchaseitem/add';
@@ -120,6 +123,7 @@ class Purchaseitem extends MY_Controller
 	}
 	public function invoice($auto_invoice)
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Purchase_Invoice/Invoice2';
 		$template['script'] = 'Purchase_Invoice/script';
 		$template['records'] = $this->Purchase_model->get_invc($auto_invoice);
@@ -223,6 +227,7 @@ class Purchaseitem extends MY_Controller
 	}
 	public function view($auto_invoice)
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Purchaseitem/view';
 		$template['script'] = 'Purchaseitem/script';
 		$template['records'] = $this->Purchase_model->get_row($auto_invoice);

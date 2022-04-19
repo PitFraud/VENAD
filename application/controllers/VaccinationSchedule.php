@@ -15,6 +15,7 @@ class VaccinationSchedule extends MY_Controller {
 	public function index(){
 		$template['body'] = 'VaccinationSchedule/list';
 		$template['script'] = 'VaccinationSchedule/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$this->load->view('template', $template);
 	}
 	public function add(){
@@ -28,6 +29,7 @@ class VaccinationSchedule extends MY_Controller {
 			$template['vaccine_list']=$this->getVaccineList();
 			$template['body'] = 'VaccinationSchedule/add';
 			$template['script'] = 'VaccinationSchedule/script';
+			$template['notifications']=$this->General_model->get_notifications();
 			$this->load->view('template', $template);
 		}
 		else {
@@ -66,6 +68,7 @@ class VaccinationSchedule extends MY_Controller {
 	public function edit($schedule_id){
 		$template['body'] = 'VaccinationSchedule/add';
 		$template['script'] = 'VaccinationSchedule/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['allotment_details'] = $this->getAllotmentsList();
 		$template['vaccine_list'] = $this->getVaccineList();
 		$template['records'] = $this->General_model->get_row($this->table,'schedule_id',$schedule_id);
@@ -122,6 +125,7 @@ class VaccinationSchedule extends MY_Controller {
 	public function getreceipt($schedule_id){
 		$template['body'] = 'VaccinationSchedule/receipt';
 		$template['script'] = 'VaccinationSchedule/script-receipt';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['records'] = $this->VaccinationSchedule_model->getreceipt($schedule_id);
 		$this->load->view('template', $template);
 	}

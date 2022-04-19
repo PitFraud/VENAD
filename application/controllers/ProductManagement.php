@@ -23,6 +23,7 @@ class ProductManagement extends MY_Controller {
 	public function add(){
 		$this->form_validation->set_rules('name', 'name', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['members']=$this->getMembers();
 			$template['units']=$this->getUnits();
 			$template['body'] = 'ProductManagement/add';
@@ -71,6 +72,7 @@ class ProductManagement extends MY_Controller {
 		redirect('/ProductManagement/', 'refresh');
 	}
 	public function edit($item_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['members']=$this->getMembers();
 		$template['units']=$this->getUnits();
 		//$template['records'] = $this->General_model->get_row($this->table,'item_id',$item_id);
@@ -93,6 +95,7 @@ class ProductManagement extends MY_Controller {
 		echo $json_data;
 	}
 	public function addProductionDetails(){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['productionItems']=$this->getProductionItemsList();
 		$template['units']=$this->getUnits();
 		$template['body'] = 'ProductManagement/addProductionDetails';
@@ -234,6 +237,7 @@ class ProductManagement extends MY_Controller {
 
 	}
 	public function editProductionDetails($item_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['productionItems']=$this->getProductionItemsList();
 		$template['units']=$this->getUnits();
 		$template['body'] = 'ProductManagement/addProductionDetails';
@@ -242,6 +246,7 @@ class ProductManagement extends MY_Controller {
 		$this->load->view('template', $template);
 	}
 	public function showProductionDetails(){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['productionItems']=$this->getProductionItemsList();
 		$template['units']=$this->getUnits();
 		$template['body'] = 'ProductManagement/showProductionDetails';

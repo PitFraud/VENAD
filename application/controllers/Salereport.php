@@ -17,6 +17,7 @@ class Salereport extends MY_Controller {
 	{
 		$template['body'] = 'Salereport/list';
 		$template['script'] = 'Salereport/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		//$template['product_num'] = $this->Salereport_model->get_productnum();
 		$this->load->view('template', $template);
 	}

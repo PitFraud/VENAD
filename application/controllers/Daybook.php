@@ -18,6 +18,7 @@ class Daybook extends MY_Controller
 	public function index()
 	{
 		//$gid =$this->session->userdata('gid');
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Daybook/list';
 		$template['script'] = 'Daybook/script';
 		//$sdate=date('Y-m-d');
@@ -38,6 +39,7 @@ class Daybook extends MY_Controller
 	public function getdaybook()
 	{
 		//$prid =$this->session->userdata('prid');
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Daybook/list';
 		$template['script'] = 'Daybook/script';
 		//$date = str_replace('/', '-', $this->input->post('daybuk_date'));
@@ -160,6 +162,7 @@ window.location.href='/GDaybook/';
 	}
 	public function view()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'GDaybook/view';
 		$template['script'] = 'GDaybook/script';
 		$this->load->view('template', $template);

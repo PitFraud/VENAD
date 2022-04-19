@@ -9,6 +9,7 @@ class Feeditem extends MY_Controller {
 		$this->load->model('Feeditem_model');
 	}
 	public function index(){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Feeditem/list';
 		$template['script'] = 'Feeditem/script';
 		$this->load->view('template', $template);
@@ -16,6 +17,7 @@ class Feeditem extends MY_Controller {
 	public function add(){
 		$this->form_validation->set_rules('feed_item','Feed Name','required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['body'] = 'Feeditem/add';
 			$template['script'] = 'Feeditem/script';
 			$this->load->view('template', $template);
@@ -48,6 +50,7 @@ class Feeditem extends MY_Controller {
 		}
 	}
 	public function edit($feed_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Feeditem/add';
 		$template['script'] = 'Feeditem/script';
 		$template['records'] = $this->General_model->get_row($this->table,'feed_id',$feed_id);

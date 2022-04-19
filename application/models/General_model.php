@@ -418,5 +418,13 @@ class General_model extends CI_Model{
         $this->db->where('product_id', $product_id);
         $this->db->update('tbl_product'); 
     }
+
+    public function get_notifications(){
+		$day_before_yesterday = date('Y-m-d',strtotime("-2 days"));
+		$yesterday = date('Y-m-d',strtotime("-1 days"));
+		$query=$this->db->select('*')->order_by('reminder_date','DESC')->limit(6)->get('tbl_reminders');
+		$result=$query->result();
+		return $result;
+	}
 }
 ?>

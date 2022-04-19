@@ -14,6 +14,7 @@ class Share extends MY_Controller {
 	public function index(){
 		$template['body'] = 'Share/list';
 		$template['script'] = 'Share/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$this->load->view('template', $template);
 	}
 	public function add(){
@@ -21,6 +22,7 @@ class Share extends MY_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$template['body'] = 'Share/add';
 			$template['script'] = 'Share/script';
+			$template['notifications']=$this->General_model->get_notifications();
 			$this->load->view('template', $template);
 		}
 		else {
@@ -51,6 +53,7 @@ class Share extends MY_Controller {
 		public function edit($share_id){
 			$template['body'] = 'Share/add';
 			$template['script'] = 'Share/script';
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['records'] = $this->General_model->get_row($this->table,'share_id',$share_id);
 			$this->load->view('template', $template);
 		}

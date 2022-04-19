@@ -12,6 +12,7 @@ class Feeds extends MY_Controller {
 		$this->load->model('Feed_model');
 	}
 	public function index(){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Feeds/list';
 		$template['script'] = 'Feeds/script';
 		$this->load->view('template', $template);
@@ -19,10 +20,11 @@ class Feeds extends MY_Controller {
 	public function add(){
 		$this->form_validation->set_rules('allotment','Allotment','required');
 		if ($this->form_validation->run() == FALSE) {
-      $template['allotment_details'] = $this->getAllotments();
-      $template['shareholders'] = $this->getShareholders();
-      $template['feed_names'] = $this->getFeedNames();
-      $template['units'] = $this->getUnits();
+			$template['notifications']=$this->General_model->get_notifications();
+      		$template['allotment_details'] = $this->getAllotments();
+      		$template['shareholders'] = $this->getShareholders();
+      		$template['feed_names'] = $this->getFeedNames();
+      		$template['units'] = $this->getUnits();
 			$template['body'] = 'Feeds/add';
 			$template['script'] = 'Feeds/script';
 			$this->load->view('template', $template);
@@ -72,6 +74,7 @@ class Feeds extends MY_Controller {
 		}
 	}
 	public function edit($feeds_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['allotment_details'] = $this->getAllotments();
 		$template['shareholders'] = $this->getShareholders();
 		$template['feed_names'] = $this->getFeedNames();

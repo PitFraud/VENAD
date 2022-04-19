@@ -18,6 +18,7 @@ class Product extends MY_Controller
 
 	public function index()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Product/list';
 		$template['script'] = 'Product/script';
 		$this->load->view('template', $template);
@@ -27,6 +28,7 @@ class Product extends MY_Controller
 	{
 		$this->form_validation->set_rules('product_name', 'Name', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['body'] = 'Product/add';
 			$template['script'] = 'Product/script';
 			$template['category'] = $this->Product_model->get__category();
@@ -101,6 +103,7 @@ class Product extends MY_Controller
 
 	public function edit($product_id)
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Product/add';
 		$template['script'] = 'Product/script';
 		$template['unit'] = $this->Product_model->get_unit();
@@ -113,6 +116,7 @@ class Product extends MY_Controller
 
 	public function itemCategory()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'ProductCategory/list';
 		$template['script'] = 'ProductCategory/script';
 		$this->load->view('template', $template);
@@ -139,6 +143,7 @@ class Product extends MY_Controller
 		$this->form_validation->set_rules('cat_name', ' Category Name', 'required');
 		$this->form_validation->set_rules('cat_code', ' Category Code', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['body'] = 'ProductCategory/add';
 			$template['script'] = 'ProductCategory/script';
 			$template['unit'] = $this->Product_model->get_unit();
@@ -169,6 +174,7 @@ class Product extends MY_Controller
 
 	public function editCategory($prod_cat_id)
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'ProductCategory/add';
 		$template['script'] = 'ProductCategory/script';
 		$template['records'] = $this->General_model->get_row($this->table2, 'prod_cat_id', $prod_cat_id);

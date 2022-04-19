@@ -10,6 +10,7 @@ class IntegrationDetails extends MY_Controller {
 	}
 
 	public function index(){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'IntegrationDetails/list';
 		$template['script'] = 'IntegrationDetails/script';
 		$this->load->view('template', $template);
