@@ -29,7 +29,7 @@ $(document).ready(function(){
           $table.cell(node).data(index+1);
         });
 
-        $('td', row).eq(7).html('<center><a href="<?php echo base_url();?>index.php/District/edit/'+data['district_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a> &nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['district_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
+        $('td', row).eq(8).html('<center><a href="<?php echo base_url();?>index.php/District/edit/'+data['district_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a> &nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['district_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
       },
       "columns": [
         { "data": "share_name", "orderable": false },
@@ -39,6 +39,7 @@ $(document).ready(function(){
         { "data": "share_value", "orderable": false },
         { "data": "transfer_no_of_shares", "orderable": false },
         { "data": "transfer_share_total", "orderable": false },
+        { "data": "created_date", "orderable": false },
         { "data": "share_name", "orderable": false }
       ]
     } );

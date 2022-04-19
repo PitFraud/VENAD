@@ -7,10 +7,9 @@ class ShareTransfer_model extends CI_Model{
 	}
 	public function getClassinfoTable(){
 
-		$query=$this->db->select('*')
+		$query=$this->db->select('*,tbl_share_transfer_history.created_at as created_date')
 		->join('tbl_shares','tbl_shares.share_id=tbl_share_transfer_history.transfer_share_id','left')
 		->get('tbl_share_transfer_history');
-		// $query = $this->db->get();
 		$data['data'] = $query->result();
 		$data['recordsTotal'] = $query->num_rows();
 		$data['recordsFiltered'] = $query->num_rows();

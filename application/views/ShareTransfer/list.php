@@ -37,6 +37,7 @@
                 <th>SHARE VALUE</th>
                 <th>NO OF QUANTITY</th>
                 <th>TOTAL</th>
+                <th>DATE OF TRANSFER</th>
                 <th><center>EDIT/DELETE</center></th>
               </tr>
             </thead>
