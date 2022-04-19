@@ -43,6 +43,7 @@
               <!-- <li class="<?php if($this->uri->segment(1)=="Plogin"){echo "active";}?>" ><a  href="<?php echo base_url(); ?>PanchayathLogin"> -->
                 <!-- <i class="fa fa-circle-o"></i> <span>Panchayath Login</span></a></li> -->
                 <li class="<?php if($this->uri->segment(1)=="Basicinfo"){echo "active";}?>" ><a  href="<?php echo base_url();?>Basicinfo"><i class="fa fa-circle-o"></i> <span>Basic Info</span></a></li>
+
                 <!-- <li class="<?php if($this->uri->segment(1)=="Dlogin"){echo "active";}?>" ><a  href="<?php echo base_url(); ?>District_login">
                 <i class="fa fa-circle-o"></i> <span>District Login</span></a></li>
                 <li class="<?php if($this->uri->segment(1)=="Slogin"){echo "active";}?>" ><a  href="<?php echo base_url(); ?>StateLogin">
@@ -126,6 +127,8 @@
         {echo "active";}
         else if($this->uri->segment(1)=="Feeditem")
         {echo "active";}
+        else if($this->uri->segment(1)=="HSNcode")
+        {echo "active";}
         ?>">
         <a><i class="fa fa-industry"></i><span>Inventory</span>
           <span class="pull-right-container">
@@ -145,6 +148,7 @@
           <!-- <li class="<?php if($this->uri->segment(1)=="FeedStock"){echo "active";}?>" ><a  href="<?php echo base_url();?>FeedStock"><i class="fa fa-circle-o"></i> <span>Feed Stock</span></a></li> -->
           <li class="<?php if($this->uri->segment(1)=="Stock"){echo "active";}?>" >
             <a  href="<?php echo base_url();?>Stock"><i class="fa fa-circle-o"></i> <span>Stock Details</span></a></li>
+            <li class="<?php if($this->uri->segment(1)=="HSNcode"){echo "active";}?>" ><a  href="<?php echo base_url();?>HSNcode"><i class="fa fa-circle-o"></i> <span>HSN code</span></a></li>
           </ul>
         </li>
 
