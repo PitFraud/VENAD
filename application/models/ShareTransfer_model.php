@@ -5,10 +5,9 @@ class ShareTransfer_model extends CI_Model{
 	{
 		parent::__construct();
 	}
-	public function getClassinfoTable(){
-		$query=$this->db->select('*,from_mem.member_name as from_member_name, to_mem.member_name as to_member_name')
-		->join('tbl_member from_mem','from_mem.member_id=tbl_share_transfer_history.transfer_from_id','left')
-		->join('tbl_member to_mem','to_mem.member_id=tbl_share_transfer_history.transfer_to_id','left')
+public function getClassinfoTable(){
+
+		$query=$this->db->select('*,tbl_share_transfer_history.created_at as created_date')
 		->join('tbl_shares','tbl_shares.share_id=tbl_share_transfer_history.transfer_share_id','left')
 		->get('tbl_share_transfer_history');
 		$data['data'] = $query->result();

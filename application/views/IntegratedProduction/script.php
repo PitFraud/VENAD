@@ -11,6 +11,7 @@ $table = $('#feedsTable').DataTable( {
     }
   },
   "createdRow": function ( row, data, index ) {
+    console.log(data);
     $table.column(0).nodes().each(function(node,index,dt){
       $table.cell(node).data(index+1);
     });
