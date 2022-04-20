@@ -15,7 +15,7 @@ class Ledger extends MY_Controller {
     }
 	public function index()
 	{
-		
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Ledger/list';
 		$template['script'] = 'Ledger/script';
 		//$template['opening'] = $this->Ledger_model->opening();

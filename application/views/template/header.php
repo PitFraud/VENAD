@@ -216,14 +216,19 @@ desired effect
         <div class="dropdown">
           <button onclick="" class="dropbtn"> <i class="fa fa-bell"></i> </button>
 
-          <?php $notifications=$this->session->userdata('notifications');
-          if(!empty($notifications)){ ?>
+          <?php 
+        //  $notifications=$this->session->userdata('notifications');
+           $date = date('Y-m-d'); 
+         // if(!empty($notifications)){ ?>
           <div id="notificationDropdown" class="dropdown-content">
-            <?php foreach ($notifications as $notification): ?>
+            <?php foreach ($notifications as $notification){
+          $d1=date("Y-m-d", strtotime ( '-1 day' , strtotime ($notification->reminder_date) )) ;
+          if($date==$d1)
+          { ?>
               <a href="<?php echo base_url(); ?>Reminders"><?php echo $notification->reminder_title.' : '.$notification->reminder_description; echo "<br>"; echo $notification->created_at; ?> </a>
-            <?php endforeach; ?>
+            <?php }} ?>
           </div>
-        <?php } ?>
+        <?php //} ?>
         </div>
 
         <!-- ################################################################################### -->

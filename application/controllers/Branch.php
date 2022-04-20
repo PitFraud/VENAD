@@ -20,6 +20,7 @@ class Branch extends MY_Controller {
 	public function add(){
 		$this->form_validation->set_rules('branch_address', 'Name', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['body'] = 'Branch/add';
 			$template['script'] = 'Branch/script';
 			$this->load->view('template', $template);
@@ -111,6 +112,7 @@ class Branch extends MY_Controller {
 // 		redirect('/Branch/', 'refresh');
     }
 	public function edit($branch_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Branch/add';
 		$template['script'] = 'Branch/script';
 		$template['records'] = $this->General_model->get_row($this->table,'branch_id',$branch_id);

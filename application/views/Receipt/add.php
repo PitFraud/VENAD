@@ -27,6 +27,13 @@
                <div class="form-group">
 			   <input type="hidden" name="rece_id" value="<?php if(isset($records->receipt_id)) echo $records->receipt_id ?>"/>
                 <div class="box-body">
+                	 <div class="form-group">
+					<label for="customer_email" class="col-sm-2 control-label"> Voucher Number <span style="color:red">*</span></label>
+					<div class="col-sm-4">
+						<input type="Text"  class="form-control"  name="receipt_number" value="<?php if(isset($records->receipt_number)){ echo $records->receipt_number;}else{echo rand(00000,99999);} ?>" style="color:red;"/>
+					</div>
+					
+				</div>
 				<div class="form-group">
 					<label for="customer_email" class="col-sm-2 control-label"> Receipt Head </label>
 					<div class="col-sm-4">

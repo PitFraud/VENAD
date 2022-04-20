@@ -25,7 +25,9 @@ class ReceiveItem extends MY_Controller
 	{
 		$this->form_validation->set_rules('quantity', 'quantity', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['allotment_details'] = $this->getAllotments();
+			//var_dump($template['allotment_details']);die;
 			$template['members'] = $this->getMembers();
 			$template['member_types'] = $this->getMemberTypes();
 			$template['units'] = $this->getUnits();
@@ -35,6 +37,7 @@ class ReceiveItem extends MY_Controller
 			$template['items'] = 'Product/script';
 			$this->load->view('template', $template);
 		} else {
+			$integration_type = $_POST['integration_type'];
 			$insert_array = [
 				'rec_allotment_fk' => $_POST['allotment'],
 				'rec_quantity' => $_POST['quantity'],
@@ -42,15 +45,78 @@ class ReceiveItem extends MY_Controller
 				'rec_unit' => $_POST['unit'],
 				'rec_given_feeds_total' => $_POST['feed_given'],
 				'rec_fcr' => $_POST['fcr'],
+				'allot_dead_chicken_qty' => $_POST['chicken_dead'],
 			];
 			$rec_id = $this->input->post('rec_id');
 			if ($rec_id) {
 				$data['rec_id'] = $rec_id;
 				$result = $this->General_model->update($this->table, $insert_array, 'rec_id', $rec_id);
 				$response_text = 'Receive item updated successfully';
+				$allot_item = [
+					'allot_status' => 2,
+				];
+				$allotments_id = $_POST['allotment'];
+				$update_allot = $this->General_model->update('tbl_allotment',$allot_item,'allot_status',$allotments_id);
+				if(!empty($integration_type)){
+					if($integration_type == 1){
+						$broiler_stock = $this->General_model->get_row('tbl_integration_stock','integration_stock_type',1);
+						$qty = $broiler_stock->integration_stock_qty;
+						$weight = $broiler_stock->integration_stock_weight;
+						$new_qty = $qty + $_POST['quantity'];
+						$new_weight = $weight + $_POST['weight'];
+						$insert_stock = [
+							'integration_stock_qty'=>$new_qty,
+							'integration_stock_weight'=>$new_weight,
+						];
+						$result2 = $this->General_model->update('tbl_integration_stock',$insert_stock,'integration_stock_type',1);
+					}
+					else if($integration_type == 2){
+						$broiler_stock = $this->General_model->get_row('tbl_integration_stock','integration_stock_type',2);
+						$qty = $broiler_stock->integration_stock_qty;
+						$weight = $broiler_stock->integration_stock_weight;
+						$new_qty = $qty + $_POST['quantity'];
+						$new_weight = $weight + $_POST['weight'];
+						$insert_stock = [
+							'integration_stock_qty'=>$new_qty,
+							'integration_stock_weight'=>$new_weight,
+						];
+						$result2 = $this->General_model->update('tbl_integration_stock',$insert_stock,'integration_stock_type',2);
+					}
+				}
 			} else {
 				$result = $this->General_model->add($this->table, $insert_array);
 				$response_text = 'Received item added  successfully';
+				$allot_item = [
+					'allot_status' => 2,
+				];
+				$allotments_id = $_POST['allotment'];
+				$update_allot = $this->General_model->update('tbl_allotment',$allot_item,'allot_status',$allotments_id);
+				if(!empty($integration_type)){
+					if($integration_type == 1){
+						$broiler_stock = $this->General_model->get_row('tbl_integration_stock','integration_stock_type',1);
+						$qty = $broiler_stock->integration_stock_qty;
+						$weight = $broiler_stock->integration_stock_weight;
+						$new_qty = $qty + $_POST['quantity'];
+						$new_weight = $weight + $_POST['weight'];
+						$insert_stock = [
+							'integration_stock_qty'=>$new_qty,
+							'integration_stock_weight'=>$new_weight,
+						];
+						$result2 = $this->General_model->update('tbl_integration_stock',$insert_stock,'integration_stock_type',1);
+					}
+					else if($integration_type == 2){
+						$broiler_stock = $this->General_model->get_row('tbl_integration_stock','integration_stock_type',2);
+						$qty = $broiler_stock->integration_stock_qty;
+						$weight = $broiler_stock->integration_stock_weight;
+						$new_qty = $qty + $_POST['quantity'];
+						$new_weight = $weight + $_POST['weight'];
+						$insert_stock = [
+							'integration_stock_qty'=>$new_qty,
+							'integration_stock_weight'=>$new_weight,
+						];
+						$result2 = $this->General_model->update('tbl_integration_stock',$insert_stock,'integration_stock_type',2);
+					}
+				}
 			}
 			if ($result) {
 				$this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
@@ -63,6 +129,7 @@ class ReceiveItem extends MY_Controller
 
 	public function edit($rec_id)
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['allotment_details'] = $this->getAllotments();
 		$template['members'] = $this->getMembers();
 		$template['member_types'] = $this->getMemberTypes();
@@ -108,6 +175,7 @@ class ReceiveItem extends MY_Controller
 
 	public function view()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'ReceiveItem/list-back';
 		$template['script'] = 'ReceiveItem/script-back';
 		$this->load->view('template', $template);
@@ -130,6 +198,7 @@ class ReceiveItem extends MY_Controller
 
 	public function pview()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'ReceiveItem/list-pback';
 		$template['script'] = 'ReceiveItem/script-pback';
 		$this->load->view('template', $template);
@@ -178,5 +247,12 @@ class ReceiveItem extends MY_Controller
 	{
 		$data = $this->Allotment_model->getAllotmentsDetails();
 		return $data;
+	}
+
+	public function getIntegrationType()
+	{
+		$allot_id = $this->input->post('allot_id');
+		$data = $this->Allotment_model->getIntegrationTypeList($allot_id);
+		echo json_encode($data);
 	}
 }

@@ -48,6 +48,7 @@ class Sale extends MY_Controller {
 			$template['invno'] = $alpha.$inv_no;
 			//$template['customers'] = $this->Sale_model->get_members();
 			$template['customer_names'] = $this->Customer_model->view_by();
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['body'] = 'Sale/add';
 			$template['script'] = 'Sale/script';
 			$this->load->view('template', $template);
@@ -88,7 +89,6 @@ class Sale extends MY_Controller {
 					$new_old_balance = 0;
 				}
 			}
-
 			/*-------------Static Contents-------------*/
 			$this->load->helper('string');
 			$invoice_no = random_string('alnum',10);
@@ -119,18 +119,14 @@ class Sale extends MY_Controller {
 						'tax_id_fk' =>$tax_id_fk[$i],
 						'sale_status' => 1
 							);
-
 				$stok[$i] = $this->Sale_model->get_stok($product_id_fk[$i],$shop_id);
 				$this->General_model->add($this->table,$data);
             	$nwstk = $stok[$i][0]->item_quantity - $sale_quantity[$i];
-
 				$uData = array(
 								'item_quantity' =>$nwstk,
 								'updated_at' =>date('Y-m-d h:i:s'),
 								);
-
 				$result = $this->General_model->update($this->tbl_stock,$uData,'item_id',$product_id_fk[$i]);
-
 				if(is_numeric($new_old_balance)){
 					$customer_id = $this->input->post('customer_name');
 					$check_user_if_exist = $this->General_model->get_row('tbl_mem_account','mem_acc_id_fk',$customer_id);
@@ -150,9 +146,7 @@ class Sale extends MY_Controller {
 						$result = $this->General_model->add('tbl_mem_account',$data3);
 					}
 				}
-
 				}
-
 	       redirect('/Sale/invoice/'.$invoice_no, 'refresh');
 		}
 	}
@@ -160,6 +154,7 @@ class Sale extends MY_Controller {
 	{
 		$template['body'] = 'Sale_Invoice/Invoice2';
 		$template['script'] = 'Sale_Invoice/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['records'] = $this->Sale_model->get_invc($invoice_no);
 		$this->load->view('template', $template);
 	}
@@ -167,13 +162,13 @@ class Sale extends MY_Controller {
 	{
 		$template['body'] = 'Sale_Invoice/Invoice2';
 		$template['script'] = 'Sale_Invoice/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['records'] = $this->Sale_model->get_invoice($invoice_no);
 		//var_dump($template['records']);die;
 		//echo "<pre>"; print_r($template['records']);
 		$this->load->view('template', $template);
 	}
 	public function get(){
-
 		$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
         $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
         $param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
@@ -183,22 +178,18 @@ class Sale extends MY_Controller {
 				$param['product_num'] = (isset($_REQUEST['product_num']))?$_REQUEST['product_num']:'';
 				$start_date =(isset($_REQUEST['start_date']))?$_REQUEST['start_date']:'';
         $end_date =(isset($_REQUEST['end_date']))?$_REQUEST['end_date']:'';
-
 		if($start_date){
             $start_date = str_replace('/', '-', $start_date);
             $param['start_date'] =  date("Y-m-d",strtotime($start_date));
         }
-
         if($end_date){
             $end_date = str_replace('/', '-', $end_date);
             $param['end_date'] =  date("Y-m-d",strtotime($end_date));
         }
-
        // $sessid = $this->session->userdata['id'];
 		//$shopid = $this->Sale_model->get_shop($sessid);
 		//if(isset($shopid[0]->shop_id_fk)){$shid=$shopid[0]->shop_id_fk;}else{$shid=0;}
 		//$param['shop'] =$shid;
-
 		$data = $this->Sale_model->getSaleReport($param);
 		$json_data = json_encode($data);
     	echo $json_data;
@@ -226,23 +217,17 @@ class Sale extends MY_Controller {
 		$template['category_names'] = $this->Category_model->view_by();
 		$template['records'] = $this->General_model->get_row($this->table,'product_id',$product_id);
     	$this->load->view('template', $template);
-
 	}
 	function getproductnum(){
-
 	header('Content-Type: application/x-json; charset=utf-8');
-
 	$result = $this->Sale_model->getproductnum();
 	echo json_encode($result);
-
     }
-
     public function getproductname(){
 	header('Content-Type: application/x-json; charset=utf-8');
 	$result = $this->Sale_model->getproductnames();
 	echo json_encode($result);
     }
-
     public function getprice()
 	{
 	$product_id_fk = $this->input->post('product_id_fk');
@@ -250,34 +235,26 @@ class Sale extends MY_Controller {
 	$json_data = json_encode($data);
 	echo $json_data;
 	}
-
 	// function get_price(){
-
 	// //header('Content-Type: application/x-json; charset=utf-8');
 	// $product_id = $this->input->post('product_num');
 	// print_r($product_id);
 	// exit();
 	// $result = $this->Sale_model->get_price($product_id);
 	// echo json_encode($result);
-
  //    }
-
 	 public function get_price(){
-
 	//header('Content-Type: application/x-json; charset=utf-8');
 	$product_id = $this->input->post('p_id');
 	//print_r($product_id);
 	//exit();
 	$result = $this->Sale_model->get_price($product_id);
 	echo json_encode($result);
-
     }
 	function gettax(){
-
 	header('Content-Type: application/x-json; charset=utf-8');
 	$result = $this->Sale_model->gettax();
 	echo json_encode($result);
-
     }
 	public function get_purchasedetails(){
 	    $product_num = $this->input->post('product_num');
@@ -290,7 +267,6 @@ class Sale extends MY_Controller {
 	public function getstock(){
 		$product_id =$this->input->post('product_id');
 		$shop_id = $this->input->post('shop_id');
-
 		$stok = $this->Sale_model->get_stok($product_id,$shop_id);
 		//if(isset($stok[0]->production_quantity)){$mas=$stok[0]->production_quantity;}else{$mas=0;};
 		if(isset($stok[0]->item_quantity)){$mas=$stok[0]->item_quantity;}else{$mas=0;};
@@ -305,7 +281,6 @@ class Sale extends MY_Controller {
 		$data = $this->Sale_model->getproduct($product_cmpny,$product_size);
 		$data_json = json_encode($data);
 		echo $data_json;
-
     }
 	public function getproductcompany()
 	{
@@ -314,63 +289,45 @@ class Sale extends MY_Controller {
 		$data = $this->Sale_model->getproductcompany($product_size);
 		$data_json = json_encode($data);
 		echo $data_json;
-
 	}
-
 	 public function getproductname1(){
     $prod_id = $this->input->post('p_id');
 	$data['product'] = $this->Sale_model->getproductname1($prod_id);
 	echo json_encode($data);
     }
-
 	// function get_memberaddress(){
-
 	// 	$id = $this->input->post('member_id');
-
 	// 	$data = $this->Sale_model->get_memberaddress($id);
-
 	// 	echo json_encode($data);
-
-
 	// }
-
 	function get_memberaddress(){
-
 		$id = $this->input->post('id');
-
 		//$data = $this->Sale_model->get_memberaddress($id);
-
 		//echo json_encode($data);
-
 		$records = $this->Sale_model->get_memberaddress($id);
 		$data_json = json_encode($records);
         echo $data_json;
 	}
-
 	function get_phone(){
-
 		$id = $this->input->post('id');
-
 		//$data = $this->Sale_model->get_memberaddress($id);
-
 		//echo json_encode($data);
-
 		$records = $this->Sale_model->get_phone($id);
 		$data_json = json_encode($records);
         echo $data_json;
 	}
-
 	public function getOldBalance()
 	{
 		$id = $this->input->post('id');
 		$data = $this->Sale_model->getOldBalanceDetails($id);
 		echo json_encode($data);
 	}
-
 	public function getMemberList()
 	{
 		$mem_id = $_POST['mem_id'];
 		$data = $this->Sale_model->getMemberlists($mem_id);
 		echo json_encode($data);
 	}
+
+
 }

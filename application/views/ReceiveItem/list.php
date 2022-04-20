@@ -33,6 +33,7 @@
                   <th>Member Name</th>
                   <th>Member type</th>
                   <th>Quantity</th>
+                  <th>Mortality</th>
                   <th>Weight</th>
                   <th>Unit</th>
                   <th>Total Feeds Given</th>

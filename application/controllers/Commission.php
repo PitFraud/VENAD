@@ -11,6 +11,7 @@ class Commission extends MY_Controller {
 		$this->load->model('Commission_model');
 	}
 	public function index(){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Commission/list';
 		$template['script'] = 'Commission/script';
 		$this->load->view('template', $template);
@@ -18,6 +19,7 @@ class Commission extends MY_Controller {
 	public function add(){
 		$this->form_validation->set_rules('commission_amount', 'quantity', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['members']=$this->getMembers();
 			$template['units']=$this->getUnits();
 			$template['body'] = 'Commission/add';
@@ -44,6 +46,7 @@ class Commission extends MY_Controller {
 		}
 	}
 	public function edit($commission_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['members']=$this->getMembers();
 		$template['units']=$this->getUnits();
 		$template['body'] = 'Commission/add';

@@ -13,6 +13,7 @@ class Distribution extends MY_Controller {
 		$this->load->model('Allotment_model');
 	}
 	public function index(){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Distribution/list';
 		$template['script'] = 'Distribution/script';
 		$this->load->view('template', $template);
@@ -20,6 +21,7 @@ class Distribution extends MY_Controller {
 	public function add(){
 		$this->form_validation->set_rules('production_item','production_item','required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['production_items']=$this->getProductionItems();
 			$template['members']=$this->getMembers();
 			$template['member_types']=$this->getMemberTypes();
@@ -75,6 +77,7 @@ class Distribution extends MY_Controller {
 		}
 	}
 	public function edit($dist_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['production_items']=$this->getProductionItems();
 		$template['members']=$this->getMembers();
 		$template['member_types']=$this->getMemberTypes();

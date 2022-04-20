@@ -16,6 +16,7 @@ class Vehicles_root extends MY_Controller {
 	public function index(){
 		$template['body'] = 'Vehicles_root/list';
 		$template['script'] = 'Vehicles_root/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$this->load->view('template', $template);
 	}
 
@@ -24,6 +25,7 @@ class Vehicles_root extends MY_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$template['body'] = 'Vehicles_root/add';
 			$template['script'] = 'Vehicles_root/script';
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['vehicle'] = $this->Vehicles_model->getvehicle();
 			$template['driver'] = $this->Vehicles_model->getdriver();
 			$template['products'] = $this->Vehicles_model->getproducts();
@@ -94,6 +96,7 @@ class Vehicles_root extends MY_Controller {
 	public function view($vroot_id){
 		$template['body'] = 'Vehicles_root/view';
 		$template['script'] = 'Vehicles_root/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['records'] = $this->Vehicles_model->getrout($vroot_id);
 		//$template['records1'] = $this->Vehicles_model->getroutitem($vroot_id);
 		$template['records1'] = $this->Vehicles_model->getRouteDetails($vroot_id);

@@ -11,6 +11,7 @@ class Reminders extends MY_Controller {
 		$this->load->model('Reminders_model');
 	}
 	public function index(){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Reminders/list';
 		$template['script'] = 'Reminders/script';
 		$this->load->view('template', $template);
@@ -18,6 +19,7 @@ class Reminders extends MY_Controller {
 	public function add(){
 		$this->form_validation->set_rules('reminder_title','reminder title','required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['body'] = 'Reminders/add';
 			$template['script'] = 'Reminders/script';
 			$this->load->view('template', $template);
@@ -64,6 +66,7 @@ class Reminders extends MY_Controller {
 	    		echo $json_data;
 	}
 	public function edit($reminder_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Reminders/add';
 		$template['script'] = 'Reminders/script';
 		$template['records'] = $this->General_model->get_row($this->table,'reminder_id',$reminder_id);

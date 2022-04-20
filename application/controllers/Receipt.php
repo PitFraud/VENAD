@@ -17,6 +17,7 @@ class Receipt extends MY_Controller {
 	}
 	public function index()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Receipt/list';
 		$template['script'] = 'Receipt/script';
 		$this->load->view('template', $template);
@@ -24,6 +25,7 @@ class Receipt extends MY_Controller {
 	public function add(){
 		$this->form_validation->set_rules('receipt_id', 'Name', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['receiptnames'] = $this->Receipthead_model->view_by1();
 			$template['body'] = 'Receipt/add';
 			$template['script'] = 'Receipt/script';
@@ -41,6 +43,7 @@ class Receipt extends MY_Controller {
 			           // 'finyear_id_fk' =>$fyear,	
 						//'project_id_fk' =>$this->session->userdata('prid'),	
 						'receipt_id_fk' =>$this->input->post('receipt_id'),	
+						'receipt_number' =>$this->input->post('receipt_number'),
 						'rept_date' =>$created_date,
 						'receipt_amount' =>$this->input->post('receipt_amount'),						
 						'paid_to' =>strtoupper($this->input->post('paid_to')),
@@ -83,6 +86,7 @@ class Receipt extends MY_Controller {
     	echo $json_data;
     }
 	public function edit($receipt_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Receipt/add';
 		$template['script'] = 'Receipt/script';
 		$template['receiptnames'] = $this->Receipthead_model->view_by1();
@@ -115,9 +119,8 @@ class Receipt extends MY_Controller {
 
 
 	public function treceipt($receipt_id){
-
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Receipt/receipt';
-
 		$template['script'] = 'Receipt/script-receipt';
 		$template['records'] = $this->Receipt_model->getreceipt($receipt_id);
 		$this->load->view('template', $template);

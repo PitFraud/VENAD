@@ -19,6 +19,7 @@ class Voucher extends MY_Controller {
 	public function index(){
 		$template['body'] = 'Voucher/list';
 		$template['script'] = 'Voucher/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$this->load->view('template', $template);
 	}
 	public function add(){
@@ -27,6 +28,7 @@ class Voucher extends MY_Controller {
 			$template['vouchnames'] = $this->Voucherhead_model->view_by1();
 			$template['body'] = 'Voucher/add';
 			$template['script'] = 'Voucher/script';
+			$template['notifications']=$this->General_model->get_notifications();
 			 $prid =$this->session->userdata('prid');
 			$this->load->view('template', $template);
 		}
@@ -40,7 +42,8 @@ class Voucher extends MY_Controller {
 
 			$data = array(
 			           // 'finyear_id_fk' =>$fyear,
-						'project_id_fk' =>$this->session->userdata('prid'),
+						//'project_id_fk' =>$this->session->userdata('prid'),
+						'voucher_number' =>$this->input->post('voucher_number'),
 						'vouch_id_fk' =>$this->input->post('vouch_id'),
 						'voucher_amount' =>$this->input->post('voucher_amount'),
 						'paid_to' =>strtoupper($this->input->post('paid_to')),
@@ -87,6 +90,7 @@ class Voucher extends MY_Controller {
 	public function edit($voucher_id){
 		$template['body'] = 'Voucher/add';
 		$template['script'] = 'Voucher/script';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['vouchnames'] = $this->Voucherhead_model->view_by1();
 		$template['records'] = $this->General_model->get_row($this->table,'voucher_id',$voucher_id);
     	$this->load->view('template', $template);
@@ -123,6 +127,7 @@ public function receipt($voucher_id){
 		$template['body'] = 'Voucher/receipt';
 
 		$template['script'] = 'Voucher/script-receipt';
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['records'] = $this->Voucher_model->getvoucher($voucher_id);
 		$this->load->view('template', $template);
 

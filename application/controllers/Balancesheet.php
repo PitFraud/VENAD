@@ -48,6 +48,7 @@ class Balancesheet extends MY_Controller {
 	                $template['groupfed']=$this->Ledger_model->getgroupfedloan($gid,$sdate,$edate);
 	                 $template['chitty']=$this->Ledger_model->getchitty($gid,$sdate,$edate);
 	            $template['bus']=$this->Ledger_model->getbusiness($gid,$sdate,$edate);*/
+		$template['notifications']=$this->General_model->get_notifications();
 	    $template['gid']=$gid;
 		$template['body'] = 'Balancesheet/list';
 		$template['script'] = 'Balancesheet/script';
@@ -69,6 +70,7 @@ class Balancesheet extends MY_Controller {
 			// $template['prid'] = $prid;
 			//$template['project']=$this->Project_model->getproject($prid);
 		//$template['cdate']=date('Y-m',strtotime($at_date));
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Balancesheet/list';
 		$template['script'] = 'Balancesheet/script';
 	//	$template['records'] = $this->Member_model->getMember1($gid);

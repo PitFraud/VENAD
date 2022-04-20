@@ -27,6 +27,13 @@
                <div class="form-group">
 			   <input type="hidden" name="voucher_id" value="<?php if(isset($records->voucher_id)) echo $records->voucher_id ?>"/>
                 <div class="box-body">
+                <div class="form-group">
+					<label for="customer_email" class="col-sm-2 control-label"> Voucher Number <span style="color:red">*</span></label>
+					<div class="col-sm-4">
+						<input type="Text"  class="form-control"  name="voucher_number" value="<?php if(isset($records->voucher_number)){ echo $records->voucher_number;}else{echo rand(00000,99999);} ?>" style="color:red;"/>
+					</div>
+					
+				</div>
 				<div class="form-group">
 					<label for="customer_email" class="col-sm-2 control-label"> Voucher Head </label>
 					<div class="col-sm-4">
@@ -59,11 +66,8 @@
 			</fieldset>
 			</div>
 			</div>
-		</div>
-				
-      
-    </section>
-	<div class="box-footer">                
+
+			<div class="box-footer">                
                 <div class="row">
                   <div class="col-md-6">
                   </div>
@@ -73,6 +77,11 @@
                     </div>
                   </div>
 	</div>
+		</div>
+				
+      
+    </section>
+	
 	</form>
 	<!-- /.content -->
   </div>

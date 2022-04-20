@@ -10,6 +10,7 @@ class Basicinfo extends MY_Controller {
 	}
 	public function index()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Basic_info/list';
 		$template['script'] = 'Basic_info/script';
 		$this->load->view('template', $template);
@@ -17,6 +18,7 @@ class Basicinfo extends MY_Controller {
 	public function add(){
 		$this->form_validation->set_rules('bas_name', 'Name', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['body'] = 'Basic_info/add';
 			$template['script'] = 'Basic_info/script';
 			$this->load->view('template', $template);
@@ -28,7 +30,7 @@ class Basicinfo extends MY_Controller {
 						'basic_comp_name' => $this->input->post('bas_name'),
 						'basic_desc' => $this->input->post('bas_desc'),
 						'bsic_reg_no' => $this->input->post('bas_reg_no'),
-            'basic_address' => $this->input->post('bas_addr'),
+            			'basic_address' => $this->input->post('bas_addr'),
 						'basic_cn' => $this->input->post('bas_cn'),
 						'basic_join_date' => $this->input->post('bas_date'),
 						'basic_web_add' => $this->input->post('bas_web_url'),
@@ -43,7 +45,7 @@ class Basicinfo extends MY_Controller {
 						'basic_fssai' => $this->input->post('bas_fssai'),
 						'basic_title' => $this->input->post('bas_title'),
 						'basic_phone_1' => $this->input->post('bas_phone_1'),
-            'basic_phone_2' => $this->input->post('bas_phone_2'),
+            			'basic_phone_2' => $this->input->post('bas_phone_2'),
 						'basic_status' => 1
 						);
 						$basic_info_id = $this->input->post('basic_info_id');
@@ -94,6 +96,7 @@ class Basicinfo extends MY_Controller {
         echo $data_json;
     }
 	public function edit($basic_info_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Basic_info/add';
 		$template['script'] = 'Basic_info/script';
 		$template['records'] = $this->General_model->get_row($this->table,'basic_info_id',$basic_info_id);

@@ -176,7 +176,8 @@
             <li class="<?php if($this->uri->segment(1)=="Allotment"){echo "active";}?>" ><a  href="<?php echo base_url();?>Allotment"><i class="fa fa-circle-o"></i> <span>Allot Item</span></a></li>
             <li class="<?php if($this->uri->segment(1)=="ReceiveItem"){echo "active";}?>" ><a  href="<?php echo base_url();?>ReceiveItem"><i class="fa fa-circle-o"></i> <span>Receive back/Integration</span></a></li>
             <li class="<?php if($this->uri->segment(1)=="FCR"){echo "active";}?>" ><a  href="<?php echo base_url();?>FCR"><i class="fa fa-circle-o"></i> <span>Feed Conversion Ratio</span></a></li>
-            <li class="<?php if($this->uri->segment(1)=="IntegratedProduction"){echo "active";}?>" ><a  href="<?php echo base_url();?>IntegratedProduction"><i class="fa fa-circle-o"></i> <span>Production Of Integrated</span></a></li>
+            <li class="<?php if($this->uri->segment(1)=="IntegrationDetails"){echo "active";}?>" ><a  href="<?php echo base_url();?>IntegrationDetails"><i class="fa fa-circle-o"></i> <span>Integration Details</span></a></li>
+            <li class="<?php if($this->uri->segment(1)=="IntegrationStock"){echo "active";}?>" ><a  href="<?php echo base_url();?>IntegrationStock"><i class="fa fa-circle-o"></i> <span>Integration Stock</span></a></li>
           </ul>
         </li>
         <!-- END OF INTEGRATION SECTION -->
@@ -219,6 +220,7 @@
         <li class="<?php if($this->uri->segment(1)=="ProductManagement"){echo "active";}?>" ><a  href="<?php echo base_url();?>ProductManagement"><i class="fa fa-circle-o"></i> <span>Manage Products</span></a></li>
         <li class="<?php if($this->uri->segment(2)=="showProductionDetails"){echo "active";}?>" ><a  href="<?php echo base_url();?>ProductManagement/showProductionDetails"><i class="fa fa-circle-o"></i> <span>Production Details</span></a></li>
         <li class="<?php if($this->uri->segment(2)=="Pstock"){echo "active";}?>" ><a  href="<?php echo base_url();?>PStock/"><i class="fa fa-circle-o"></i> <span>Product Stock</span></a></li>
+        <li class="<?php if($this->uri->segment(2)=="ProductionStock"){echo "active";}?>" ><a  href="<?php echo base_url();?>ProductionStock/"><i class="fa fa-circle-o"></i> <span>Production Stock</span></a></li>
         <li class="<?php if($this->uri->segment(2)=="Progressive_details"){echo "active";}?>" ><a  href="<?php echo base_url();?>Progressive_details/"><i class="fa fa-circle-o"></i> <span>Progressive Details</span></a></li>
         <li class="<?php if($this->uri->segment(2)=="Sale"){echo "active";}?>" ><a  href="<?php echo base_url();?>Sale/"><i class="fa fa-circle-o"></i> <span>Sale Details</span></a></li>
       </ul>
@@ -397,6 +399,7 @@
           <li class="<?php if($this->uri->segment(1)=="Purchasereport"){echo "active";}?>" ><a  href="<?php echo base_url();?>Purchasereport"><i class="fa fa-circle-o"></i> <span>Purchase Report</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Salereport"){echo "active";}?>" ><a  href="<?php echo base_url();?>Salereport"><i class="fa fa-circle-o"></i> <span>Sale Report</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Travel_report"){echo "active";}?>" ><a  href="<?php echo base_url();?>Travel_report"><i class="fa fa-circle-o"></i> <span>Travel Report</span></a></li>
+          <li class="<?php if($this->uri->segment(1)=="Allotment_integration_report"){echo "active";}?>" ><a  href="<?php echo base_url();?>Allotment_integration_report"><i class="fa fa-circle-o"></i> <span>Feed Chart Report</span></a></li>
           <!-- <li class="<?php if($this->uri->segment(1)=="Allotment_report"){echo "active";}?>" ><a  href="<?php echo base_url();?>Allotment_report"><i class="fa fa-circle-o"></i> <span>Allotment Report</span></a></li> -->
           <!-- <li class="<?php if($this->uri->segment(1)=="Member_report"){echo "active";}?>" ><a  href="<?php echo base_url();?>Member_report"><i class="fa fa-circle-o"></i> <span>Member Report</span></a></li>
           <li class="<?php if($this->uri->segment(1)=="Attendancereport"){echo "active";}?>" >

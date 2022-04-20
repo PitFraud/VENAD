@@ -15,6 +15,7 @@ class Orders extends MY_Controller {
 	}
 	public function index()
 	{
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Orders/list';
 		$template['script'] = 'Orders/script';
 		$this->load->view('template', $template);
@@ -22,6 +23,7 @@ class Orders extends MY_Controller {
 	public function add(){
 		$this->form_validation->set_rules('product', 'Item', 'required');
 		if ($this->form_validation->run() == FALSE) {
+			$template['notifications']=$this->General_model->get_notifications();
 			$template['body'] = 'Orders/add';
 			$template['script'] = 'Orders/script';
 			$template['products'] = $this->Orders_model->get_all_products();
@@ -90,6 +92,7 @@ class Orders extends MY_Controller {
 	}
 
 	public function edit($order_id){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Orders/add';
 		$template['script'] = 'Orders/script';
 		$template['products'] = $this->Orders_model->get_all_products();
@@ -99,6 +102,7 @@ class Orders extends MY_Controller {
 	}
 
 	public function adminView(){
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'Orders/adminlist';
 		$template['script'] = 'Orders/adminscript';
 		$this->load->view('template', $template);

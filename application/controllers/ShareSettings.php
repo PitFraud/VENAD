@@ -14,6 +14,7 @@ class ShareSettings extends MY_Controller {
 
 	public function index(){
 		$template['share_list']=$this->ShareSettings_model->get_shares();
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'ShareSettings/list';
 		$template['script'] = 'ShareSettings/script';
 		$this->load->view('template', $template);
@@ -66,6 +67,7 @@ class ShareSettings extends MY_Controller {
 
 	public function showModifySettingsPage(){
 		$template['share_list']=$this->ShareSettings_model->get_shares();
+		$template['notifications']=$this->General_model->get_notifications();
 		$template['body'] = 'ShareSettings/modificationpage';
 		$template['script'] = 'ShareSettings/script';
 		$this->load->view('template', $template);
