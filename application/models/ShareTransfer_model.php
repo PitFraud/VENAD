@@ -5,7 +5,7 @@ class ShareTransfer_model extends CI_Model{
 	{
 		parent::__construct();
 	}
-public function getClassinfoTable(){
+	public function getClassinfoTable(){
 
 		$query=$this->db->select('*,tbl_share_transfer_history.created_at as created_date')
 		->join('tbl_shares','tbl_shares.share_id=tbl_share_transfer_history.transfer_share_id','left')
@@ -52,10 +52,12 @@ public function getClassinfoTable(){
 		$query=$this->db->select('*')->get('tbl_shares');
 		return $query->num_rows()>0 ? $query->result() : false;
 	}
+
 	public function get_shareholders(){
 		$query=$this->db->select('*')->where('member_type',1)->get('tbl_member');
 		return $query->num_rows()>0 ? $query->result() : false;
 	}
+
 	public function get_shareholder_share_details($id){
 		$query=$this->db->select('*')
 		->join('tbl_shares','tbl_shares.share_id=tbl_share_purchase_details.purchase_share_id','left')
@@ -64,6 +66,7 @@ public function getClassinfoTable(){
 		->get('tbl_share_purchase_details');
 		return $query->num_rows()>0 ? $query->result() : false;
 	}
+
 	public function get_single_share_total($share_id,$shareholder_id){
 		$query=$this->db->select_sum('purchase_qty')
 		->where('purchase_share_id',$share_id)
@@ -71,17 +74,14 @@ public function getClassinfoTable(){
 		->get('tbl_share_purchase_details');
 		return $query->num_rows()>0 ? $query->row()->purchase_qty : 0;
 	}
+
 	public function get_single_current_share_qty($user_id,$share_id){
 		$query=$this->db->select('purchase_qty')
 		->where('purchase_shareholder_id',$user_id)
 		->where('purchase_share_id',$share_id)
 		->get('tbl_share_purchase_details');
 		return $query->num_rows()>0 ? $query->row()->purchase_qty :0;
-	}
 
-	public function addShareTransfer($insert_array){
-		$query=$this->db->insert('tbl_share_transfer_history',$insert_array);
-		return $query ? true : false;
 	}
 }
 ?>

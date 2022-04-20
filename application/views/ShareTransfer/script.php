@@ -33,8 +33,8 @@ $(document).ready(function(){
       },
       "columns": [
         { "data": "share_name", "orderable": false },
-        { "data": "from_member_name", "orderable": false },
-        { "data": "to_member_name", "orderable": false },
+        { "data": "share_name", "orderable": false },
+        { "data": "share_name", "orderable": false },
         { "data": "share_name", "orderable": false },
         { "data": "share_value", "orderable": false },
         { "data": "transfer_no_of_shares", "orderable": false },
