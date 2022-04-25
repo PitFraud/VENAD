@@ -27,6 +27,7 @@ $table = $('#ReceivalTable').DataTable( {
     { "data": "unit_name", "orderable": false },
     { "data": "rec_given_feeds_total", "orderable": false },
     { "data": "rec_fcr", "orderable": false },
+    { "data": "rec_fpr", "orderable": false },
     { "data": "updated_at", "orderable": false },
     { "data": "updated_at", "orderable": false },
   ]

@@ -38,6 +38,7 @@
                   <th>Unit</th>
                   <th>Total Feeds Given</th>
                   <th>Feed Conversion Ratio</th>
+                  <th>Integration Feed Charge</th>
                   <th>Date&Time</th>
                   <th>Action</th>
                 </tr>

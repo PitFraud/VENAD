@@ -94,9 +94,9 @@
                       </select>
                     </div>
                     <div class="col-md-6" id="fcr_layer_type" style="display: none;">
-                      <label class="fsize">FCR Layer</label>
-                      <input type="text" name="fcr" value="<?php if (isset($records->rec_fcr)) echo $records->rec_fcr ?>" class="form-control" id="fcr_layers" readonly>
-                      <button type="button" name="button" class="btn btn-success form-control" id="fcr_layer_btn">Calculate FCR</button>
+                      <label class="fsize">Integration Charge Layer</label>
+                      <input type="text" name="integration_charge" value="<?php if (isset($records->rec_fcr)) echo $records->rec_fcr ?>" class="form-control" id="fcr_layers" readonly>
+                      <button type="button" name="button" class="btn btn-success form-control" id="fcr_layer_btn">Calculate Integration Charge(LAYER)</button>
                       </select>
                     </div>
                   </div>

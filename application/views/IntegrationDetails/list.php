@@ -28,6 +28,7 @@
                 <th>FARMER NAME</th>
                 <th>ITEM NAME</th>
                 <th>INTEGRATION TYPE</th>
+                <th>QUANTITY</th>
                 <th>WEIGHT</th>
                 <th>UNIT</th>
                 <th>STATUS</th>

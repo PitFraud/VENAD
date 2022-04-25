@@ -1,10 +1,11 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Purchase_model extends CI_Model{
+
 	public function __construct()
-	{
-		parent::__construct();
-	}
+    {
+        parent::__construct();
+    }
 	public function getPurchaseReport($param){
 		$arOrder = array('','invoice_number','shop');
 		$invoice_number =(isset($param['invoice_number']))?$param['invoice_number']:'';
@@ -52,69 +53,119 @@ class Purchase_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->num_rows();
 	}
-	function gettax()
+	public function get_pdata($table,$primaryfield,$id)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_purchase');
+       $this->db->join('tbl_vendor','vendor_id = vendor_id_fk');
+        $this->db->where($primaryfield,$id);
+        $q = $this->db->get();
+        if($q->num_rows() > 0)
+        {
+            return $q->row();
+        }
+        return false;
+    }
+
+    public function get_product_data($auto_invoice)
 	{
+		$this->db->select('*');
+		$this->db->from('tbl_purchase');
+		$this->db->join('tbl_product','tbl_product.product_id = tbl_purchase.product_id_fk');
+		$this->db->where('auto_invoice',$auto_invoice);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function gettax()
+    {
+
 		$this->db->select('tax_id,taxamount');
 		$this->db->where("tax_status",1);
 		$query = $this->db->get('tbl_taxdetails');
 		$tax_name = array();
 		if($query->result()){
-			foreach ($query->result() as $tax_names) {
-				$tax_name[$tax_names->tax_id] = $tax_names->taxamount;
-			}
-			return $tax_name;
+		foreach ($query->result() as $tax_names) {
+		$tax_name[$tax_names->tax_id] = $tax_names->taxamount;
+
+		}
+		return $tax_name;
+
 		}
 		else{
-			return FALSE;
+            return FALSE;
 		}
-	}
-	function getproductname(){
+    }
+
+    function getproductname()
+    {
+		$this->db->select('raw_id,raw_item');
+		$this->db->where("raw_status",1);
+		$query = $this->db->get('tbl_raw_material');
+		$product_name = array();
+		if($query->result()){
+		foreach ($query->result() as $product_names) {
+		$product_name[$product_names->raw_id] = $product_names->raw_item;
+
+		}
+		return $product_name;
+
+		}
+		else{
+            return FALSE;
+		}
+    }
+
+
+    function getproductname_purchase($prid)
+    {
 		$this->db->select('product_id,product_name');
 		$this->db->where("product_status",1);
-		$this->db->where("product_name !=",'Feeds');
+		$this->db->where("project_id_fk",$prid);
 		$query = $this->db->get('tbl_product');
 		$product_name = array();
 		if($query->result()){
-			foreach ($query->result() as $product_names) {
-				$product_name[$product_names->product_id] = $product_names->product_name;
-			}
-			return $product_name;
+		foreach ($query->result() as $product_names) {
+		$product_name[$product_names->product_id] = $product_names->product_name;
+
+		}
+		return $product_name;
+
 		}
 		else{
-			return FALSE;
+            return FALSE;
 		}
-	}
-// #####################################################################################################
-	function getproductcode(){
-		$query=$this->db->select('product_id,product_code')->where('product_status',1)->get('tbl_product');
-		$result=$query->result();
-		return $result;
-	}
-	function getsalesproductcode(){
-		$query=$this->db->select('item_id,product_code')->get('tbl_production_itemlist');
-		$result=$query->result();
-		return $result;
-	}
-	function gethsncodes(){
-		$query=$this->db->select('hsn_id,hsncode')->get('tbl_hsncode');
-		$result=$query->result();
-		return $result;
-	}
-	public function get_single_hsn_details($id){
-		$query=$this->db->select('*')->where('hsn_id',$id)->get('tbl_hsncode');
-		$result=$query->row();
-		return $result;
-	}
-	// ######################################################################################################
-	function getproductname1($p_id)
-	{
+    }
+
+	function getproductnames()
+    {
+		$this->db->select('product_id,product_name');
+		$this->db->where("product_status",1);
+		$query = $this->db->get('tbl_product');
+		$product_name = array();
+		if($query->result()){
+		foreach ($query->result() as $product_names) {
+		$product_name[$product_names->product_id] = $product_names->product_name;
+
+		}
+		return $product_name;
+
+		}
+		else{
+            return FALSE;
+		}
+    }
+
+    function getproductname1($p_id)
+    {
 		$this->db->select('product_name');
 		$this->db->where("product_id",$p_id);
 		$this->db->where("product_status",1);
-		$this->db->where("product_name !=",'Feeds');
 		$query = $this->db->get('tbl_product');
 		return $query->result();
-	}
+
+    }
+
 	public function fetchPrice($fk)
 	{
 		$this->db->select('product_price');
@@ -123,6 +174,16 @@ class Purchase_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->row();
 	}
+
+	public function fetchPrices($fk)
+	{
+		$this->db->select('price');
+		$this->db->from('tbl_production');
+		$this->db->where('product_id_fk',$fk);
+		$query = $this->db->get();
+		return $query->row();
+	}
+
 	public function getAmount($tax_id)
 	{
 		$this->db->select('*');
@@ -132,6 +193,7 @@ class Purchase_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->row();
 	}
+
 	public function getprice($product_num)
 	{
 		$this->db->select('product_price');
@@ -146,7 +208,21 @@ class Purchase_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('tbl_purchase');
 		$this->db->where('purchase_status',1);
-		$this->db->join('tbl_product','tbl_product.product_id = tbl_purchase.product_id_fk','left');
+		$this->db->join('tbl_product','tbl_product.product_id = tbl_purchase.product_id_fk');
+		$this->db->join('tbl_vendor','tbl_vendor.vendor_id = tbl_purchase.vendor_id_fk');
+		//$this->db->join('tbl_size','tbl_size.size_id = tbl_product.product_size');
+	//	$this->db->join('tbl_taxdetails','tbl_taxdetails.tax_id = tbl_purchase.tax_id_fk');
+		$this->db->where('auto_invoice',$auto_invoice);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function get_invc1($auto_invoice)
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_purchase');
+		$this->db->where('purchase_status',1);
+		$this->db->join('tbl_product','product_id = tbl_purchase.product_id_fk','left');
 		$this->db->join('tbl_vendor','tbl_vendor.vendor_id = tbl_purchase.vendor_id_fk','left');
 		//$this->db->join('tbl_size','tbl_size.size_id = tbl_product.product_size');
 		//$this->db->join('tbl_taxdetails','tbl_taxdetails.tax_id = tbl_purchase.tax_id_fk','left');
@@ -154,20 +230,15 @@ class Purchase_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->result();
 	}
-	function get_shop($sessid)
-	{
-		$this->db->select('*');
-		$this->db->from('tbl_user');
-		$this->db->where('log_id_fk',$sessid);
-		$this->db->where('status',1);
-		$query = $this->db->get();
-		if($query){
-			return $query->result();
-		}
-		else{
-			return 0;
-		}
-	}
+	// function get_shop($sessid)
+	// {
+	// 	$this->db->select('*');
+	// 	$this->db->from('tbl_user');
+	// 	$this->db->where('log_id_fk',$sessid);
+	// 	$this->db->where('status',1);
+	// 	$query = $this->db->get();
+	// 	return $query->result();
+	// }
 	function get_fyear()
 	{
 		$this->db->select('*');
@@ -177,15 +248,16 @@ class Purchase_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->result();
 	}
-	// function get_stk($prid)
-	// {
-	// 	$this->db->select('*');
-	// 	$this->db->from('tbl_masterstock');
-	// 	$this->db->where('product_id_fk',$prid);
-	// 	$query = $this->db->get();
-	// 	return $query->result();
-	// }
 	function get_stk($prid)
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_stock');
+		$this->db->where('product_id_fk',$prid);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function get_stok($prid)
 	{
 		$this->db->select('*');
 		$this->db->from('tbl_product');
@@ -193,24 +265,23 @@ class Purchase_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	function get_pstk($prid)
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_production');
+		$this->db->where('product_id_fk',$prid);
+		$query = $this->db->get();
+		return $query->result();
+	}
 	public function get_gst($vendor_id)
 	{
-		$this->db->select('vendorgst');
+		$this->db->select('vendorgst,vendorstate,vendor_gsttype,vendor_statetype');
 		$this->db->from('tbl_vendor');
 		$this->db->where('vendor_id',$vendor_id);
 		$query = $this->db->get();
 		return $query->result();
 	}
-	// public function get_old_bal($sup_id)
-	// {
-	// 	$this->db->select('*');
-	// 	$this->db->from('tbl_vendor');
-	// 	$this->db->where('vendor_id',$sup_id);
-	// 	$this->db->order_by('vendor_id', 'DESC');
-	// 	$this->db->limit(1);
-	// 	$query = $this->db->get();
-	// 	return $query->result();
-	// }
 	public function get_old_bal($sup_id)
 	{
 		$this->db->select('tbl_supp_acc.old_balance AS old_balance');
@@ -228,7 +299,20 @@ class Purchase_model extends CI_Model{
 		$this->db->from('tbl_purchase');
 		$this->db->join('tbl_product','tbl_product.product_id = tbl_purchase.product_id_fk');
 		$this->db->join('tbl_vendor','tbl_vendor.vendor_id = tbl_purchase.vendor_id_fk');
-		$this->db->join('tbl_taxdetails','tbl_taxdetails.tax_id = tbl_purchase.tax_id_fk');
+		//$this->db->join('tbl_taxdetails','tbl_taxdetails.tax_id = tbl_purchase.tax_id_fk');
+		$this->db->where('auto_invoice',$auto_invoice);
+		$this->db->where('purchase_status',1);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function get_row1($auto_invoice)
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_purchase');
+		$this->db->join('tbl_product','product_id = tbl_purchase.product_id_fk','left');
+		$this->db->join('tbl_vendor','tbl_vendor.vendor_id = tbl_purchase.vendor_id_fk','left');
+		$this->db->join('tbl_taxdetails','tbl_taxdetails.tax_id = tbl_purchase.tax_id_fk','left');
 		$this->db->where('auto_invoice',$auto_invoice);
 		$this->db->where('purchase_status',1);
 		$query = $this->db->get();
@@ -280,33 +364,30 @@ class Purchase_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->num_rows();
 	}
-	public function getItemsNames($item_code)
+
+	public function get_purchase_return_list($auto_invoice)
 	{
-		$this->db->select('product_id,product_name,product_code');
+		$this->db->select('*');
+		$this->db->from('tbl_purchase');
+		$this->db->join('tbl_vendor','tbl_vendor.vendor_id=tbl_purchase.vendor_id_fk','left');
+		$this->db->join('tbl_product','tbl_product.product_id=tbl_purchase.product_id_fk','left');
+		$this->db->join('tbl_taxdetails','tbl_taxdetails.tax_id=tbl_purchase.tax_id_fk','left','left');
+		$this->db->where('purchase_status',1);
+		$this->db->where('auto_invoice',$auto_invoice);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function listhsn($pid)
+  {
+	  	$this->db->select('*');
 		$this->db->from('tbl_product');
-		$this->db->where('product_code',$item_code);
-		$this->db->where('product_status',1);
-		$this->db->where("product_name !=",'Feeds');
-		$query = $this->db->get();
-		return $query->result();
-	}
+		$this->db->join('tbl_hsncode','hsn_id=product_hsn');
+		$this->db->where('product_id',$pid);
+     	 $query = $query = $this->db->get();
+		 return $query->result_array();
 
-	public function getProductType()
-	{
-		$this->db->select('prod_cat_id,prod_cat_name,prod_cat_code');
-		$this->db->from('tbl_product_category');
-		$this->db->where('prod_cat_status',1);
-		$query = $this->db->get();
-		return $query->result();
-	}
 
-	public function getProductUnit()
-	{
-		$this->db->select('unit_id,unit_name');
-		$this->db->from('tbl_unit');
-		$this->db->where('unit_status',1);
-		$query = $this->db->get();
-		return $query->result();
-	}
+  }
 }
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 18, 2022 at 08:03 AM
+-- Generation Time: Apr 20, 2022 at 11:30 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.9
 
@@ -1638,7 +1638,8 @@ CREATE TABLE IF NOT EXISTS `tbl_receive_back` (
   `rec_weight` float NOT NULL,
   `rec_unit` int(11) NOT NULL,
   `rec_given_feeds_total` float NOT NULL,
-  `rec_fcr` float NOT NULL,
+  `rec_fcr` float DEFAULT NULL,
+  `rec_fpr` float DEFAULT NULL,
   `rec_status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0=Not active, 1=Active',
   `created_at` datetime NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -1651,11 +1652,11 @@ CREATE TABLE IF NOT EXISTS `tbl_receive_back` (
 -- Dumping data for table `tbl_receive_back`
 --
 
-INSERT INTO `tbl_receive_back` (`rec_id`, `rec_allotment_fk`, `rec_quantity`, `rec_weight`, `rec_unit`, `rec_given_feeds_total`, `rec_fcr`, `rec_status`, `created_at`, `updated_at`, `is_commission_received`, `commission_amount`) VALUES
-(1, 1, 50, 230, 2, 65, 0.769231, 1, '0000-00-00 00:00:00', '2022-02-24 22:48:07', 1, 150),
-(2, 5, 50, 250, 2, 10, 5, 1, '0000-00-00 00:00:00', '2022-03-13 21:36:09', 1, 200),
-(3, 1, 50, 120, 2, 65, 0.769231, 1, '0000-00-00 00:00:00', '2022-04-13 10:21:35', 0, 0),
-(4, 7, 8, 25, 2, 0, 0, 1, '0000-00-00 00:00:00', '2022-04-13 10:41:42', 0, 0);
+INSERT INTO `tbl_receive_back` (`rec_id`, `rec_allotment_fk`, `rec_quantity`, `rec_weight`, `rec_unit`, `rec_given_feeds_total`, `rec_fcr`, `rec_fpr`, `rec_status`, `created_at`, `updated_at`, `is_commission_received`, `commission_amount`) VALUES
+(1, 1, 50, 230, 2, 65, 0.769231, NULL, 1, '0000-00-00 00:00:00', '2022-02-24 22:48:07', 1, 150),
+(2, 5, 50, 250, 2, 10, 5, NULL, 1, '0000-00-00 00:00:00', '2022-03-13 21:36:09', 1, 200),
+(3, 1, 50, 120, 2, 65, 0.769231, NULL, 1, '0000-00-00 00:00:00', '2022-04-13 10:21:35', 0, 0),
+(4, 7, 8, 25, 2, 0, 0, NULL, 1, '0000-00-00 00:00:00', '2022-04-13 10:41:42', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1896,14 +1897,16 @@ CREATE TABLE IF NOT EXISTS `tbl_share_transfer_history` (
   `transfer_no_of_shares` int(11) NOT NULL DEFAULT 0,
   `transfer_share_total` float NOT NULL DEFAULT 0,
   PRIMARY KEY (`transfer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_share_transfer_history`
 --
 
 INSERT INTO `tbl_share_transfer_history` (`transfer_id`, `transfer_from_id`, `transfer_to_id`, `transfer_share_id`, `status`, `created_at`, `updated_at`, `transfer_no_of_shares`, `transfer_share_total`) VALUES
-(1, 1, 2, 1, 1, '2022-04-12 11:10:12', '2022-04-12 09:10:29', 10, 100);
+(1, 1, 2, 1, 1, '2022-04-12 11:10:12', '2022-04-12 09:10:29', 10, 100),
+(2, 2, 3, 6, 1, '2022-04-18 11:13:22', '2022-04-18 05:43:22', 1, 0),
+(3, 2, 1, 6, 1, '2022-04-18 11:14:49', '2022-04-18 05:44:49', 2, 0);
 
 -- --------------------------------------------------------
 

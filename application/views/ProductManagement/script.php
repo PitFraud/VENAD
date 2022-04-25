@@ -40,9 +40,9 @@ $table1 = $('#productionDetailsTable').DataTable( {
     $table1.column(0).nodes().each(function(node,index,dt){
       $table1.cell(node).data(index+1);
     });
-    $('td', row).eq(10).html('<center><button class="btn btn-primary" data-id='+data['production_id']+' onclick="viewQR(this);">View QR</button></center>');
-    $('td', row).eq(11).html('<center><button class="btn btn-primary" data-id='+data['production_id']+' onclick="viewBarcode(this);">View Barcode</button></center>');
-    $('td', row).eq(12).html('<center><a href="<?php echo base_url();?>/ProductManagement/editProductionDetails/'+data['production_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a> &nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['production_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
+    $('td', row).eq(14).html('<center><button class="btn btn-primary" data-id='+data['production_id']+' onclick="viewQR(this);">View QR</button></center>');
+    $('td', row).eq(15).html('<center><button class="btn btn-primary" data-id='+data['production_id']+' onclick="viewBarcode(this);">View Barcode</button></center>');
+    $('td', row).eq(16).html('<center><a href="<?php echo base_url();?>/ProductManagement/editProductionDetails/'+data['production_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a> &nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['production_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
   },
   "columns": [
     { "data": "empty", "defaultContent":""},
@@ -50,13 +50,21 @@ $table1 = $('#productionDetailsTable').DataTable( {
     { "data": "production_code", "orderable": false },
     { "data": "production_mfd", "orderable": false },
     { "data": "production_expiry", "orderable": false },
+    { "data": "production_chicken_type", "render" : function(data,type,row,meta){
+      if(data == 1){
+        return 'Broiler';
+      }else if(data == 2){
+        return 'Layer';
+      }
+    } },
     { "data": "production_quantity", "orderable": false },
     { "data": "production_row_mat_count", "orderable": false },
     { "data": "unit_name", "orderable": false },
+    { "data": "production_packet_count", "orderable": false },
     { "data": "production_price", "orderable": false },
-    // { "data": "production_qr", render : function (data, type, full, meta){
-    //   return '<img src="data:image/png;base64,'+data+'" height="30%" width="50%">'; }
-    // },
+    
+    { "data": "production_chicken_old_stock", "orderable": false },
+    { "data": "production_chicken_new_bal", "orderable": false },
     { "data": "created_date", "orderable": false },
     { "data": "production_id", "orderable": false },
     { "data": "production_id", "orderable": false },

@@ -34,10 +34,14 @@
                   <th>Production Code</th>
                   <th>Manufacturing date</th>
                   <th>Expiry date</th>
+                  <th>Chicken Type</th>
                   <th>Quantity</th>
                   <th>Raw material used</th>
                   <th>Unit</th>
+                  <th>Packet Count</th>
                   <th>Price</th>
+                  <th>Old Stock</th>
+                  <th>Balance</th>
                   <th>Date&Time</th>
                   <th>Qr Code</th>
                   <th>Barcode</th>

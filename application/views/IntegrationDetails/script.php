@@ -31,6 +31,7 @@ $table = $('#IntegratedStockList').DataTable( {
         }
     } 
     },
+    { "data": "allot_quantity", "orderable": false },
     { "data": "allot_weight", "orderable": false },
     { "data": "unit_name", "orderable": false },
     { "data": "allot_status", 'render': function (data, type, full, meta) {
