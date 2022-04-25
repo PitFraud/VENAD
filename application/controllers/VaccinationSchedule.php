@@ -42,6 +42,15 @@ class VaccinationSchedule extends MY_Controller {
 				'schedule_status'=>$_POST['vaccine_status'],
 				'created_at'=>date('Y-m-d H:i:s'),
 			];
+			@$vaccine_named = $this->General_model->get_row('tbl_vaccination','vaccination_id',$_POST['vaccine_name']);
+			$reminder_array =[
+				'reminder_title'=>$vaccine_named->vaccination_name,
+				'reminder_description'=>$vaccine_named->vaccination_name,
+				'reminder_date'=>$_POST['vaccine_date'],
+				'reminder_broadcast_time'=> date("h:i:sa"),
+				'reminder_no_of_times'=> 2,
+				'reminder_status'=> 1
+			];
 			// var_dump($insert_array); die;
 			// $result = $this->General_model->add($this->table,$insert_array);
 			// $response_text = 'vaccination added successfully';
@@ -50,10 +59,12 @@ class VaccinationSchedule extends MY_Controller {
 				$data['schedule_id'] = $schedule_id;
 				// $result = $this->General_model->update($this->table,$data,'vaccination_id',$vaccination_id);
 				$result = $this->General_model->update($this->table,$insert_array,'schedule_id',$schedule_id);
+				@$results = $this->General_model->add('tbl_reminders',$reminder_array);
 				$response_text = 'Schedule updated successfully';
 			}
 			else{
 				$result = $this->General_model->add($this->table,$insert_array);
+				@$results = $this->General_model->add('tbl_reminders',$reminder_array);	
 				$response_text = 'Schedule added  successfully';
 			}
 			if($result){
@@ -64,7 +75,7 @@ class VaccinationSchedule extends MY_Controller {
 			}
 			redirect('/VaccinationSchedule/', 'refresh');
 		}
-	}
+		}
 	public function edit($schedule_id){
 		$template['body'] = 'VaccinationSchedule/add';
 		$template['script'] = 'VaccinationSchedule/script';
